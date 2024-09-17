@@ -12,6 +12,8 @@ The tools:
 Background
 ^^^^^^^^
 
+Once upon a time, kallisto and bustools decided to join forces...
+
 A paper describing the protocols is available here:
 
 * `Protocols Manual <https://www.biorxiv.org/content/10.1101/2023.11.21.568164v2.full.pdf>`_
