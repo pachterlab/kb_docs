@@ -7,6 +7,6 @@ Subsections:
 .. toctree::
    :maxdepth: 1
 
-   bulk/alignment_types/standard
-   bulk/alignment_types/matrices
-   bulk/alignment_types/translated
+   alignment_types/standard
+   alignment_types/matrices
+   alignment_types/translated

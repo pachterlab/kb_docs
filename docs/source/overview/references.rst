@@ -1,3 +1,8 @@
+.. _Overview:References:
+
+References
+===============
+
 If you are using kallisto, bustools, or kb-python in a publication:   
 
 - **Please cite:**  

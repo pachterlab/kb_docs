@@ -1,8 +1,5 @@
-Getting started
-===============
-
 Installation
-^^^^^^^^^^^^
+===============
 
 Installing kb-python
 ~~~~~~~~~~~~~~~~~~~~
@@ -22,19 +19,4 @@ If you need to install a specific version of kb-python, you can specify the vers
 .. seealso::
 
   If you want to install kallisto and bustools from source, please visit the section :ref:`Advanced Installation`
-
-
-Usage
-^^^^^
-
-There are two main kb-python commands that cover most use cases: ``kb ref`` and ``kb count``, for building an index from a transcriptome reference and mapping/quantifying sequencing reads, respectively.
-
-To run those commands, you can just type them into the command-line after install kb-python:
-
-.. code-block:: shell
-
-  kb ref ...
-  kb count ...
-
-Replace ... with whatever parameters you wish to supply to those commands.
 

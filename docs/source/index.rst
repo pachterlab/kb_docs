@@ -25,7 +25,8 @@ A paper describing the protocols is available as follows:
    :maxdepth: 1
    :caption: Quick Start:
 
-   quick_start/getting_started
+   quick_start/installation
+   quick_start/usage
 
 .. toctree::
    :maxdepth: 1
