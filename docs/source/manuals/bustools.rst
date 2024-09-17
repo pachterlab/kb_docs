@@ -22,6 +22,15 @@ Usage
 Arguments
 .........
 
+
+   -t, --threads=INT
+      Number of threads to use (default: 1).
+
+   -m, --memory=STRING
+      Maximum memory used (default: 4G).
+
+
+
 .. option:: -t, --threads=INT
 
    Number of threads to use (default: 1).
