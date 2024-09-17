@@ -1,4 +1,4 @@
 sphinx
 sphinx_rtd_theme
-nbsphinx
+nbsphinx>=0.8.0
 lumache
