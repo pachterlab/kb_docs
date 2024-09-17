@@ -4,7 +4,7 @@
 
 project = 'kallisto | bustools'
 copyright = '2024, Delaney K. Sullivan'
-author = 'Delaney K. Sullivan'
+author = 'Delaney K. Sullivan, Laura Luebbert'
 
 release = '0.1'
 version = '0.1.0'
