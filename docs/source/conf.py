@@ -22,6 +22,8 @@ extensions = [
     'nbsphinx',
 ]
 
+nbsphinx_execute = 'never' # Set to 'auto' if you want to execute notebooks
+
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 2
 

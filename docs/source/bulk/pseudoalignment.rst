@@ -1,9 +1,6 @@
 Pseudoalignment of bulk RNA seq data
 =======================================
 
-Subsections:
-------------
-
 .. toctree::
    :maxdepth: 1
 

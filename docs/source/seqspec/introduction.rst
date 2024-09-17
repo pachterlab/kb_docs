@@ -1,2 +1,2 @@
-Seqspec
+Introduction to Seqspec
 =======================================
