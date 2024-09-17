@@ -2,3 +2,5 @@ sphinx
 sphinx_rtd_theme
 nbsphinx>=0.8.0
 lumache
+jupyter
+ipykernel
