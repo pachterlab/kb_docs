@@ -25,14 +25,14 @@ The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://git
    quick_start/usage
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Bulk RNA seq:
 
    bulk/pseudoalignment
    bulk/tutorials
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Single-cell RNA seq:
 
    sc/pseudoalignment
