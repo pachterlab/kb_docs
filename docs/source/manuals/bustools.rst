@@ -3,7 +3,33 @@ bustools
 
 bustools sort     
 ^^^^^^^^^^^^^^^^^^^^       
-Sort a BUS file by barcodes and UMIs
+Sort a BUS file by barcodes and UMIs (or other fields in the BUS file).
+
+``bustools sort`` (using the default options) should always be done before any
+additional processing of the BUS file following generation of the BUS file from the ``kallisto
+bus`` command. Many bustools commands will not work properly with an unsorted BUS file.
+Increasing the number of threads and maximum memory will speed up sorting.
+
+The default behavior is to sort by barcode, UMI, equivalence class (ec), then the flag column.
+
+Usage
+.....
+
+.. code-block:: text
+
+   bustools sort [options] bus-files
+
+Arguments
+.........
+
+.. option:: -t, --threads=INT
+
+   Number of threads to use (default: 1).
+
+.. option:: -m, --memory=STRING
+
+   Maximum memory used (default: 4G).
+
 
 bustools correct    
 ^^^^^^^^^^^^^^^^^^^^    
