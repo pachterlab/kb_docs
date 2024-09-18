@@ -38,6 +38,13 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
+smartquotes = False
+smartquotes_action = 'qe'  # Make sure this is set to disable quote and dash changes
+rst_prolog = """
+.. |--| unicode:: U+2011
+   :ltrim:
+"""
+
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
