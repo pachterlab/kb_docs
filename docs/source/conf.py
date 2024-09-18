@@ -40,9 +40,6 @@ templates_path = ['_templates']
 html_theme = 'sphinx_rtd_theme'
 smartquotes = False
 smartquotes_action = 'qe'
-html_theme_options = {
-    'navigation_depth': 3
-}
 
 
 # -- Options for EPUB output
