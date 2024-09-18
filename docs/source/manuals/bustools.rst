@@ -19,35 +19,25 @@ Usage
 Arguments
 .........
 
-   -t, --threads=INT
-      Number of threads to use (default: 1).
+-t, --threads=INT  Number of threads to use (default: 1).
 
-   -m, --memory=STRING
-      Maximum memory used (default: 4G).
+-m, --memory=STRING  Maximum memory used (default: 4G).
 
-   -T, --temp=STRING
-      Location and prefix for temporary files (required if using -p, otherwise defaults to output path).
+-T, --temp=STRING  Location and prefix for temporary files (required if using -p, otherwise defaults to output path).
 
-   -o, --output=STRING
-      Filename to output sorted BUS file into.
+-o, --output=STRING  Filename to output sorted BUS file into.
 
-   -p, --pipe
-      Write to standard output.
+-p, --pipe  Write to standard output.
 
-   ``--umi``
-      Sort by UMI, barcode, then ec.
+--umi  Sort by UMI, barcode, then ec.
 
-   -\-count
-      Sort by multiplicity (count), barcode, UMI, then ec.
+--count  Sort by multiplicity (count), barcode, UMI, then ec.
 
-   **-\-flags**
-      Sort by flag, ec, barcode, then UMI.
+--flags  Sort by flag, ec, barcode, then UMI.
 
-   **--flags-bc**
-      Sort by flag, barcode, UMI, then ec.
+--flags-bc  Sort by flag, barcode, UMI, then ec.
 
-   **-\-no-flags**
-      Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices.
+--no-flags  Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices.
 
 
 
