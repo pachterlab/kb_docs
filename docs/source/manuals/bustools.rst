@@ -48,7 +48,7 @@ Arguments
       Sort by flag, barcode, UMI, then ec.
 
    --no-flags
-      Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices..
+      Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices.
 
 
 
@@ -56,6 +56,36 @@ Arguments
 bustools correct    
 ^^^^^^^^^^^^^^^^^^^^    
 Error-corrects the barcodes in a BUS file to an **on list**.
+
+Error correction is done based on a hamming distance 1 mismatch between each BUS file barcode sequence and each **on list** sequence. For barcode error correction, the **on list** file simply contains a list of sequences in the **on list**.
+
+Another operation supported is the replacement operation: Each **on list** sequence (in the first column of the **on list** file) has a replacement sequence (in the second column of the **on list** file) designated therefore if a BUS file barcode has an exact match to one of those “on list” sequences, it is replaced with its replacement sequence.
+
+Note: The input BUS file need not be sorted.
+
+Usage
+.....
+
+.. code-block:: text
+
+   bustools correct [options] bus-files
+
+Arguments
+.........
+
+
+   -o, --output=STRING
+      Filename to output barcode-corrected BUS file into.
+
+   -w, --onlist=FILE
+      File containing the *on list* sequences.
+
+   -p, --pipe
+      Write to standard output.
+
+   -r, --replace
+      Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
+
 
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
