@@ -35,19 +35,19 @@ Arguments
    -p, --pipe
       Write to standard output.
 
-   &#xA0;--umi
+   --umi
       Sort by UMI, barcode, then ec.
 
-   &#xA0;--count
+   --count
       Sort by multiplicity (count), barcode, UMI, then ec.
 
-   &#xA0;--flags
+   --flags
       Sort by flag, ec, barcode, then UMI.
 
-   &#xA0;--flags-bc
+   --flags-bc
       Sort by flag, barcode, UMI, then ec.
 
-   &#xA0;--no-flags
+   --no-flags
       Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices.
 
 
