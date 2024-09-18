@@ -34,16 +34,16 @@ Arguments
    -p, --pipe
       Write to standard output.
 
-   `--umi`
+   -\\\-umi
       Sort by UMI, barcode, then ec.
 
-   `--count`
+   `--`count
       Sort by multiplicity (count), barcode, UMI, then ec.
 
-   \--flags
+   -\\\-flags
       Sort by flag, ec, barcode, then UMI.
 
-   \--flags-bc
+   -\\\-flags-bc
       Sort by flag, barcode, UMI, then ec.
 
    \--no-flags
