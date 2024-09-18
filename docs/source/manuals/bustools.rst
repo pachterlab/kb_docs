@@ -9,15 +9,15 @@ Sort a BUS file by barcodes and UMIs (or other fields in the BUS file).
 
 The default behavior is to sort by barcode, UMI, equivalence class (ec), then the flag column.
 
-Usage
-.....
+**Usage:**
+
 
 .. code-block:: text
 
    bustools sort [options] bus-files
 
-Arguments
-.........
+**Arguments:**
+
 
 -t, --threads=INT  Number of threads to use (default: 1).
 
