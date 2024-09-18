@@ -35,7 +35,7 @@ Arguments
    -p, --pipe
       Write to standard output.
 
-   :literal:`--umi`
+   \u200B--umi
       Sort by UMI, barcode, then ec.
 
    --count
