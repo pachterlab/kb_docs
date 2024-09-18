@@ -41,6 +41,7 @@ html_theme = 'sphinx_rtd_theme'
 html_use_smartypants = False
 smartquotes = False
 smart_quotes = False
+smartquotes_action = 'qe'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
