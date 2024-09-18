@@ -52,15 +52,14 @@ Another operation supported is the replacement operation: Each **on list** seque
 
 Note: The input BUS file need not be sorted.
 
-Usage
-.....
+**Usage:**
+
 
 .. code-block:: text
 
    bustools correct [options] bus-files
 
-Arguments
-.........
+**Arguments:**
 
 
 -o, --output=STRING  Filename to output barcode-corrected BUS file into.
@@ -90,15 +89,14 @@ Generates an **on list** based on the barcodes in a sorted BUS file.
 
 This is a way of generating an **on list** that the barcodes in the BUS file will be corrected to, for technologies that don’t provide an **on list**.
 
-Usage
-.....
+**Usage:**
+
 
 .. code-block:: text
 
    bustools allowlist [options] bus-files
 
-Arguments
-.........
+**Arguments:**
 
 
 -o, --output=STRING  Filename to output the *on list* into.
@@ -128,15 +126,14 @@ Converts a plaintext representation of a BUS file to a binary BUS file.
 
 The plaintext input file should have four columns: barcode, UMI, equivalence class, and count. Optionally, a fifth column (the flags column) can be supplied.
 
-Usage
-.....
+**Usage:**
+
 
 .. code-block:: text
 
    bustools fromtext [options] text-files
 
-Arguments
-.........
+**Arguments:**
 
 
 -o, --output=STRING  Filename to write the output BUS file.
@@ -159,9 +156,46 @@ bustools clusterhist
 ^^^^^^^^^^^^^^^^^^^^
 Create UMI histograms per cluster
 
-bustools linker          
+bustools compress          
 ^^^^^^^^^^^^^^^^^^^^
-Remove section of barcodes in BUS files
+Takes in a BUS file, sorted by *barcode-umi-ec* (i.e. the default option for ``bustools sort``), and compresses it.
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools compress [options] sorted-bus-file
+
+**Arguments:**
+
+
+-N, --chunk-size=INT  Number of rows to compress as a single block.
+
+-o, --output=STRING  Filename for the output compressed BUS file.
+
+-p, --pipe  Write to standard output.
+
+
+bustools decompress          
+^^^^^^^^^^^^^^^^^^^^
+Takes in a compressed BUS file and inflates (i.e. decompresses) it.
+
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools decompress [options] compressed-bus-file
+
+**Arguments:**
+
+
+-o, --output=STRING  Filename for the output decompressed BUS file.
+
+-p, --pipe  Write to standard output.
+
 
 bustools version         
 ^^^^^^^^^^^^^^^^^^^^
