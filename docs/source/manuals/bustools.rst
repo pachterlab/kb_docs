@@ -63,17 +63,13 @@ Arguments
 .........
 
 
-   -o, --output=STRING
-      Filename to output barcode-corrected BUS file into.
+-o, --output=STRING  Filename to output barcode-corrected BUS file into.
 
-   -w, --onlist=FILE
-      File containing the *on list* sequences.
+-w, --onlist=FILE  File containing the *on list* sequences.
 
-   -p, --pipe
-      Write to standard output.
+-p, --pipe  Write to standard output.
 
-   -r, --replace
-      Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
+-r, --replace  Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
 
 
 bustools umicorrect      
@@ -88,9 +84,27 @@ bustools inspect
 ^^^^^^^^^^^^^^^^^^^^
 Produce a report summarizing a BUS file
 
-bustools whitelist
+bustools allowlist
 ^^^^^^^^^^^^^^^^^^^^
-Generate a whitelist from a BUS file
+Generates an **on list** based on the barcodes in a sorted BUS file.
+
+This is a way of generating an **on list** that the barcodes in the BUS file will be corrected to, for technologies that don’t provide an **on list**.
+
+Usage
+.....
+
+.. code-block:: text
+
+   bustools allowlist [options] bus-files
+
+Arguments
+.........
+
+
+-o, --output=STRING  Filename to output the *on list* into.
+
+-f, --threshold=INT  A *highly* optional parameter specifying the minimum number of times a barcode must appear to be included in the *on list*. If not provided, a threshold will be determined based on the first 200 to 100200 BUS records.
+
 
 bustools project        
 ^^^^^^^^^^^^^^^^^^^^
@@ -107,6 +121,27 @@ Merge bus files from same experiment
 bustools text            
 ^^^^^^^^^^^^^^^^^^^^
 Convert a binary BUS file to a tab-delimited text file
+
+bustools fromtext            
+^^^^^^^^^^^^^^^^^^^^
+Converts a plaintext representation of a BUS file to a binary BUS file.
+
+The plaintext input file should have four columns: barcode, UMI, equivalence class, and count. Optionally, a fifth column (the flags column) can be supplied.
+
+Usage
+.....
+
+.. code-block:: text
+
+   bustools fromtext [options] text-files
+
+Arguments
+.........
+
+
+-o, --output=STRING  Filename to write the output BUS file.
+
+-p, --pipe  Write to standard output.
 
 bustools extract         
 ^^^^^^^^^^^^^^^^^^^^
