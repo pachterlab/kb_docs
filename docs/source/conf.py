@@ -38,10 +38,13 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
-html_use_smartypants = False
-smartquotes = False
-smart_quotes = False
-smartquotes_action = 'qe'
+
+rst_prolog = """
+.. role:: raw-text(literal)
+   :class: raw
+
+.. |--| replace:: ``--``
+"""
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
