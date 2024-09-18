@@ -5,10 +5,7 @@ bustools sort
 ^^^^^^^^^^^^^^^^^^^^       
 Sort a BUS file by barcodes and UMIs (or other fields in the BUS file).
 
-``bustools sort`` (using the default options) should always be done before any
-additional processing of the BUS file following generation of the BUS file from the ``kallisto
-bus`` command. Many bustools commands will not work properly with an unsorted BUS file.
-Increasing the number of threads and maximum memory will speed up sorting.
+``bustools sort`` (using the default options) should always be done before any additional processing of the BUS file following generation of the BUS file from the ``kallisto bus`` command. Many bustools commands will not work properly with an unsorted BUS file. Increasing the number of threads and maximum memory will speed up sorting.
 
 The default behavior is to sort by barcode, UMI, equivalence class (ec), then the flag column.
 
@@ -29,20 +26,36 @@ Arguments
    -m, --memory=STRING
       Maximum memory used (default: 4G).
 
+   -T, --temp=STRING
+      Location and prefix for temporary files (required if using -p, otherwise defaults to output path).
+
+   -o, --output=STRING
+      Filename to output sorted BUS file into.
+
+   -p, --pipe
+      Write to standard output.
+
+   --umi
+      Sort by UMI, barcode, then ec.
+
+   --count
+      Sort by multiplicity (count), barcode, UMI, then ec.
+
+   --flags
+      Sort by flag, ec, barcode, then UMI.
+
+   --flags-bc
+      Sort by flag, barcode, UMI, then ec.
+
+   --no-flags
+      Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices..
 
 
-.. option:: -t, --threads=INT
-
-   Number of threads to use (default: 1).
-
-.. option:: -m, --memory=STRING
-
-   Maximum memory used (default: 4G).
 
 
 bustools correct    
 ^^^^^^^^^^^^^^^^^^^^    
-Error correct a BUS file
+Error-corrects the barcodes in a BUS file to an **on list**.
 
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
