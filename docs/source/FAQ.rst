@@ -44,6 +44,11 @@ When using ``kb ref`` to generate a kallisto index, a genome FASTA file (NOT a t
 
 One can supply a transcriptome FASTA directly to ``kallisto index`` (i.e. not using kb-python). However, our recommendation is to not do this (except for advanced use cases) and to just rely on ``kb ref`` to generate kallisto indices.
 
+Are there prebuilt indices available that I can use?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Yes! If one wants to skip the ``kb ref`` and simply use one of the pre-built indices without any customization, one can download the index directly via the ``-d`` option in ``kb ref``, for example ``-d mouse`` (as detailed in the kb-python manual section). The code underlying how these indices were created can be found at: https://github.com/pachterlab/kallisto-transcriptome-indices (and the indices themselves can be directly downloaded from there too). 
+
 
 When should I use the standard index type versus the nac index type?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
