@@ -39,11 +39,7 @@ templates_path = ['_templates']
 
 html_theme = 'sphinx_rtd_theme'
 smartquotes = False
-smartquotes_action = 'qe'  # Make sure this is set to disable quote and dash changes
-rst_prolog = """
-.. |--| unicode:: U+2011
-   :ltrim:
-"""
+smartquotes_action = 'qe'
 
 
 # -- Options for EPUB output
