@@ -38,6 +38,8 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
+html_use_smartypants=False
+smartquotes=False
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
