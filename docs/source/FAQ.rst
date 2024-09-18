@@ -34,6 +34,12 @@ What version of kallisto, bustools, and kb-python should I install?
 
 We always recommend installing the newest version unless you have a specific reason not to. The newest version of those tools contains the newest features that may not be present in older versions. The protocols paper published alongside this documentation in 2024 correspond to kb-python version 0.28.2, kallisto 0.50.1, and bustools 0.43.2, and all options and workflows present in that paper will work with those versions. As these tools develop, additional features are added and it would be necessary to use more recent versions in order to utilize those features. The installation instructions show you how to install the latest version of these tools or specific versions of these tools.
 
+How do I compile kallisto to support longer *k*-mer lengths?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When compiling from source to support longer *k*-mer lengths, one must use ``cmake .. -DMAX_KMER_SIZE=64``. **Important note**: Always use a fresh installation when doing this (i.e. redownload the source code from github) because files that exist from a previous build may cause the binary to be generated incorrectly.
+
+
 Choice of index and output matrices
 -----------------------------------
 
