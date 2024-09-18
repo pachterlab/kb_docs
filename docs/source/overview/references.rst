@@ -23,3 +23,5 @@ If you are using kallisto, bustools, or kb-python in a publication:
 **Additional relevant paper(s):**  
 
 Melsted P*, Ntranos V*, Pachter L*. `The barcode, UMI, set format and BUStools. <https://doi.org/10.1093/bioinformatics/btz279>`_ Bioinformatics 35(11), 4472–4473 (2019). https://doi.org/10.1093/bioinformatics/btz279
+
+Einarsson PH, Melsted P. `BUSZ: compressed BUS files. <https://doi.org/10.1093/bioinformatics/btad295>`_ Bioinformatics 39(5), btad295 (2023). https://doi.org/10.1093/bioinformatics/btad295
