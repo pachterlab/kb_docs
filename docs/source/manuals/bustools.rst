@@ -19,6 +19,7 @@ Usage
 Arguments
 .........
 
+.. parsed-literal::
 
    -t, --threads=INT
       Number of threads to use (default: 1).
@@ -35,10 +36,8 @@ Arguments
    -p, --pipe
       Write to standard output.
 
-
    --umi
       Sort by UMI, barcode, then ec.
-
 
    --count
       Sort by multiplicity (count), barcode, UMI, then ec.
@@ -49,7 +48,7 @@ Arguments
    --flags-bc
       Sort by flag, barcode, UMI, then ec.
 
-    --no-flags
+   --no-flags
       Ignore and reset the flag column while sorting. If read numbers are present in the flag column of the BUS file, sorting using this option renders BUS file suitable for use in generating count matrices.
 
 
