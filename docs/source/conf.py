@@ -3,10 +3,10 @@
 # -- Project information
 
 project = 'kallisto | bustools'
-copyright = '2024, Delaney K. Sullivan'
+copyright = '2024, Pachter Lab'
 author = 'Delaney K. Sullivan, Laura Luebbert'
 
-release = '0.1'
+release = '0.28.2'
 version = '0.1.0'
 
 # -- General configuration
