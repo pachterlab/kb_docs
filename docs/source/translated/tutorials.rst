@@ -4,5 +4,5 @@ Tutorials
 .. toctree::
    :maxdepth: 1
    
-   notebooks/general
-   notebooks/virus_detection
+   notebooks/virus_detection_bulk
+   notebooks/virus_detection_sc
