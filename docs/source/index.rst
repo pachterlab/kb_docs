@@ -25,6 +25,12 @@ The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://git
    quick_start/usage
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Index generation:
+
+   index/index_generation
+
+.. toctree::
    :maxdepth: 2
    :caption: Bulk RNA seq:
 
