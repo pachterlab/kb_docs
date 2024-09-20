@@ -6,3 +6,7 @@ Pseudoalignment of bulk RNA seq data
 
    alignment_types/standard
    alignment_types/matrices
+
+.. note::
+
+   **To align bulk RNA seq data against a protein or amino acid reference see `translated pseudoalignment </../translated/pseudoalignment>`_:**
