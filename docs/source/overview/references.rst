@@ -6,7 +6,9 @@ References
 If you are using kallisto, bustools, or kb-python in a publication:   
 
 - **Please cite:**  
-   protocols paper
+kallisto, bustools, and kb-python for quantifying bulk, single-cell, and single-nucleus RNA-seq 
+Delaney K. Sullivan, Kyung Hoi (Joseph) Min, Kristján Eldjárn Hjörleifsson, Laura Luebbert, Guillaume Holley, Lambda Moses, Johan Gustafsson, Nicolas L. Bray, Harold Pimentel, A. Sina Booeshaghi, Páll Melsted, Lior Pachter 
+bioRxiv 2023.11.21.568164; doi: https://doi.org/10.1101/2023.11.21.568164
 
 - **When performing alignment of single-cell RNA seq data, please also cite:**  
    Melsted P*, Booeshaghi AS*, Liu L, Gao F, Lu Lambda, Min KH, da Veiga Beltrame E, Hjörleifsson KE, Gehring J, Pachter L. `Modular, efficient and constant-memory single-cell RNA-seq preprocessing. <https://doi.org/10.1038/s41587-021-00870-2>`_ Nature Biotechnology 39, 813–818 (2021). https://doi.org/10.1038/s41587-021-00870-2
@@ -15,10 +17,14 @@ If you are using kallisto, bustools, or kb-python in a publication:
    Bray N, Pimentel H, Melsted P, Pachter L. `Near-optimal probabilistic RNA-seq quantification. <https://doi.org/10.1038/nbt.3519>`_ Nature Biotechnology 34, 525–527 (2016). https://doi.org/10.1038/nbt.3519
 
 - **When analyzing long-read RNA seq data, please also cite:**  
-   Bekka's paper
+Long-read sequencing transcriptome quantification with lr-kallisto
+Rebekah Loving, Delaney K. Sullivan, Fairlie Reese, Elisabeth Rebboah, Jasmine Sakr, Narges Rezaie, Heidi Y. Liang, Ghassan Filimban, Shimako Kawauchi, Conrad Oakes, Diane Trout, Brian A. Williams, Grant MacGregor, Barbara J. Wold, Ali Mortazavi, Lior Pachter
+bioRxiv 2024.07.19.604364; doi: https://doi.org/10.1101/2024.07.19.604364
 
 - **When performing translated alignment, please also cite:**  
-   Veira paper
+Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression
+Laura Luebbert, Delaney K. Sullivan, Maria Carilli, Kristján Eldjárn Hjörleifsson, Alexander Viloria Winnett, Tara Chari, Lior Pachter
+bioRxiv 2023.12.11.571168; doi: https://doi.org/10.1101/2023.12.11.571168
 
 **Additional relevant paper(s):**  
 
