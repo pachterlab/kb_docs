@@ -71,13 +71,49 @@ Note: The input BUS file need not be sorted.
 -r, --replace  Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
 
 
+bustools count           
+^^^^^^^^^^^^^^^^^^^^
+Generates count matrices from BUS files that have been sorted and barcode-error-corrected.
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools count [options] sorted-bus-files
+
+**Arguments:**
+
+
+-o, --output=STRING  The prefix of the output files for count matrices.
+
+-g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the **t2g.txt** file produced by it).
+
+-e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
+
+-t, --txnames=FILE  File with names of transcripts.
+
+--genecounts  Aggregate counts to genes only. This option generates a **gene count matrix**; if this option is not supplied, a *transcript-compatibility counts (TCC) matrix* (where each equivalence class gets a count) is generated instead.
+
+--umi-gene  Handles cases of UMI collisions. For example, a case may be where two reads with the same UMI sequence and the same barcode map to different genes. With this option enabled, those reads are considered to be two distinct molecules which were unintentionally labeled with the same UMI, and hence each gene gets a count.
+
+--cm  Counts multiplicities rather than UMIs. In other words, no UMI collapsing is performed and each mapped read is its own unique molecule regardless of the UMI sequence (i.e. the UMI sequence is ignored).
+
+-m, --multimapping  Include bus records that map to multiple genes. When --genecounts is enabled, this option causes counts to be distributed uniformly across all the mapped genes (for example, if a read multimaps to two genes, each gene will get a count of 0.5).
+
+-s, --split=FILE  Split output matrix in two (plus ambiguous) based on the list of transcript names supplied in this file. If a UMI (after collapsing) or a read maps to transcripts found in this file, the count is entered into a matrix file with the extension ``.2.mtx``; if it maps to transcripts not in this file, the count is entered into a separate matrix file with the extension ``.mtx``; if it maps to some transcripts in this file and some transcripts not in this file, the count is entered into a third matrix file with the extension ``.ambiguous.mtx``. When quantifying **nascent**, **ambiguous**, and **mature** RNA species, the nascent transcript names (which will actually simply be the gene IDs themselves) will be listed in the file supplied to --split so that the ``.mtx`` file contains the mature RNA counts, the ``.2.mtx`` file contains the nascent RNA counts, and the ``.ambiguous.mtx`` file contains the ambiguous RNA counts. Note that **kb-python** renames ``.mtx`` to ``.mature.mtx`` and renames ``2.mtx`` to ``.nascent.mtx``.
+
+
+**Output:**
+
+Each output file is prefixed with what is supplied to the ``--output`` option. In ``kb count`` within **kb-python**, the prefix is ``cells_x_genes``. Thus, the files outputted (when generating a gene count matrix via ``--genecounts``) will be ``cells_x_genes.mtx`` (the matrix file), ``cells_x_genes.barcodes.txt`` (the barcodes; i.e. the rows of the matrix), and ``cells_x_genes.genes.txt`` (the genes; i.e. the columns of the matrix). When generating a TCC matrix, ``cells_x_genes.ec.txt`` will be generated in lieu of ``cells_x_genes.genes.txt`` as the columns of the matrix will be equivalence classes (ECs) rather than genes. If both sample-specific barcodes and cell barcodes are supplied (as is the case when one uses ``--batch-barcodes`` in kallisto bus), then an additional ``cells_x_genes.barcodes.prefix.txt`` file will be created containing the sample-specific barcodes. The lines of this file correspond to the lines in the ``cells_x_genes.barcodes.txt`` (both files will have the same number of lines). Finally, when ``--split`` is supplied, additional **.mtx** matrix files will be generated (see the ``--split`` option described above).
+
+
+
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
 Error correct the UMIs in a BUS file
 
-bustools count           
-^^^^^^^^^^^^^^^^^^^^
-Generate count matrices from a BUS file
 
 bustools inspect     
 ^^^^^^^^^^^^^^^^^^^^
@@ -199,8 +235,20 @@ Takes in a compressed BUS file and inflates (i.e. decompresses) it.
 
 bustools version         
 ^^^^^^^^^^^^^^^^^^^^
-Prints version number
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools version
 
 bustools cite    
 ^^^^^^^^^^^^^^^^^^^^
-Prints citation information
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools cite
