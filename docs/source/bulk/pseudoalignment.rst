@@ -6,4 +6,3 @@ Pseudoalignment of bulk RNA seq data
 
    alignment_types/standard
    alignment_types/matrices
-   alignment_types/translated
