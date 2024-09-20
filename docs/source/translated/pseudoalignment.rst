@@ -3,7 +3,9 @@ Pseudoalignment of RNA seq data against a protein reference
 
 .. note:: **Reference:**
    Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L.
-   `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. <https://doi.org/10.1101/2023.12.11.571168>`_ bioRxiv 2023.12.11.571168 
+
+   `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. 
+<https://doi.org/10.1101/2023.12.11.571168>`_ bioRxiv 2023.12.11.571168 
    https://doi.org/10.1101/2023.12.11.571168
 
 kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution.
@@ -12,7 +14,7 @@ Translated pseudoalignment is performed by first reverse translating the amino a
 
 The workflow can be executed in three lines of code, and computational requirements do not exceed those of a standard laptop. Building on kallisto’s versatility, the workflow is compatible with all state-of-the-art single-cell and bulk RNA sequencing methods, including but not limited to 10x Genomics, Drop-Seq [3]_, SMART-Seq [4]_, SPLiT-Seq [5]_ (including Parse Biosciences), and spatial methods such as Visium.
 
-.. image:: ../figures/translated_alignment_overview.png
+.. image:: ../../figures/translated_alignment_overview.png
    :width: 400px
    :alt: Overview of translated alignment workflow
 
@@ -22,6 +24,10 @@ The workflow can be executed in three lines of code, and computational requireme
 .. [4] Ramsköld, D. et al. Full-length mRNA-Seq from single-cell levels of RNA and individual circulating tumor cells. Nat. Biotechnol. 30, 777–782 (2012).
 .. [5] Rosenberg, A. B. et al. Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding. Science 360, 176–182 (2018).
 
-.. note:: **Tutorials:**
-`Bulk </bulk/alignment_types/translated>`_  
-`Single-cell </sc/alignment_types/translated>`_
+.. note::
+
+   **Tutorials:**
+
+   - `Bulk Alignment </bulk/alignment_types/translated>`_
+   - `Single-cell Alignment </sc/alignment_types/translated>`_
+
