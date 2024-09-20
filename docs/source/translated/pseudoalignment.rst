@@ -2,7 +2,6 @@ Pseudoalignment of RNA seq data against a protein reference
 =======================================
 
 .. note:: **Reference:**
-
    Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L.  
    `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. <https://doi.org/10.1101/2023.12.11.571168>`_  
    bioRxiv 2023.12.11.571168  
