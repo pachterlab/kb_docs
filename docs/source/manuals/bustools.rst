@@ -381,7 +381,7 @@ The capture results are directly piped into the extract command, and the extract
 
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
-Implements the UMI correction algorithm of `UMI-tools <https://github.com/CGATOxford/UMI-tools>`_ (`Smith, Heger, Sudbery. *Genome Research*, 2017 <https://doi.org/10.1101/gr.209601.116>`) and outputs a BUS file with the corrected UMIs.
+Implements the UMI correction algorithm of `UMI-tools <https://github.com/CGATOxford/UMI-tools>`_ (`Smith, Heger, Sudbery. *Genome Research*, 2017 <https://doi.org/10.1101/gr.209601.116>`_) and outputs a BUS file with the corrected UMIs.
 
 
 **Usage:**
