@@ -7,7 +7,7 @@ Pseudoalignment of RNA seq data against a protein reference
    bioRxiv 2023.12.11.571168  
    https://doi.org/10.1101/2023.12.11.571168
 
-kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution.
+kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution. Generally, to perform translated alignment, simply add the `--aa` flag to the `kb ref` and `kb count` commands.
 
 Translated pseudoalignment is performed by first reverse translating the amino acid reference sequences and all possible reading frames (three forward and three reverse) of the nucleotide sequencing reads to comma-free code [1]_. A comma-free code is a set of k-letter ‘words’ selected such that any off-frame k-mers formed by adjacent letters do not constitute a ‘word’, and will thus be interpreted as ‘nonsense’. For k=3 (a triplet code) and 4 letters (e.g., ‘A’, ‘T’, ‘C’, and ‘G’), this results in exactly 20 possible words, which equals the number of amino acids specified by the universal genetic code. Due to the serendipity of these numbers, Crick et al. hypothesized the genetic code to be a comma-free code in 1957 [2]_. Finally, the six reading frames of the sequencing reads translated to comma-free code are pseudoaligned to the reference sequences reverse translated to comma-free code. If several reading frames of the same read produce alignments, the best frame is chosen.
 
