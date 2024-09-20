@@ -3,9 +3,9 @@ kallisto
 
 Running kallisto usually involves two steps:
 
-1.  Indexing a FASTA file of target sequences via
+#. Indexing a FASTA file of target sequences via
 ``kallisto index``.
-2. Mapping sequencing reads to kallisto index using ``kallisto bus``.
+#. Mapping sequencing reads to kallisto index using ``kallisto bus``.
 
 index         
 ^^^^^^^^^^^^^^^^^^^^
