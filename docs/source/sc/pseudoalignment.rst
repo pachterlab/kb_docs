@@ -9,5 +9,7 @@ Pseudoalignment of single-cell RNA seq data
 
 .. note::
 
-   **To align single-cell RNA seq data against a protein or amino acid reference see `translated pseudoalignment </../translated/pseudoalignment>`_:**
+   **To align single-cell RNA-seq data against a protein or amino acid reference, see:** 
+   `Translated Pseudoalignment </../translated/pseudoalignment>`_
+
 
