@@ -110,14 +110,93 @@ Each output file is prefixed with what is supplied to the **--output** option. I
 
 
 
+
+bustools inspect     
+^^^^^^^^^^^^^^^^^^^^
+Produces a report summarizing the contents of a sorted BUS file. The report can be output either to standard output or to a JSON file.
+
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools inspect [options] sorted-bus-file
+
+**Arguments:**
+
+
+-o, --output=STRING  Filename for JSON file output (optional).
+
+-e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
+
+-w, --onlist=FILE  File containing the barcodes "on list".
+
+-p, --pipe  Write to standard output.
+
+
+
+**Output:**
+
+.. code-block:: text
+  :caption: Example report output in standard output (using -p)
+
+  Read in 3148815 BUS records
+  Total number of reads: 3431849
+
+  Number of distinct barcodes: 162360
+  Median number of reads per barcode: 1.000000
+  Mean number of reads per barcode: 21.137281
+
+  Number of distinct UMIs: 966593
+  Number of distinct barcode-UMI pairs: 3062719
+  Median number of UMIs per barcode: 1.000000
+  Mean number of UMIs per barcode: 18.863753
+
+  Estimated number of new records at 2x sequencing depth: 2719327
+
+  Number of distinct targets detected: 70492
+  Median number of targets per set: 2.000000
+  Mean number of targets per set: 3.091267
+
+  Number of reads with singleton target: 1233940
+
+  Estimated number of new targets at 2x seuqencing depth: 6168
+
+  Number of barcodes in agreement with on-list: 92889 (57.211752%)
+  Number of reads with barcode in agreement with on-list: 3281671 (95.623992%)
+
+
+.. code-block:: text
+  :caption: Example report output in JSON format
+
+  {
+    "numRecords": 3148815,
+    "numReads": 3431849,
+    "numBarcodes": 162360,
+    "medianReadsPerBarcode": 1.000000,
+    "meanReadsPerBarcode": 21.137281,
+    "numUMIs": 966593,
+    "numBarcodeUMIs": 3062719,
+    "medianUMIsPerBarcode": 1.000000,
+    "meanUMIsPerBarcode": 18.863753,
+    "gtRecords": 2719327,
+    "numTargets": 70492,
+    "medianTargetsPerSet": 2.000000,
+    "meanTargetsPerSet": 3.091267,
+    "numSingleton": 1233940,
+    "gtTargets": 6168,
+    "numBarcodesOnOnlist": 92889,
+    "percentageBarcodesOnOnlist": 0.57211752,
+    "numReadsOnOnlist": 3281671,
+    "percentageReadsOnOnlist": 0.95623992
+  }
+
+
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
 Error correct the UMIs in a BUS file
 
-
-bustools inspect     
-^^^^^^^^^^^^^^^^^^^^
-Produce a report summarizing a BUS file
 
 bustools allowlist
 ^^^^^^^^^^^^^^^^^^^^
