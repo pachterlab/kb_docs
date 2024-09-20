@@ -22,9 +22,7 @@ Rebekah Loving, Delaney K. Sullivan, Fairlie Reese, Elisabeth Rebboah, Jasmine S
 bioRxiv 2024.07.19.604364; doi: https://doi.org/10.1101/2024.07.19.604364
 
 - **When performing translated alignment, please also cite:**  
-Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression
-Laura Luebbert, Delaney K. Sullivan, Maria Carilli, Kristján Eldjárn Hjörleifsson, Alexander Viloria Winnett, Tara Chari, Lior Pachter
-bioRxiv 2023.12.11.571168; doi: https://doi.org/10.1101/2023.12.11.571168
+   Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L. `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. <https://doi.org/10.1101/2023.12.11.571168>`_ bioRxiv 2023.12.11.571168 https://doi.org/10.1101/2023.12.11.571168
 
 **Additional relevant paper(s):**  
 
