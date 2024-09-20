@@ -193,9 +193,10 @@ Produces a report summarizing the contents of a sorted BUS file. The report can 
   }
 
 
-bustools umicorrect      
-^^^^^^^^^^^^^^^^^^^^
-Error correct the UMIs in a BUS file
+.. note:
+
+  The *numTargets*, *medianTargetsPerSet*, *meanTargetsPerSet*, *numSingleton*, and *gtTargets* values are only generated if the **--ecmap** option is provided. The *numBarcodesOnOnlist*, *percentageBarcodesOnOnlist*, *numReadsOnOnlist*, *percentageReadsOnOnlist* values are only generated if **--onlist** is provided.
+
 
 
 bustools allowlist
@@ -225,7 +226,51 @@ Project a BUS file to gene sets
 
 bustools capture         
 ^^^^^^^^^^^^^^^^^^^^
-Capture records from a BUS file
+Separates a BUS file into multiple files according to the capture criteria.
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools capture [options] bus-files
+
+**Arguments:**
+
+Capture options:
+
+-F, --flags  Capture list is a list of flags to capture.
+
+-s, --transcripts  Capture list is a list of transcripts to capture.
+
+-u, --umis  Capture list is a list of UMI sequences to capture.
+
+-b, --barcode  Capture list is a list of barcodes to capture.
+
+Other arguments:
+
+-o, --output=STRING  Name of file for the captured BUS output.
+
+-x, --complement  Take complement of captured set. (i.e. output all BUS records that do NOT match an entry in the capture list).
+
+-c, --capture=FILE  File containing the “capture list” (i.e. list of transcripts, transcripts, flags, UMI sequences, or barcode sequences).
+
+-e, --ecmap=FILE  File for mapping equivalence classes to transcripts (required for --transcripts).
+
+-t, --txnames=FILE File with names of transcripts (required for --transcripts).
+
+-p, --pipe Write to standard output.
+
+
+.. note:
+
+  If you use the **-b** (**--barcode**) option and want to capture all records containing a sample-specific barcode from running **--batch-barcodes** in **kallisto bus**, in the "capture list" file, enter the 16-bp sample-specific barcode followed by a * character (e.g. AAAAAAAAAAAAAACT*).
+
+
+bustools umicorrect      
+^^^^^^^^^^^^^^^^^^^^
+Error correct the UMIs in a BUS file
+
 
 bustools merge           
 ^^^^^^^^^^^^^^^^^^^^
