@@ -330,7 +330,7 @@ Extracts FASTQ reads corresponding to reads in BUS file.
 
 This will extract the successfully mapped sequencing reads from the input FASTQ files that were processed with kallisto bus with the **-n** (**--num**) option, which places the read number (zero-indexed) in the flags column of the BUS file. Although BUS files with read numbers present in the flags column should not be used for downstream quantification, they can be used by **bustools extract** to extract the original sequencing reads (as well as by **bustools text** to view the sequencing read number along with the barcode, UMI, and equivalence class).
 
-Note: The BUS file must be sorted by flag. The output BUS file directly from kallisto should already be sorted by flag, but, if not, one can use apply ``bustools sort --flag`` on the BUS file.
+Note: The BUS file must be sorted by flag. The output BUS file directly from kallisto should already be sorted by flag, but, if not, one can use apply **bustools sort --flag** on the BUS file.
 
 **Usage:**
 
@@ -351,17 +351,16 @@ Note: The BUS file must be sorted by flag. The output BUS file directly from kal
 
 .. note::
 
-  To continue working with BUS files with read numbers present in the flags column for downstream analysis, you must remove the flags column by running ``bustools sort`` with the ``--no-flags``. It is important that you do so otherwise the BUS file will not be suitable for further processing (including generating count matrices).
+  To continue working with BUS files with read numbers present in the flags column for downstream analysis, you must remove the flags by running ``bustools sort`` with ``--no-flags``. It is important that you do so otherwise the BUS file will not be suitable for further processing (including generating count matrices).
 
 
 **Example:**
 
-This command is especially useful to use in conjunction with bustools capture when one wishes to extract specific reads (e.g. reads that contain a certain barcode or reads whose equivalence class contains a certain transcript). Below, we show an example of how to extract reads from two input files: **R1.fastq.gz** and **R2.fastq.gz** entered into a ``kallisto bus`` run with results outputted into a directory named **output_dir**. We’ll extract reads that are compatible with either the transcript **ENSMUST00000171143.2** or **ENSMUST00000131532.2**.
+The extraction feature is especially useful to use in conjunction with bustools capture when one wishes to extract specific reads (e.g. reads that contain a certain barcode or reads whose equivalence class contains a certain transcript). Below, we show an example of how to extract reads from two input files: **R1.fastq.gz** and **R2.fastq.gz** entered into a ``kallisto bus`` run with results outputted into a directory named **output_dir**. We’ll extract reads that are compatible with either the transcript **ENSMUST00000171143.2** or **ENSMUST00000131532.2**.
 
 Create a file called **capture.txt** containing the following two lines:
 
 .. code-block:: text
-  :caption: capture.txt
 
   ENSMUST00000171143.2
   ENSMUST00000131532.2
@@ -382,34 +381,30 @@ The capture results are directly piped into the extract command, and the extract
 
 bustools umicorrect      
 ^^^^^^^^^^^^^^^^^^^^
-Error correct the UMIs in a BUS file
+Implements the UMI correction algorithm of `UMI-tools <https://github.com/CGATOxford/UMI-tools>`_ (`Smith, Heger, Sudbery. *Genome Research*, 2017 <https://doi.org/10.1101/gr.209601.116>`) and outputs a BUS file with the corrected UMIs.
 
 
+**Usage:**
 
 
-bustools project        
-^^^^^^^^^^^^^^^^^^^^
-Project a BUS file to gene sets
+.. code-block:: text
+
+   bustools umicorrect [options] sorted-bus-file
+
+**Arguments:**
 
 
-bustools merge           
-^^^^^^^^^^^^^^^^^^^^
-Merge bus files from same experiment
+-o, --output=STRING  Filename to write the output BUS file with UMIs corrected.
+
+-p, --pipe  Write to standard output.
+
+-g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the **t2g.txt** file produced by it).
+
+-e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
+
+-t, --txnames=FILE  File with names of transcripts.
 
 
-
-
-bustools predict         
-^^^^^^^^^^^^^^^^^^^^
-Correct the count matrix using prediction of unseen species
-
-bustools collapse        
-^^^^^^^^^^^^^^^^^^^^
-Turn BUS files into a BUG file
-
-bustools clusterhist     
-^^^^^^^^^^^^^^^^^^^^
-Create UMI histograms per cluster
 
 bustools compress          
 ^^^^^^^^^^^^^^^^^^^^
