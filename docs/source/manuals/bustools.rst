@@ -449,6 +449,7 @@ Takes in a compressed BUS file and inflates (i.e. decompresses) it.
 
 bustools version         
 ^^^^^^^^^^^^^^^^^^^^
+Prints version information.
 
 **Usage:**
 
@@ -459,6 +460,7 @@ bustools version
 
 bustools cite    
 ^^^^^^^^^^^^^^^^^^^^
+Prints citation information.
 
 **Usage:**
 
