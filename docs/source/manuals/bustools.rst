@@ -220,10 +220,6 @@ This is a way of generating an **on list** that the barcodes in the BUS file wil
 -f, --threshold=INT  A *highly* optional parameter specifying the minimum number of times a barcode must appear to be included in the *on list*. If not provided, a threshold will be determined based on the first 200 to 100200 BUS records.
 
 
-bustools project        
-^^^^^^^^^^^^^^^^^^^^
-Project a BUS file to gene sets
-
 bustools capture         
 ^^^^^^^^^^^^^^^^^^^^
 Separates a BUS file into multiple files according to the capture criteria.
@@ -266,15 +262,6 @@ Other arguments:
 
   If you use the **-b** (**--barcode**) option and want to capture all records containing a sample-specific barcode from running **--batch-barcodes** in **kallisto bus**, in the "capture list" file, enter the 16-bp sample-specific barcode followed by a * character (e.g. AAAAAAAAAAAAAACT*).
 
-
-bustools umicorrect      
-^^^^^^^^^^^^^^^^^^^^
-Error correct the UMIs in a BUS file
-
-
-bustools merge           
-^^^^^^^^^^^^^^^^^^^^
-Merge bus files from same experiment
 
 bustools text            
 ^^^^^^^^^^^^^^^^^^^^
@@ -336,9 +323,81 @@ The plaintext input file should have four columns: barcode, UMI, equivalence cla
 
 -p, --pipe  Write to standard output.
 
+
 bustools extract         
 ^^^^^^^^^^^^^^^^^^^^
-Extract FASTQ reads correspnding to reads in BUS file
+Extracts FASTQ reads corresponding to reads in BUS file.
+
+This will extract the successfully mapped sequencing reads from the input FASTQ files that were processed with kallisto bus with the **-n** (**--num**) option, which places the read number (zero-indexed) in the flags column of the BUS file. Although BUS files with read numbers present in the flags column should not be used for downstream quantification, they can be used by **bustools extract** to extract the original sequencing reads (as well as by **bustools text** to view the sequencing read number along with the barcode, UMI, and equivalence class).
+
+Note: The BUS file must be sorted by flag. The output BUS file directly from kallisto should already be sorted by flag, but, if not, one can use apply ``bustools sort --flag`` on the BUS file.
+
+**Usage:**
+
+
+.. code-block:: text
+
+   bustools extract [options] sorted-by-flag-bus-file
+
+**Arguments:**
+
+
+-o, --output=STRING  Directory that the output FASTQ files will be stored in
+
+-f, --fastq=STRING  FASTQ file(s) from which to extract reads (comma-separated list). These should be the same files used as input to ``kallisto bus``.
+
+-N, --nFastqs=INT  Number of FASTQ file(s) per run. For example, in *10xv3* where there are two FASTQ files (and R1 and R2 file), **--nFastqs=2** should be set.
+
+
+.. note::
+
+  To continue working with BUS files with read numbers present in the flags column for downstream analysis, you must remove the flags column by running ``bustools sort`` with the ``--no-flags``. It is important that you do so otherwise the BUS file will not be suitable for further processing (including generating count matrices).
+
+
+**Example:**
+
+This command is especially useful to use in conjunction with bustools capture when one wishes to extract specific reads (e.g. reads that contain a certain barcode or reads whose equivalence class contains a certain transcript). Below, we show an example of how to extract reads from two input files: **R1.fastq.gz** and **R2.fastq.gz** entered into a ``kallisto bus`` run with results outputted into a directory named **output_dir**. We’ll extract reads that are compatible with either the transcript **ENSMUST00000171143.2** or **ENSMUST00000131532.2**.
+
+Create a file called **capture.txt** containing the following two lines:
+
+.. code-block:: text
+  :caption: capture.txt
+
+  ENSMUST00000171143.2
+  ENSMUST00000131532.2
+
+Run the following:
+
+.. code-block:: text
+
+  bustools capture -c capture.txt --transcripts \
+  --ecmap=output_dir/matrix.ec \
+  --txnames=output_dir/transcripts.txt -p \
+  output_dir/output.bus | bustools extract --nFastqs=2 \
+  --fastq=R1.fastq.gz,R2.fastq.gz -o extracted_output -
+
+
+The capture results are directly piped into the extract command, and the extracted FASTQ sequencing reads output are placed into the paths ``extracted_output/1.fastq.gz`` and ``extracted_output/2.fastq.gz`` (for the input files **R1.fastq.gz** and **R2.fastq.gz**, respectively). ``bustools extract`` does not work when you have sample-specific barcodes in your BUS file because each sample’s read number (as recorded in the flags column of the BUS file) starts from 0. To work around this, you should first use bustools capture to isolate a specific sample and then supply that specific sample’s FASTQ file(s).
+
+
+bustools umicorrect      
+^^^^^^^^^^^^^^^^^^^^
+Error correct the UMIs in a BUS file
+
+
+
+
+bustools project        
+^^^^^^^^^^^^^^^^^^^^
+Project a BUS file to gene sets
+
+
+bustools merge           
+^^^^^^^^^^^^^^^^^^^^
+Merge bus files from same experiment
+
+
+
 
 bustools predict         
 ^^^^^^^^^^^^^^^^^^^^
