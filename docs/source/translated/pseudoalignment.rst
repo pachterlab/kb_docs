@@ -21,10 +21,3 @@ The workflow can be executed in three lines of code, and computational requireme
 .. [3] Macosko, E. Z. et al. Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets. Cell 161, 1202–1214 (2015).
 .. [4] Ramsköld, D. et al. Full-length mRNA-Seq from single-cell levels of RNA and individual circulating tumor cells. Nat. Biotechnol. 30, 777–782 (2012).
 .. [5] Rosenberg, A. B. et al. Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding. Science 360, 176–182 (2018).
-
-.. note::
-
-   **Tutorials:**
-   - `Bulk Alignment </bulk/alignment_types/translated>`_
-   - `Single-cell Alignment </sc/alignment_types/translated>`_
-
