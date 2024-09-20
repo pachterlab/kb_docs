@@ -193,7 +193,7 @@ Produces a report summarizing the contents of a sorted BUS file. The report can 
   }
 
 
-.. note:
+.. note::
 
   The *numTargets*, *medianTargetsPerSet*, *meanTargetsPerSet*, *numSingleton*, and *gtTargets* values are only generated if the **--ecmap** option is provided. The *numBarcodesOnOnlist*, *percentageBarcodesOnOnlist*, *numReadsOnOnlist*, *percentageReadsOnOnlist* values are only generated if **--onlist** is provided.
 
@@ -257,12 +257,12 @@ Other arguments:
 
 -e, --ecmap=FILE  File for mapping equivalence classes to transcripts (required for --transcripts).
 
--t, --txnames=FILE File with names of transcripts (required for --transcripts).
+-t, --txnames=FILE  File with names of transcripts (required for --transcripts).
 
--p, --pipe Write to standard output.
+-p, --pipe  Write to standard output.
 
 
-.. note:
+.. note::
 
   If you use the **-b** (**--barcode**) option and want to capture all records containing a sample-specific barcode from running **--batch-barcodes** in **kallisto bus**, in the "capture list" file, enter the 16-bp sample-specific barcode followed by a * character (e.g. AAAAAAAAAAAAAACT*).
 
