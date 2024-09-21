@@ -6,27 +6,28 @@ Running kallisto usually involves two steps:
 #. Indexing a FASTA file of target sequences via ``kallisto index``
 #. Mapping sequencing reads to kallisto index using ``kallisto bus``
 
-index         
+kallisto index         
 ^^^^^^^^^^^^^^^^^^^^
 Builds a kallisto index 
 
-quant         
-^^^^^^^^^^^^^^^^^^^^
-Runs the quantification algorithm 
 
-quant-tcc     
-^^^^^^^^^^^^^^^^^^^^
-Runs quantification on transcript-compatibility counts
-
-bus           
+kallisto bus           
 ^^^^^^^^^^^^^^^^^^^^
 Generate BUS files for single-cell data 
 
-h5dump        
+kallisto quant-tcc     
+^^^^^^^^^^^^^^^^^^^^
+Runs quantification on transcript-compatibility counts
+
+kallisto quant         
+^^^^^^^^^^^^^^^^^^^^
+Runs the quantification algorithm 
+
+kallisto h5dump        
 ^^^^^^^^^^^^^^^^^^^^
 Converts HDF5-formatted results to plaintext
 
-inspect       
+kallisto inspect       
 ^^^^^^^^^^^^^^^^^^^^
 Inspects and gives information about an index.
 
@@ -54,7 +55,7 @@ The index can be loaded more quickly by using multiple threads, which can be spe
   [inspect] number of ECs discarded = 0
 
 
-version       
+kallisto version       
 ^^^^^^^^^^^^^^^^^^^^
 Prints version information.
 
@@ -67,7 +68,7 @@ Prints version information.
 
 
 
-cite          
+kallisto cite          
 ^^^^^^^^^^^^^^^^^^^^
 Prints citation information
 
