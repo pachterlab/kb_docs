@@ -14,7 +14,7 @@ A **technology string** for a particular type of assay can be supplied via the `
 * One can format their own **custom** technology string specifying the read locations of the barcodes, UMIs, and the biological sequence that is to be mapped (see below).
 
 
-.. admonition:: Custom technology tring
+.. admonition:: Custom technology string
 
   The **custom** technology string (supplied to ``-x``) contains the format ``barcode:UMI:DNA``, representing the locational information of the barcode, UMI, and the DNA (where DNA is the biological read to be mapped):
 
@@ -41,14 +41,10 @@ A **technology string** for a particular type of assay can be supplied via the `
 
     -x 1,10,18,1,48,56,1,78,86:1,0,10:0,0,0
 
-  .. note::
+  .. tip::
     For multiple locations: If the paired-end read mapping option is enabled, exactly two DNA locations should be specified (for the first and second read in the pair).
 
   If a technology does not fit into this format (e.g. due to barcodes or UMIs of variable lengths and positions), preprocessing of the FASTQ file should be performed beforehand to reformat the reads into a structure that can be handled by this format.
 
-
-
-.. admonition:: seqspec
-
-  ``seqspec`` can generate custom technology strings based on the assay specifications provided to it. Please see the section, :ref:`seqspec`, for details.
+* Finally, ``seqspec`` can generate custom technology strings based on the assay specifications provided to it. Please see the section, :ref:`Using seqspec`, for details.
 
