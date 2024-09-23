@@ -198,7 +198,7 @@ Produces a report summarizing the contents of a sorted BUS file. The report can 
   The *numTargets*, *medianTargetsPerSet*, *meanTargetsPerSet*, *numSingleton*, and *gtTargets* values are only generated if the **--ecmap** option is provided. The *numBarcodesOnOnlist*, *percentageBarcodesOnOnlist*, *numReadsOnOnlist*, *percentageReadsOnOnlist* values are only generated if **--onlist** is provided.
 
 
-.. _faq bustools barcodes make onlist:
+.. _bustoolsbarcodes:
 
 
 bustools allowlist
