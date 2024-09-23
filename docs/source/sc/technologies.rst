@@ -46,5 +46,37 @@ A **technology string** for a particular type of assay can be supplied via the `
 
   If a technology does not fit into this format (e.g. due to barcodes or UMIs of variable lengths and positions), preprocessing of the FASTQ file should be performed beforehand to reformat the reads into a structure that can be handled by this format.
 
-* Finally, ``seqspec`` can generate custom technology strings based on the assay specifications provided to it. Please see the section, :ref:`Using seqspec`, for details.
+* Finally, ``seqspec`` can generate custom technology strings based on the assay specifications provided to it. Please see the section, :ref:`seqspec<seqspec intro>`, for details.
+
+strandedness
+^^^^^^^^^^^^
+
+One uses the ``--strand`` option to specify how a read should be mapped in terms of strand orientation.
+
+* ``--strand=forward``: If a read (or the first read in the case of paired-end reads) is to be mapped in forward orientation.
+* ``--strand=reverse``: If a read (or the first read in the case of paired-end reads) is to be mapped in reverse orientation.
+* ``--strand=unstranded``: If one does not want to map reads with strand-specificity.
+
+
+If a predefined name is used in the technology string ``-x`` option (option 1), then kb-python uses a default stranded option for that technology (e.g. for 10xv3, the default is *forward*); otherwise, the default is *unstranded*. Setting the ``--strand`` option explicitly will overrule the default option.
+
+  .. tip::
+    If very few reads are being mapped, sometimes it's because the specified ``--strand`` setting is incorrect (or the default stranded option for the technology isn't incorrect and needs to be overwritten explicitly by setting the correct ``--strand`` option). 
+
+parity
+^^^^^^
+
+Using the ``--parity`` option:
+
+If the technology involves two biological read files that are derived from paired-end sequencing (as is the case with Smartseq2 and Smartseq3 and many bulk RNA sequencing kits), one should specify ``--parity=paired`` to perform mapping that takes into account the fact that the reads are paired-end. Otherwise, one can specify ``--parity=single``. If a predefined name is used in the ``-x`` technology string option, then kb-python uses the default parity option for that technology (e.g for ``-x Smartseq2``, the option ``--parity=paired`` is already enabled by default).
+
+on list
+^^^^^^^
+
+Using the ``-w`` option:
+
+For single-cell and single-nucleus sequencing assays, barcodes are used to identify each cell or nucleus. The **on list** of barcodes represents the known barcode sequences that are included in the assay. Barcodes extracted from the sequencing reads will be error-tolerantly mapped to this list in a process known as barcode error correction. The **on list** filename can be specified with the ``-w`` option in kb count. It can also be obtained by :ref:`seqspec<seqspec intro>`. If an **on list** is not provided or cannot be found for the given technology, then an **on list** is created by bustools via the ``bustools allowlist`` command which identifies repeating barcodes in sequencing reads. If the technology does not include cell barcodes (as is the case in bulk RNA-seq), the **on list** option is irrelevant and no barcode processing occurs which should be the case for assays that don’t include cell/nuclei barcodes (skipping barcode error correction can also be done by specifying ``-w None``). If a predefined name is used in the ``-x`` technology string option, then kb-python uses the default **on list** option for that technology.
+
+
+
 
