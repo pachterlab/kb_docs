@@ -6,6 +6,7 @@ In bustools, one supplies a list of barcodes to ``bustools correct`` for technol
 737K-august-2016.txt:
 
 ..code-block: text
+
   AAACCTGAGAAACCAT
   AAACCTGAGAAACCGC
   AAACCTGAGAAACCTA
