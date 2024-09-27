@@ -34,7 +34,7 @@ However, let's say you have something like SPLiT-seq where there are three barco
 
 .. note::
 
-  The preceding example was an excerpt of the *on list* from a SPLiT-seq assay (version 2 of the assay; note that different iterations of the technology may have different barcodes). The full *on list* that SPLiT-seq assay can be found at: :ref:`splitseqv2_barcodes.txt <bus_adv/splitseqv2_barcodes.txt>`.
+  The preceding example was an excerpt of the *on list* from a SPLiT-seq assay (version 2 of the assay; note that different iterations of the technology may have different barcodes). The full *on list* that SPLiT-seq assay can be found at: :ref:`splitseqv2_barcodes.txt<bus_adv/splitseqv2_barcodes.txt>`.
 
 
 Replacement list
@@ -66,8 +66,8 @@ There are more advanced ways to do replacement. For example, if one does the fol
   CTGCTTTG *CTTCATCA
   CTAAGGGA *CCTATATC
 
-This will tell bustools to convert the nucleotides at the end of the barcode sequence. As an example, the barcode sequence AACAACCATGAAGAGA**CATCATCC** will be converted into AACAACCATGAAGAGA**CATTCCTA**. (If one wanted to convert the nucleotides at the beginning of the barcode sequence one would put the ``*`` at the end rather than at the beginning of the replacement barcodes in the second column).
+This will tell bustools to convert the nucleotides at the end of the barcode sequence. As an example, the barcode sequence AACAACCATGAAGAG\ A**CATCATCC** will be converted into AACAACCATGAAGAGA\ **CATTCCTA**. (If one wanted to convert the nucleotides at the beginning of the barcode sequence one would put the ``*`` at the end rather than at the beginning of the replacement barcodes in the second column).
 
 .. note::
 
-  See the full replacement list of the SPLiT-seq assay (version 2) here: :ref:`splitseqv2_replace.txt <bus_adv/splitseqv2_replace.txt>`, which converts the random hexamer barcodes (first column of the file) into their oligo-dT counterparts (second column).
+  See the full replacement list of the SPLiT-seq assay (version 2) here: :ref:`splitseqv2_replace.txt<bus_adv/splitseqv2_replace.txt>`, which converts the random hexamer barcodes (first column of the file) into their oligo-dT counterparts (second column).
