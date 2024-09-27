@@ -91,7 +91,7 @@ The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://git
    :maxdepth: 1
    :caption: Advanced bustools:
 
-   bus_adv/bus_adv
+   bus_adv/bus_adv_onlist
 
 .. toctree::
    :maxdepth: 1
