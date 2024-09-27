@@ -3,8 +3,6 @@ Barcodes "on list" format
 
 In bustools, one supplies a list of barcodes to ``bustools correct`` for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first 10 barcodes from 10X genomics 5′ v2 chemistry):
 
-737K-august-2016.txt:
-
 .. code-block:: text
 
   AAACCTGAGAAACCAT
