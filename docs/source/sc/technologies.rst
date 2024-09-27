@@ -1,3 +1,5 @@
+.. _technologies-section:
+
 Technologies and the -x string
 ===============================
 
