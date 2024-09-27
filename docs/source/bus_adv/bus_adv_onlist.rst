@@ -1,7 +1,7 @@
 Barcodes "on list" format
 =========================
 
-In bustools, one supplies a list of barcodes to ``bustools correct`` for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first 10 barcodes from 10X genomics 5′ v2 chemistry):
+In bustools, one supplies a list of barcodes to ``bustools correct`` for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first ten barcodes from 10x Genomics 5′ v2 chemistry):
 
 .. code-block:: text
 
@@ -28,6 +28,7 @@ However, let's say you have something like SPLiT-seq where there are three barco
   -        -        CTGCTTTG
   -        -        CTAAGGGA
 
-.. note:
+
+.. note::
 
   The preceding example was an excerpt of the *on list* from a SPLiT-seq assay (version 2 of the assay; note that different iterations of the technology may have different barcodes). The full *on list* that SPLiT-seq assay can be found at: :ref:`bus_adv/splitseqv2_barcodes.txt`_.
