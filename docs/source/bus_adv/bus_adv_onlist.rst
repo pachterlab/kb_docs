@@ -66,7 +66,7 @@ There are more advanced ways to do replacement. For example, if one does the fol
   CTGCTTTG *CTTCATCA
   CTAAGGGA *CCTATATC
 
-This will tell bustools to convert the nucleotides at the end of the barcode sequence. As an example, the barcode sequence AACAACCATGAAGAG\ A**CATCATCC** will be converted into AACAACCATGAAGAGA\ **CATTCCTA**. (If one wanted to convert the nucleotides at the beginning of the barcode sequence one would put the ``*`` at the end rather than at the beginning of the replacement barcodes in the second column).
+This will tell bustools to convert the nucleotides at the end of the barcode sequence. As an example, the barcode sequence AACAACCATGAAGAGA\ **CATCATCC** will be converted into AACAACCATGAAGAGA\ **CATTCCTA**. (If one wanted to convert the nucleotides at the beginning of the barcode sequence one would put the ``*`` at the end rather than at the beginning of the replacement barcodes in the second column).
 
 .. note::
 
