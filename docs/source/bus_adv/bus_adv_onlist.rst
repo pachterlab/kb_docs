@@ -30,6 +30,6 @@ However, let's say you have something like SPLiT-seq where there are three barco
   -        -        CTGCTTTG
   -        -        CTAAGGGA
 
-.. code-block:: note
+.. note:
 
   The preceding example was an excerpt of the *on list* from a SPLiT-seq assay (version 2 of the assay; note that different iterations of the technology may have different barcodes). The full *on list* that SPLiT-seq assay can be found at: :ref:`technologies section<bus_adv/splitseqv2_barcodes.txt>`_.
