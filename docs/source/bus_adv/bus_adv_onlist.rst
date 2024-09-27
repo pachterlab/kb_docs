@@ -2,7 +2,7 @@ Barcodes "on list" format
 =========================
 
 On list
-=======
+-------
 
 In bustools, one supplies a list of barcodes (in the form of a text file) to ``bustools correct`` (or to the ``-w`` option in ``kb count``) for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first ten barcodes from 10x Genomics 5′ v2 chemistry):
 
@@ -38,7 +38,7 @@ However, let's say you have something like SPLiT-seq where there are three barco
 
 
 Replacement list
-=================
+----------------
 
 
 One can specify a *barcode replacement* list (in the form of a text file) via the ``-r`` option in ``bustools count`` or ``kb count``. This will replace existing barcodes with other barcodes of your choosing. This is useful for processing assays such as SPLiT-seq wherein two different barcodes can represent the same cell.
