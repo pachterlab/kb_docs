@@ -70,4 +70,4 @@ This will tell bustools to convert the nucleotides at the end of the barcode seq
 
 .. note::
 
-  See the full replacement list of the SPLiT-seq assay (version 2) here: The preceding example was an excerpt of the *on list* from a SPLiT-seq assay (version 2 of the assay; note that different iterations of the technology may have different barcodes). The full *on list* that SPLiT-seq assay can be found at: :ref:`splitseqv2_replace.txt <bus_adv/splitseqv2_replace.txt>`.
+  See the full replacement list of the SPLiT-seq assay (version 2) here: :ref:`splitseqv2_replace.txt <bus_adv/splitseqv2_replace.txt>`, which converts the random hexamer barcodes (first column of the file) into their oligo-dT counterparts (second column).
