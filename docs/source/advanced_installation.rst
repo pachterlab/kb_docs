@@ -3,7 +3,7 @@
 Installing from source
 ======================
 
-Although the kallisto and bustools binaries already come packaged within kb-python, perhaps the simple pip install isn't working for you and you wish to install kallisto and bustools separately.
+Although the kallisto and bustools binaries already come packaged within kb-python, perhaps the simple ``pip install`` isn't working for you and you wish to install kallisto and bustools separately.
 
 
 Precompiled binaries
