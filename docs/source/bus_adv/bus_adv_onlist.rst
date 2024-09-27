@@ -1,7 +1,7 @@
 Barcodes "on list" format
 =========================
 
-In bustools, one supplies a list of barcodes to ``bustools correct`` for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first ten barcodes from 10x Genomics 5′ v2 chemistry):
+In bustools, one supplies a list of barcodes to ``bustools correct`` (or to the ``-w`` option in ``kb count``) for technologies that support matching barcodes within reads error-tolerantly to an external list (called an **on list**) of barcodes. The "on list" used in this *barcode error correction* process can simply be formatted as follows (example of the first ten barcodes from 10x Genomics 5′ v2 chemistry):
 
 .. code-block:: text
 
