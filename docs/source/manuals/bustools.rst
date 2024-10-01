@@ -286,7 +286,7 @@ The plaintext will have the columns (in order): barcode, UMI, equivalence class,
 
 -d, --pad  Write the pad column (the "pad" column is an additional 32-bit field in the BUS file, in case one would like to use the BUS format to store additional data for each BUS record; this column is typically not used).
 
--p, --pipe Write to standard output
+-p, --pipe  Write to standard output
 
 -a, --showAll  Show all 32 bases in the barcodes field (e.g. if --batch-barcodes is specified in kallisto bus, the cell barcodes are stored in barcodes field and are used for bustools barcode correction to an "on list"; however, the artificial sample-specific barcodes are stored as an additional “hidden” field in the barcodes column, immediately preceding the cell barcodes, and may be truncated or left-padded with A’s to fill the 32 bases. For example, if the cell barcode is 12 bases, there will be 4 A’s followed by the 16-bp sample-specific barcode followed by the 12-base cell barcode. If the cell barcode is 26 bases, the last 6 bases of the sample-specific barcode will be shown followed by the 26-base cell barcode).
 
