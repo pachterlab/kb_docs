@@ -1,6 +1,6 @@
 Pseudoalignment of single-cell long read RNA seq data
 =======================================
-**Reference:**
+.. note:: **Reference:**
    Loving, R, Sullivan, DK, Reese, F, Rebboah, E, Sakr, J, Rezaie, N, Liang, HY, Filimban, G, Kawauchi, S, Oakes, C, Trout, D, Williams, BA, MacGregor, G, Wold, BJ, Mortazavi, A, Pachter, L 
    `Long-read sequencing transcriptome quantification with lr-kallisto. <https://doi.org/10.1101/2024.07.19.604364>`_  
    bioRxiv 2024.07.19.604364
