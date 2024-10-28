@@ -1,4 +1,7 @@
 .. _seqspec intro:
 
-Introduction to Seqspec
+Seqspec
 =======================================
+
+Please see https://pachterlab.github.io/seqspec/
+
