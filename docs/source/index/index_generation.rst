@@ -84,7 +84,7 @@ Advanced
 kallisto
 --------
 
-As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the **kallisto index** section of the :ref:`kallisto manual <kallisto>`.
+As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the **kallisto index** section of the :ref:`kallisto manual <manuals/kallisto>`.
 
 
 
