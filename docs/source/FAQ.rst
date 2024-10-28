@@ -21,6 +21,11 @@ This is because the kallisto binary is unfortunately incompatible with your syst
  kb ref --kallisto=/path/to/kallisto ...
  kb count --kallisto=/path/to/kallisto ...
 
+.. tip::
+
+  As of **kb-python version 0.29.0**, you can use the option ``--opt-off`` in ``kb ref`` and ``kb count`` which disables certain optimizations that may be incompatible with certain systems. You can use that option if you experience an illegal instruction or segmentation fault error and there's a good change that it may resolve the problem.
+
+
 .. _FAQ incompatible index:
 
 When loading in an index using kallisto or kb count, I'm getting either an "incompatible indices" error or a segmentation fault (SIGSEGV). How do I fix this?
