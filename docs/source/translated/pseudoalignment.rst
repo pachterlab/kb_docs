@@ -15,7 +15,7 @@ The workflow can be executed in three lines of code, and computational requireme
 
 The translated alignment workflows can be used to align RNA sequencing data to any protein reference. However, we first described its use in combination with the `PalmDB viral protein database <https://github.com/ababaian/palmdb>`_ for the detection of viral sequences in RNA sequencing data:
 
-1. Install `kb-python` (optional: install `gget` to fetch the host genome and transcriptome):
+1. Install `kb-python` (optional: install `gget <https://github.com/pachterlab/gget>`_ to fetch the host genome and transcriptome):
 
 .. code-block:: bash
 
