@@ -27,8 +27,10 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
    kb ref \
        -k 63 \
        --d-list $(gget ref --ftp -w dna homo_sapiens) \
-       -i index.idx --workflow standard \
-       -g t2g.txt -f1 fasta.fa \
+       --workflow standard \
+       -i index.idx \
+       -g t2g.txt \
+       -f1 fasta.fa \
        $(gget ref --ftp -w dna,gtf homo_sapiens)
 
 3. Align and quantify sequencing reads:
@@ -37,8 +39,10 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
 
    kb count \
        --long \
-       -i index.idx -g homo_t2g.txt \
+       -i index.idx \
+       -g t2g.txt \
        --parity single \
-       --tcc --matrix-to-directories 
+       --tcc \
+       --matrix-to-directories \
        -x bulk \
        $USER_DATA.fastq.gz
