@@ -55,20 +55,22 @@ Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.g
    kb ref -i index.idx -g t2g.txt -f1 cdna.fasta genome.fasta genome.gtf
 
 
-The files **index.idx** and **t2g.txt** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes.
+The files **index.idx**, **t2g.txt**, **cdna.fasta** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes. The cdna.fasta file is not used in subsequent steps (but is useful for reference); it simply contains the individual transcript sequences that comprise the transcriptome that are extracted from the genome FASTA and GTF and indexed by kallisto.
 
 
 The nac index type (single-nucleus RNA-seq or nascent/mature RNA quantification)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TODO
+Here, we'll build an index (using the *standard* workflow) for single-nucleus RNA-seq or nascent/mature RNA quantification.
 
-Oftentimes, it is easy to simply download an index that has already been made. To download a mouse index for single-nucleus RNA-seq or for analyses that require quantification of nascent and mature RNA (i.e. the *nac* workflow), one can run the following:
+Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.gtf** here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
 
 .. code-block:: text
 
-   kb ref -d mouse -i index.idx -g t2g.txt -c1 cdna.txt -c2 nascent.txt --workflow=nac
+   kb ref --workflow=nac -i index.idx -g t2g.txt -c1 cdna.txt -c2 nascent.txt \
+   -f1 cdna.fasta -f2 nascent.fasta genome.fasta genome.gtf
 
-The files **index.idx**, **t2g.txt**, **cdna.txt**, and **nascent.txt** will then be created. 
+
+The files **index.idx**, **t2g.txt**, **cdna.txt**, **nascent.txt**, **cdna.fasta**, and **nascent.fasta** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes. The cdna.txt file contains the identifiers of the "mature" (i.e. cDNA) sequences while the nascent.txt file contains the identifiers of the "nascent" sequences.  The cdna.fasta and nascent.fasta files are not used in subsequent steps (but are useful for reference); they contain the sequences that comprise the "mature" transcriptome and the "nascent" transcriptome that are extracted from the genome FASTA and GTF and indexed by kallisto. The "mature" transcriptome is simply the transcript sequences while the "nascent" transcriptome are the full length gene sequences (i.e. all exons and all introns that make up the gene). 
 
 
