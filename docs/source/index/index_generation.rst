@@ -84,7 +84,7 @@ Advanced
 kallisto
 --------
 
-As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the **kallisto index** section of the :ref:`kallisto manual <manuals/kallisto>`.
+As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the :ref:`kallisto index` of the kallisto manual.
 
 
 
@@ -110,7 +110,7 @@ In addition to the standard and nac workflows, one can also use a custom workflo
 
    kb ref --workflow=custom -i index.idx custom.fasta
 
-Additionally, one can index the k-mers associated with disjoint sequences (for example, if 50 bases of one sequence and 80 bases of a second sequence both comprise the same "target"). This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by running kb ref while specifying ``--distinguish`` in ``--workflow=custom``. 
+Additionally, one can index the k-mers associated with disjoint sequences (for example, if 50 bases of one sequence and 80 bases of a second sequence both comprise the same "target"). This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by specifying ``--distinguish`` in ``--workflow=custom``. 
 
 .. code-block:: text
 
