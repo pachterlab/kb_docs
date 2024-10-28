@@ -85,7 +85,9 @@ The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://git
    :maxdepth: 1
    :caption: Advanced installation:
 
-   advanced_installation
+   adv_installation/from_source
+   adv_installation/releases
+
 
 .. toctree::
    :maxdepth: 1
