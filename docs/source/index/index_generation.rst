@@ -36,7 +36,7 @@ One can replace *mouse* with *human* (or another species). A comprehensive list 
 Making an index
 ^^^^^^^^^^^^^^^
 
-To create an index via ``kb ref``, a user typically needs to specify a *genome* FASTA reference file and a GTF annotation file. These files are necessary to extract the transcript sequences (i.e. a transcriptome) that will be used to create the index. These files can be obtained from `ENSEMBL <https://useast.ensembl.org/index.html>`_ or `GENCODE <https://www.gencodegenes.org/>`_.  We recommend using the primary assembly FASTA file (in ENSEMBL, the file name for the primary assembly ends in *.dna.primary_assembly.fa.gz*). Examples for the mouse ENSEMBL FASTA and GTF files are the following:
+To create an index via ``kb ref``, a user typically needs to specify a *genome* FASTA reference file and a GTF annotation file. These files are necessary to extract the transcript sequences (i.e. a transcriptome) that will be used to create the index. These files can be obtained from `ENSEMBL <https://useast.ensembl.org/index.html>`_ or `GENCODE <https://www.gencodegenes.org/>`_.  We recommend using the primary assembly FASTA file (in ENSEMBL, the file name for the primary assembly ends in *.dna.primary_assembly.fa.gz*). Examples for the human ENSEMBL FASTA and GTF files are the following:
 
 * https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 * https://ftp.ensembl.org/pub/release-108/gtf/homo_sapiens/Homo_sapiens.GRCh38.108.gtf.gz
