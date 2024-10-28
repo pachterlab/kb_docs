@@ -56,7 +56,7 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
        -f1 fasta.fa \
        $(gget ref --ftp -w dna,gtf homo_sapiens)
 
-3. Align and quantify sequencing reads:
+6. Align and quantify sequencing reads:
 
 .. code-block:: bash
 
