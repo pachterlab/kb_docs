@@ -84,12 +84,21 @@ Advanced
 kallisto
 --------
 
-As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the index section of the kallisto manual.
+As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the **kallisto index** section of the :ref:`kallisto manual <kallisto>`.
+
+
 
 The D-list
 ----------
 
 The D-list enables a "background filter" to be established in the index to ensure that reads originating from outside the indexed targets are filtered out (i.e. do not get mapped to a target sequence). **By default**, if unspecified, the ``--d-list`` in ``kb ref`` is set to the genome FASTA (i.e. ``--d-list=genome.fasta``). This helps preventing sequences originating from parts of the genome outside the indexed transcriptome from being mapped to the indexed transcriptome. However, one can specify a different D-list by using the ``--d-list`` option or one can disable the D-list altogether by setting ``--d-list=None``.
+
+Note: Although the D-list algorithm only puts certain *k*-mers (called distinguishing flanking k-mers, or DFKs) into the "filter", one can also specify a custom set of k-mers to be in the D-list, by using an empty sequence header in the file supplied to the --d-list option. In the following example, since the header is absent, all k-mers in the sequence will be D-listed (if a header were present, only DFKs would be D-listed).
+
+.. code-block:: text
+
+   >
+   ACGCGACATAGCAGACTAGACATTATTTACGTATTATGATAGTAGAT
 
 
 A custom index
