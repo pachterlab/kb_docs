@@ -32,20 +32,36 @@ One can replace *mouse* with *human* (or another species). A comprehensive list 
 
 
 
-Making an index for bulk and single-cell RNA-seq
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Making an index
+^^^^^^^^^^^^^^^
+
+To create an index via ``kb ref``, a user typically needs to specify a FASTA reference file and a GTF annotation file. These files can be obtained from `ENSEMBL <https://useast.ensembl.org/index.html>`_ or `GENCODE <https://www.gencodegenes.org/>`_.  We recommend using the primary assembly FASTA file (in ENSEMBL, the file name for the primary assembly ends in *.dna.primary_assembly.fa.gz*). Examples for the mouse ENSEMBL FASTA and GTF files are the following:
+
+* https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+* https://ftp.ensembl.org/pub/release-108/gtf/homo_sapiens/Homo_sapiens.GRCh38.108.gtf.gz
+
+Note: One can specify the number of threads to ``kb ref`` via the ``-t`` option (increasing the number of threads improves processing speed, assuming that the number of CPU cores requested is available on the system). For example, to specify 12 threads, one can specify ``-t 12``. By default, 8 threads are used.
 
 
+The standard index type (bulk and single-cell RNA-seq)
+--------------------------------------------------
+
+Here, we'll build an index (using the *standard* workflow) for bulk and single-cell RNA-seq.
+
+Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.gtf** here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
 
 .. code-block:: text
 
-   kb ref -d mouse -i index.idx -g t2g.txt
-
-The files **index.idx** and **t2g.txt** will then be created. One can replace *mouse* with *human* (or another species). A comprehensive list of precreated indices (and how they were generated) is available `here <https://github.com/pachterlab/kallisto-transcriptome-indices>`_.  
+   kb ref -i index.idx -g t2g.txt -f1 cdna.fasta genome.fasta genome.gtf
 
 
-Making an index for single-nucleus RNA-seq or nascent/mature RNA quantification
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The files **index.idx** and **t2g.txt** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes.
+
+
+The nac index type (single-nucleus RNA-seq or nascent/mature RNA quantification)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
 
 Oftentimes, it is easy to simply download an index that has already been made. To download a mouse index for single-nucleus RNA-seq or for analyses that require quantification of nascent and mature RNA (i.e. the *nac* workflow), one can run the following:
 
@@ -53,7 +69,6 @@ Oftentimes, it is easy to simply download an index that has already been made. T
 
    kb ref -d mouse -i index.idx -g t2g.txt -c1 cdna.txt -c2 nascent.txt --workflow=nac
 
-The files **index.idx**, **t2g.txt**, **cdna.txt**, and **nascent.txt** will then be created. One can replace *mouse* with *human* (or another species). A comprehensive list of pre-created indices (and how they were generated) is available `here <https://github.com/pachterlab/kallisto-transcriptome-indices>`_.  
-
+The files **index.idx**, **t2g.txt**, **cdna.txt**, and **nascent.txt** will then be created. 
 
 
