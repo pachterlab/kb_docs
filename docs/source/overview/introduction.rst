@@ -12,7 +12,7 @@ This website provides manuals, tutorials, and information on how to use the kall
 * `kb-python <https://github.com/pachterlab/kb_python>`_: kb-python serves as a wrapper for kallisto and bustools, simplifying the usage of these tools, including the generation of an index needed by kallisto for pseudoalignment. kb-python packages the kallisto and bustools binaries for convenience.
 
 Background
-==========
+^^^^^^^^^^^
 
 The kallisto project began in August 2013 when Nicolas Bray, then a postdoctoral researcher in the Pachter Lab, had the insight that the sufficient statistics for RNA-seq quantification did not depend on read alignment, but only on compatibility of reads with transcripts. This distinction led him to the idea of pseudoalignment, which was published in:
 
@@ -30,7 +30,7 @@ The Melsted, Booeshaghi et al. paper describes how kallisto can generate BUS for
 
 In 2024, Sina Booeshaghi formalized the library and read structure of single-cell genomics assays in the seqspec format, published in:
 
-**Booeshaghi, A. S., Pachter, L.** "A machine-readable specification for genomics assays." *Nature Biotechnology*, 41, 578–585 (2023). `doi:10.1038/s41587-023-01791-4 <https://www.nature.com/articles/s41587-023-01791-4>`_
+**Booeshaghi, A. S., Chen, X., Pachter, L.** "A machine-readable specification for genomics assays." *Bioinformatics*, 40, 4 (2024). `doi:10.1093/bioinformatics/btae168 <https://doi.org/10.1093/bioinformatics/btae168>`_
 
 seqspec can now be used to generate the information needed by kallisto to correctly extract barcode, UMI, and other information needed to process genomics data, making kallisto immediately useful for dozens of popular bulk and single-cell genomics assays.
 
