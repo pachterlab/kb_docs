@@ -16,7 +16,7 @@ The workflow can be executed in three lines of code, and computational requireme
 
 The long-read pseudoalignment workflows can be used to align RNA sequencing data to any transcriptome reference:
 
-1. Install `kb-python` (optional: install `gget` to fetch the host genome and transcriptome) as well as seqspec and splitcode:
+1. Install `kb-python` (optional: install `gget <https://github.com/pachterlab/gget>`_ to fetch the host genome and transcriptome) as well as seqspec and splitcode:
 
 .. code-block:: bash
 
