@@ -86,6 +86,18 @@ kallisto
 
 As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the :ref:`kallisto index` of the kallisto manual.
 
+Selecting GTF entries
+---------------------
+
+One can use ``--include-attribute`` or ``-exclude-attribute`` to include or exclude certain entries from the GTF file. For example, to only include protein-coding genes and lncRNAs/lincRNAs when making an index, one can do:
+
+.. code-block:: text
+
+   kb ref -i index.idx -g t2g.txt -f1 cdna.fasta \
+   --include-attribute gene_biotype:protein_coding \
+   --include-attribute gene_biotype:lncRNA \
+   --include-attribute gene_biotype:lincRNA \
+   genome.fasta genome.gtf
 
 
 The D-list
