@@ -41,7 +41,7 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
 
   splitcode -c seqspec-config.txt $sample_data.fastq.gz -o $sample_data_modified.fastq.gz -t 32
 
-4. Importantly, the extracted sequences may need reoriented for the sample to be properly processed; we give an example of this in the case of ONT single-nuclei samples in the tutorials. 
+4. Importantly, the extracted sequences may need reorienting for the sample to be processed appropriately; we give an example of this in the case of ONT single-nuclei samples in the tutorials. 
 
 5. Create reference index (using the D-list of human genome):
 
@@ -50,8 +50,10 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
    kb ref \
        -k 63 \
        --d-list $(gget ref --ftp -w dna homo_sapiens) \
-       -i index.idx --workflow standard \
-       -g t2g.txt -f1 fasta.fa \
+       --workflow standard \
+       -i index.idx \
+       -g t2g.txt \
+       -f1 fasta.fa \
        $(gget ref --ftp -w dna,gtf homo_sapiens)
 
 3. Align and quantify sequencing reads:
@@ -60,8 +62,9 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
 
    kb count \
        --long \
-       -i index.idx -g homo_t2g.txt \
+       -i index.idx \
+       -g t2g.txt \
        --parity single \
-       --tcc --matrix-to-directories 
+       --tcc --matrix-to-directories \
        -x '0,0,0:1,0,0:2,0,0' \
        $sample_barcode.fastq.gz $sample_umi.fastq.gz $sample_bioseq.fastq.gz
