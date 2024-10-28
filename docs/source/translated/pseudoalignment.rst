@@ -37,7 +37,8 @@ The translated alignment workflows can be used to align RNA sequencing data to a
    kb ref \
        --aa \
        --d-list $(gget ref --ftp -w dna homo_sapiens) \
-       -i index.idx --workflow custom \
+       -i index.idx \
+       --workflow custom \
        palmdb_rdrp_seqs.fa
 
 4. Align sequencing reads:
@@ -47,7 +48,8 @@ The translated alignment workflows can be used to align RNA sequencing data to a
    # Single-thread runtime: 1.5 min / 1 million sequences; Max RAM: 2.1 GB
    kb count \
        --aa \
-       -i index.idx -g palmdb_clustered_t2g.txt \
+       -i index.idx \
+       -g palmdb_clustered_t2g.txt \
        --parity single \
        -x default \
        $USER_DATA.fastq.gz
