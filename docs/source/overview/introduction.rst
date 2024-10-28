@@ -10,3 +10,38 @@ This website provides manuals, tutorials, and information on how to use the kall
 * `bustools <https://github.com/BUStools/bustools>`_: bustools works with files in the BUS (Barcode, UMI, Set) format and is designed to support modular workflows in data processing for both bulk and scRNA-seq data. The BUS format includes a binary representation of barcode and UMI sequences derived from scRNA-seq reads, along with equivalence classes determined by pseudoalignment to a reference transcriptome. BUS files act as useful checkpoints during bulk or single-cell RNA-seq processing, enabling efficient handling of complex scRNA-seq data. The bustools program includes a suite of commands that can be used to work with BUS files.
 
 * `kb-python <https://github.com/pachterlab/kb_python>`_: kb-python serves as a wrapper for kallisto and bustools, simplifying the usage of these tools, including the generation of an index needed by kallisto for pseudoalignment. kb-python packages the kallisto and bustools binaries for convenience.
+
+Background
+==========
+
+The kallisto project began in August 2013 when Nicolas Bray, then a postdoctoral researcher in the Pachter Lab, had the insight that the sufficient statistics for RNA-seq quantification did not depend on read alignment, but only on compatibility of reads with transcripts. This distinction led him to the idea of pseudoalignment, which was published in:
+
+**Nicolas L Bray, Harold Pimentel, Páll Melsted, and Lior Pachter.** "Near-optimal probabilistic RNA-seq quantification." *Nature Biotechnology*, 34, 525–527 (2016). `doi:10.1038/nbt.3519 <https://doi.org/10.1038/nbt.3519>`_
+
+The paper also contains details of the methodology underlying the first implementation of pseudoalignment in kallisto, and extensive benchmarks of the initial version of the program.
+
+The kallisto pseudoalignment framework was extended to single-cell RNA-seq with the introduction of the BUS format, and the bustools program for working with BUS files, in the pair of papers:
+
+**P. Melsted, V. Ntranos, and L. Pachter.** "The Barcode, UMI, Set format and BUStools." *Bioinformatics*, btz279, 2019. `doi:10.1093/bioinformatics/btz279 <https://academic.oup.com/bioinformatics/article/35/21/4472/5487515>`_
+
+**P. Melsted, M. Booeshaghi, F. Gao, J. Beltrame, H. Lu, K. Hjorleifsson, V. Gehring, and L. Pachter.** "Modular and efficient pre-processing of single-cell RNA-seq." *Nature Biotechnology*, 39, 813–818 (2021). `doi:10.1038/s41587-021-00870-2 <https://www.nature.com/articles/s41587-021-00870-2>`_
+
+The Melsted, Booeshaghi et al. paper describes how kallisto can generate BUS format files from single-cell RNA-seq technologies. With bustools, BUS files can be used for barcode error correction, unique molecular identifier (UMI) deduplication, and efficient creation of transcript compatibility count (TCC) and gene count matrices. The paper provides extensive benchmarks of kallisto demonstrating state-of-the-art performance for single-cell RNA-seq.
+
+In 2024, Sina Booeshaghi formalized the library and read structure of single-cell genomics assays in the seqspec format, published in:
+
+**Booeshaghi, A. S., Pachter, L.** "A machine-readable specification for genomics assays." *Nature Biotechnology*, 41, 578–585 (2023). `doi:10.1038/s41587-023-01791-4 <https://www.nature.com/articles/s41587-023-01791-4>`_
+
+seqspec can now be used to generate the information needed by kallisto to correctly extract barcode, UMI, and other information needed to process genomics data, making kallisto immediately useful for dozens of popular bulk and single-cell genomics assays.
+
+In 2023, Delaney Sullivan and Kristján Hjörleifsson implemented major updates to kallisto and bustools, including improving the data structures used and making numerous performance upgrades. Their work is described in:
+
+**Hjörleifsson, K. E., Sullivan, D. K., Swarna, N. P., Holley, G., Melsted, P., & Pachter, L.** "Accurate quantification of single-cell and single-nucleus RNA-seq transcripts using distinguishing flanking k-mers." *bioRxiv*, 2022. `doi:10.1101/2022.12.02.518832 <https://www.biorxiv.org/content/10.1101/2022.12.02.518832v3>`_
+
+The use cases for the kallisto and bustools programs, along with a wrapper called kb-python that simplifies their use, are described in the following paper:
+
+**Sullivan, D. K., Min, K. H. (Joseph), Hjörleifsson, K. E., Luebbert, L., Holley, G., Moses, L., Gustafsson, J., Bray, N. L., Pimentel, H., Booeshaghi, A. S., Melsted, P., & Pachter, L.** "kallisto, bustools and kb-python for quantifying bulk, single-cell and single-nucleus RNA-seq." *Nature Protocols*, (2024). `doi:10.1038/s41596-024-01057-0 <https://www.nature.com/articles/s41596-024-01057-0>`_
+
+The kallisto-bustools suite of tools has also been extended for *translated* pseudoalignment, which has many applications, including the identification of viral sequences in genomics datasets. These improvements to kallisto are described here:
+
+**Luebbert, L., Sullivan, D. K., Carilli, M., Hjörleifsson, K. E., Winnett, A. V., Chari, T., & Pachter, L.** "Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression." *bioRxiv*, 2023. `doi:10.1101/2023.12.11.571168v2 <https://www.biorxiv.org/content/10.1101/2023.12.11.571168v2>`_
