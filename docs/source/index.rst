@@ -62,7 +62,7 @@ The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://git
 
 .. toctree::
    :maxdepth: 1
-   :caption: Translated pseudoalignment:
+   :caption: Protein reference:
 
    translated/pseudoalignment
    translated/tutorials
