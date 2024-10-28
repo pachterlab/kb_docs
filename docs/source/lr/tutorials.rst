@@ -4,4 +4,4 @@ Tutorials
 .. toctree::
    :maxdepth: 1
 
-   notebooks/general
+   notebooks/lr_kallisto_example
