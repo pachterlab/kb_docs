@@ -110,11 +110,11 @@ In addition to the standard and nac workflows, one can also use a custom workflo
 
    kb ref --workflow=custom -i index.idx custom.fasta
 
-Additionally, one can index the k-mers associated with disjoint sequences (for example, if 50 bases of one sequence and 80 bases of a second sequence both comprise the same "target"). This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by specifying ``--distinguish`` in ``--workflow=custom``. 
+Additionally, one can index the k-mers associated with disjoint sequences (for example, if 50 bases of one sequence and 80 bases of a second sequence both comprise the same "target"). This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by running kb ref while specifying ``--distinguish`` in ``--workflow=custom``. 
 
 .. code-block:: text
 
-   kb ref --workflow=custom -i index.idx custom.fasta
+   kb ref --workflow=custom -i index.idx --distinguish custom.fasta
 
 For the ``--distinguish`` option, the custom.fasta should be organized such that the target names in the input FASTA file are numbers (specifically, zero-indexed numerical identifiers).  An example custom.fasta file (with 3 targets) would look like:
 
