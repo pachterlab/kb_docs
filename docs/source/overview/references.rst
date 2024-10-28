@@ -5,8 +5,8 @@ References
 
 If you are using kallisto, bustools, or kb-python in a publication:   
 
-- **Please cite:**  
-kallisto, bustools, and kb-python for quantifying bulk, single-cell, and single-nucleus RNA-seq 
+**Please cite:**  
+   kallisto, bustools, and kb-python for quantifying bulk, single-cell, and single-nucleus RNA-seq 
 Delaney K. Sullivan, Kyung Hoi (Joseph) Min, Kristján Eldjárn Hjörleifsson, Laura Luebbert, Guillaume Holley, Lambda Moses, Johan Gustafsson, Nicolas L. Bray, Harold Pimentel, A. Sina Booeshaghi, Páll Melsted, Lior Pachter 
 bioRxiv 2023.11.21.568164; doi: https://doi.org/10.1101/2023.11.21.568164
 
@@ -17,7 +17,7 @@ bioRxiv 2023.11.21.568164; doi: https://doi.org/10.1101/2023.11.21.568164
    Bray N, Pimentel H, Melsted P, Pachter L. `Near-optimal probabilistic RNA-seq quantification. <https://doi.org/10.1038/nbt.3519>`_ Nature Biotechnology 34, 525–527 (2016). https://doi.org/10.1038/nbt.3519
 
 - **When analyzing long-read RNA seq data, please also cite:**  
-Long-read sequencing transcriptome quantification with lr-kallisto
+   Long-read sequencing transcriptome quantification with lr-kallisto
 Rebekah Loving, Delaney K. Sullivan, Fairlie Reese, Elisabeth Rebboah, Jasmine Sakr, Narges Rezaie, Heidi Y. Liang, Ghassan Filimban, Shimako Kawauchi, Conrad Oakes, Diane Trout, Brian A. Williams, Grant MacGregor, Barbara J. Wold, Ali Mortazavi, Lior Pachter
 bioRxiv 2024.07.19.604364; doi: https://doi.org/10.1101/2024.07.19.604364
 
@@ -26,6 +26,6 @@ bioRxiv 2024.07.19.604364; doi: https://doi.org/10.1101/2024.07.19.604364
 
 **Additional relevant paper(s):**  
 
-Melsted P*, Ntranos V*, Pachter L*. `The barcode, UMI, set format and BUStools. <https://doi.org/10.1093/bioinformatics/btz279>`_ Bioinformatics 35(11), 4472–4473 (2019). https://doi.org/10.1093/bioinformatics/btz279
+   Melsted P*, Ntranos V*, Pachter L*. `The barcode, UMI, set format and BUStools. <https://doi.org/10.1093/bioinformatics/btz279>`_ Bioinformatics 35(11), 4472–4473 (2019). https://doi.org/10.1093/bioinformatics/btz279
 
-Einarsson PH, Melsted P. `BUSZ: compressed BUS files. <https://doi.org/10.1093/bioinformatics/btad295>`_ Bioinformatics 39(5), btad295 (2023). https://doi.org/10.1093/bioinformatics/btad295
+   Einarsson PH, Melsted P. `BUSZ: compressed BUS files. <https://doi.org/10.1093/bioinformatics/btad295>`_ Bioinformatics 39(5), btad295 (2023). https://doi.org/10.1093/bioinformatics/btad295
