@@ -65,6 +65,7 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
        -i index.idx \
        -g t2g.txt \
        --parity single \
-       --tcc --matrix-to-directories \
+       --tcc \
+       --matrix-to-directories \
        -x '0,0,0:1,0,0:2,0,0' \
        $sample_barcode.fastq.gz $sample_umi.fastq.gz $sample_bioseq.fastq.gz
