@@ -89,7 +89,7 @@ As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands asso
 Selecting GTF entries
 ---------------------
 
-One can use ``--include-attribute`` or ``-exclude-attribute`` to include or exclude certain entries from the GTF file. For example, to only include protein-coding genes and lncRNAs/lincRNAs when making an index, one can do:
+One can use ``--include-attribute`` or ``--exclude-attribute`` to include or exclude certain entries from the GTF file. For example, to only include protein-coding genes and lncRNAs/lincRNAs when making an index, one can do:
 
 .. code-block:: text
 
@@ -99,6 +99,7 @@ One can use ``--include-attribute`` or ``-exclude-attribute`` to include or excl
    --include-attribute gene_biotype:lincRNA \
    genome.fasta genome.gtf
 
+Note that the --include-attribute and --exclude-attribute options take in a **KEY:VALUE** pair (in the above example, the entries with that have the values "protein_coding", "lncRNA", or "lincRNA" specified as the "gene_biotype" entry in the GTF file are retained).
 
 The D-list
 ----------
