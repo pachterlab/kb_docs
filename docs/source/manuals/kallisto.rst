@@ -94,7 +94,7 @@ Generate BUS files for single-cell data.
 
 --long  Run lr-kallisto for long-read sequence mapping.
 
---threshold  Threshold in lr-kallisto for rate of unmapped k-mers per read.
+--threshold=DOUBLE  Threshold in lr-kallisto for rate of unmapped k-mers per read (default: 0.8).
 
 --aa  Align to index generated from a FASTA-file containing amino acid sequences.
 
@@ -230,7 +230,7 @@ The "old way" of running kallisto (we recommend using *kallisto bus* instead). R
 
 -s, --sd=DOUBLE  Estimated standard deviation of fragment length (default: -l, -s values are estimated from paired end data, but are required when using --single).
 
--p, --priors  Priors for the EM algorithm, either as raw counts or as probabilities. Pseudocounts are added to raw reads to prevent zero valued priors. Supplied in the same order as the transcripts in the transcriptome.
+-p, --priors=FILE  Priors for the EM algorithm, either as raw counts or as probabilities. Pseudocounts are added to raw reads to prevent zero valued priors. Supplied in the same order as the transcripts in the transcriptome.
 
 -t, --threads=INT  Number of threads to use (default: 1).
 
