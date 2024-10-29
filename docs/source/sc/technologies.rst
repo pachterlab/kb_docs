@@ -3,7 +3,7 @@
 Technologies and the -x string
 ===============================
 
-This section will cover how to tell the ``kb count`` within **kb-python** how to process sequencing data depending on the technology that produced the data. As different sequencing assays have different read structures, strandedness, parity, and barcodes, one must provide the specifications for the technology which produced the sequencing reads.
+This section will cover how to tell the ``kb count`` within **kb-python** how to process sequencing data depending on the technology that produced the data. As different sequencing assays have different read structures, strandedness, parity, and barcodes, one must provide the specifications for the technology that produced the sequencing reads.
 
 
 -x string
