@@ -10,12 +10,111 @@ Running kallisto usually involves two steps:
 
 kallisto index         
 ^^^^^^^^^^^^^^^^^^^^
-Builds a kallisto index 
+Builds a kallisto index from an input FASTA file containing transcript sequences.
+
+**Example usage:**
+
+
+.. code-block:: text
+
+   kallisto index -i index.idx transcripts.fasta
+
+
+
+**Arguments:**
+
+
+-i, --index=STRING  Filename for the kallisto index to be constructed. Required argument.
+
+-k, --kmer-size=INT  k-mer (odd) length (default: 31, max value: 31).
+
+-t, --threads=INT  Number of threads to use (default: 1).
+
+-d, --d-list=STRING  Path to a FASTA-file containing sequences to mask from quantification (i.e. to extract distinguishing flanking k-mers from).
+
+--make-unique  Replace repeated target names with unique names.
+
+--aa  Generate index from a FASTA-file containing amino acid sequences.
+
+--distinguish  Generate index where sequences are distinguished by the sequence name, for example, when indexing k-mers distributed across multiple targets rather than across a single contiguous target sequence.
+
+-T, --tmp=STRING  Temporary directory (default: tmp).
+
+-m, --min-size=INT  Length of minimizers (default: automatically chosen).
+
+-e, --ec-max-size=INT  Maximum number of targets in an equivalence class (default: no maximum).
+
+
+
+Among the arguments in kallisto index, in a general use case, typically only ``-i`` (**--index**; to specify the name of the index output filename), ``-t`` (**--threads**; to specify the number of threads), and ``-d`` (--d-list; to specify the filename from which to extract distinguishing flanking k-mers) are used.
 
 
 kallisto bus           
 ^^^^^^^^^^^^^^^^^^^^
-Generate BUS files for single-cell data 
+Generate BUS files for single-cell data.
+
+**Usage:**
+
+
+.. code-block:: text
+
+   kallisto bus [arguments] FASTQ-files
+   kallisto bus [arguments] --batch=batch.txt
+
+
+**Arguments:**
+
+-i, --index=STRING  Filename for the kallisto index to be used for pseudoalignment. Required argument.
+
+-o, --output-dir=STRING  Directory to write output to. Required argument.
+
+-x, --technology=STRING  The “technology” string for the sequencing technology used. Required argument.
+
+-l, --list  List the technologies that are hard-coded into kallisto so the name of the technology can simply be supplied as the technology string.
+
+-B, --batch=FILE  Path to a batch file. The batch file is a text file listing all the samples to be analyzed with the paths to their respective FASTQ files. If a batch file is supplied, then one shouldn’t supply FASTQ files on the command line.
+
+-t, --threads=INT  Number of threads to use (default: 1).
+
+-b, --bam  Input file is a BAM file rather than a set of FASTQ files. Note: This is a nonstandard workflow. It is strongly recommended to supply FASTQ files rather than use this option and not all technologies are supported by this option.
+
+-n, --num  Output read number in flag column of BUS file. The read number is zero-indexed. One can view the read numbers by inspecting the BUS file using bustools text. This option is useful for pulling specific mapped reads out of the FASTQ file or for examining which reads did not end up being mapped by kallisto. (Important note: BUS files with read numbers in the flag column should NOT be used in quantification tasks with bustools). (Note: incompatible with --bam)
+
+-N, --numReads=INT  Maximum number of reads to process from supplied input. This is useful for processing a small subset of reads from a large sequencing experiment as a quick quality control. Moreover, the program returns 1 if the number of reads processed from the input is less than the number supplied here. This is useful for catching errors when we expect a certain number of reads to be present in the input but not all the reads end up being there.
+
+-T, --tag=STRING  5′ tag sequence to identify UMI reads for certain technologies. This is useful for smart-seq3 where the UMI-containing reads have an 11-bp tag sequence (ATTGCGCAATG) located at the beginning of the UMI location. If this tag sequence is present immediately before the UMI location, then the UMI is processed into the output BUS file; for all other sequences, the UMI field in the BUS file is left empty (the field is populated with the value -1 in binary format). Note: Matching the tag sequence is done with a hamming distance error tolerance of 1 if the tag is longer than 5 nucleotides. Otherwise, no error tolerance is permitted. Note: If strand-specificity is enabled, it will only be applied to the UMI-containing reads.
+
+--fr-stranded  Strand specific reads, first read forward.
+
+--rf-stranded  Strand specific reads, first read reverse.
+
+--unstranded  Treat all read as non-strand-specific.
+
+--paired  Treat reads as paired (i.e. if two biological read sequences are present across two FASTQ files, they will be mapped taking into account their paired-endness: fragment length distribution will be estimated for the read pairs, and only one read in the pair needs to map successfully in order to be considered successful pseudoalignment).
+
+--aa  Align to index generated from a FASTA-file containing amino acid sequences.
+
+--inleaved  Specifies that input is an interleaved FASTQ file. That is, only one FASTQ file is supplied and the sequences are interleaved. For example, instead of an R1 and R2 FASTQ file, a single FASTQ file can be supplied where the reads are listed in order of each R2 read immediately following each R1 read. This is also useful when piping interleaved output generated by another program directly into kallisto bus which can be done by supplying - as the input file in lieu of FASTQ file names.
+
+--batch-barcodes  Records both the generated sample-specific barcodes as well as the cell barcodes extracted from the reads in the output BUS file. If not supplied, then the sample-specific barcodes are not recorded.
+
+**Example Usage for 10x single-cell:**
+
+.. code-block:: text
+
+   kallisto bus -x 10xv3 -o output_dir -i index.idx R1.fastq.gz R2.fastq.gz
+
+**Output:**
+
+In the output directory specified by ``-o`` or ``--output-dir``, the following files are made:
+
+* **output.bus**: A BUS file containing the mapped reads information, which will be further processed using bustools.
+* **transcripts.txt**: A text file containing a list of the names of the targets or transcripts used.
+* **matrix.ec**: A text file containing the equivalence classes. The equivalence class number (zero-indexed) is in the first column and a comma-separated list of target or transcript IDs belonging to that equivalence class are in the second column. The transcript IDs are numbers (zero-indexed) that correspond to the line numbers (zero-indexed) in the transcripts.txt file.
+* **run_info.json**: Contains information about the run, including percent of reads pseudoaligned, number of reads processed, index version, etc.
+* **flens.txt**: Only produced when using paired-end mapping. Contains the fragment length distribution, which can be used by kallisto quant-tcc to produce TPM abundance values.
+
+
 
 kallisto quant-tcc     
 ^^^^^^^^^^^^^^^^^^^^
