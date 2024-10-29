@@ -1,13 +1,13 @@
 kallisto | bustools
 ===================
 
-The `kallisto <https://github.com/pachterlab/kallisto>`_, `bustools <https://github.com/BUStools/bustools>`_, and `kb-python <https://github.com/pachterlab/kb_python>`_ programs are free, open-source software tools that are used together to perform RNA-seq quantification.
+The **kallisto**, **bustools**, and **kb-python** programs are free, open-source software tools that are used together to perform RNA-seq quantification.
 
-* **kallisto**  
+* `kallisto <https://github.com/pachterlab/kallisto>`_  
    Maps RNA-seq reads to a reference transcriptome and stores the results in a BUS file.
-* **bustools**  
+* `bustools <https://github.com/BUStools/bustools>`_    
    Processes the results in the BUS file to correct barcodes, deduplicate UMIs, and generate quantification files (e.g. count matrices).
-* **kb-python**  
+* `kb-python <https://github.com/pachterlab/kb_python>`_  
    A wrapper around kallisto and bustools that facilitates usage of those tools and facilitates the generation of a reference transcriptome. The kallisto and bustools binaries come packaged in kb-python.
 
 
