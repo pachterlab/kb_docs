@@ -41,7 +41,17 @@ To create an index via ``kb ref``, a user typically needs to specify a *genome* 
 * https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 * https://ftp.ensembl.org/pub/release-108/gtf/homo_sapiens/Homo_sapiens.GRCh38.108.gtf.gz
 
-Note: One can specify the number of threads to ``kb ref`` via the ``-t`` option (increasing the number of threads improves processing speed, assuming that the number of CPU cores requested is available on the system). For example, to specify 12 threads, one can specify ``-t 12``. By default, 8 threads are used.
+.. note::
+   One can specify the number of threads to ``kb ref`` via the ``-t`` option (increasing the number of threads improves processing speed, assuming that the number of CPU cores requested is available on the system). For example, to specify 12 threads, one can specify ``-t 12``. By default, 8 threads are used.
+
+.. note::
+   One can use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to fetch the download links for the Ensembl reference files for any species (you can also specify a specific Ensembl release):
+
+   .. code-block:: text
+
+      pip install gget
+      gget ref -w dna,gtf homo_sapiens
+
 
 
 The standard index type (bulk and single-cell RNA-seq)
@@ -53,8 +63,21 @@ Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.g
 
 .. code-block:: text
 
-   kb ref -i index.idx -g t2g.txt -f1 cdna.fasta genome.fasta genome.gtf
+   kb ref \
+      -i index.idx \
+      -g t2g.txt \
+      -f1 cdna.fasta \
+      genome.fasta genome.gtf
 
+One can also use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to pass the Ensembl download links to ``kb ref`` directly, in which case the user only needs to supply the species name:
+
+.. code-block:: text
+
+   kb ref \
+      -i index.idx \
+      -g t2g.txt \
+      -f1 cdna.fasta \
+      $(gget ref --ftp -w dna,gtf homo_sapiens)
 
 The files **index.idx**, **t2g.txt**, **cdna.fasta** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes. The cdna.fasta file is not used in subsequent steps (but is useful for reference); it simply contains the individual transcript sequences that comprise the transcriptome that are extracted from the genome FASTA and GTF and indexed by kallisto.
 
