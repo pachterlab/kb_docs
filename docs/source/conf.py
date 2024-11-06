@@ -44,6 +44,14 @@ html_theme_options = {
     'navigation_depth': 2
 }
 
+# Add "View on Github" link
+html_context = {
+    "display_github": True,
+    "github_user": "pachterlab",
+    "github_repo": "kb_docs",
+    "github_version": "main",
+    "conf_py_path": "/docs/",
+}
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
