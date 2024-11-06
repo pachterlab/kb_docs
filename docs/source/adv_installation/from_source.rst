@@ -1,3 +1,5 @@
+.. _Advanced Installation:
+
 Installing from source
 ======================
 
