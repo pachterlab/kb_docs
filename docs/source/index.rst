@@ -17,7 +17,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Overview:
 
    overview/introduction
@@ -25,7 +25,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    overview/used_by
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Quick Start:
 
    quick_start/installation
@@ -38,14 +38,14 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    index/index_generation
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Bulk RNA seq:
 
    bulk/pseudoalignment
    bulk/tutorials
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Single-cell RNA seq:
 
    sc/pseudoalignment
@@ -53,7 +53,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    sc/tutorials
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Long read RNA seq:
 
    lr/pseudoalignment_bulk
@@ -61,21 +61,21 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    lr/tutorials
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: ATAC seq:
 
    atac/pseudoalignment
    atac/tutorials
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Translated alignment:
 
    translated/pseudoalignment
    translated/tutorials
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Seqspec:
 
    seqspec/introduction
@@ -89,7 +89,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    manuals/kb
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Advanced installation:
 
    adv_installation/from_source
@@ -97,7 +97,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Advanced bustools:
 
    bus_adv/bus_adv_onlist
