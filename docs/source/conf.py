@@ -41,7 +41,7 @@ html_theme = 'sphinx_rtd_theme'
 smartquotes = False
 smartquotes_action = 'qe'
 html_theme_options = {
-    'navigation_depth': 2
+    'navigation_depth': 3
 }
 
 # Add "View on Github" link
