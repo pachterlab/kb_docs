@@ -3,5 +3,5 @@
 Seqspec
 =======================================
 
-Please see https://pachterlab.github.io/seqspec/
+Please see https://pachterlab.github.io/seqspec
 
