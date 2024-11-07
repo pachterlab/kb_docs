@@ -69,7 +69,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 .. toctree::
    :maxdepth: 1
-   :caption: Protein reference:
+   :caption: Translated alignment:
 
    translated/pseudoalignment
    translated/tutorials
