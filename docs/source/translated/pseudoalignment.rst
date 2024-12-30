@@ -4,7 +4,7 @@ Pseudoalignment of RNA seq data against a protein reference
 .. note:: **Reference:**
    Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L.  
    `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. <https://doi.org/10.1101/2023.12.11.571168>`_  
-   bioRxiv 2023.12.11.571168  
+   *bioRxiv* 2023.12.11.571168  
    https://doi.org/10.1101/2023.12.11.571168
 
 kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution. Generally, to perform translated alignment, **simply add the ``--aa`` flag to the ``kb ref`` and ``kb count`` commands**.
