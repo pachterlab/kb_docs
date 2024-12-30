@@ -19,7 +19,7 @@ The translated alignment workflows can be used to **align RNA sequencing data to
 
    pip install kb-python gget
 
-2. Download optimized PalmDB reference files:
+2. Download optimized PalmDB viral protein reference files:
 
 .. code-block:: bash
 
@@ -56,3 +56,6 @@ The translated alignment workflows can be used to **align RNA sequencing data to
 .. image:: ../../figures/translated_alignment_overview.png
    :width: 800px
    :alt: Overview of translated alignment workflow
+
+`Tutorials <https://kallisto.readthedocs.io/en/latest/translated/tutorials.html>`_
+^^^^^^^^^^
