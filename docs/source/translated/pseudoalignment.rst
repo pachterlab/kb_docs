@@ -11,7 +11,7 @@ kallisto can perform translated pseudoalignment of nucleotide sequences against 
 
 The workflow can be executed in three lines of code, and computational requirements do not exceed those of a standard laptop. Building on kallisto’s versatility, the workflow is compatible with all state-of-the-art single-cell and bulk RNA sequencing methods, including but not limited to 10x Genomics, Drop-Seq, SMART-Seq, SPLiT-Seq (including Parse Biosciences), and spatial methods such as Visium.
 
-**The translated alignment workflows can be used to align RNA sequencing data to any protein reference.** However, we first described its use in combination with the `PalmDB viral protein database <https://github.com/ababaian/palmdb>`_ for the detection of viral sequences in RNA sequencing data:
+The translated alignment workflows can be used to **align RNA sequencing data to any protein reference.** However, we first described its use in combination with the `PalmDB viral protein database <https://github.com/ababaian/palmdb>`_ for the detection of viral sequences in RNA sequencing data:
 
 1. Install `kb-python` (optional: install `gget <https://github.com/pachterlab/gget>`_ to fetch the host genome and transcriptome):
 
