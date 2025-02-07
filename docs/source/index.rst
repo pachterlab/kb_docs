@@ -62,13 +62,6 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 .. toctree::
    :maxdepth: 2
-   :caption: ATAC seq:
-
-   atac/pseudoalignment
-   atac/tutorials
-
-.. toctree::
-   :maxdepth: 2
    :caption: Translated alignment:
 
    translated/pseudoalignment
