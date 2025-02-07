@@ -7,7 +7,7 @@ Pseudoalignment of single-cell RNA seq data
    alignment_types/standard
    alignment_types/matrices
 
-To view examples/tutorials of processing single-cell or single-nucleus RNA-seq, see `Tutorials <./notebooks/>`_
+To view examples/tutorials of processing single-cell or single-nucleus RNA-seq, see `Tutorials <./tutorials>`_
 
 .. note::
 
