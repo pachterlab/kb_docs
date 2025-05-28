@@ -1,11 +1,6 @@
 Pseudoalignment of bulk RNA seq data
 =======================================
 
-.. toctree::
-   :maxdepth: 1
-
-   alignment_types/standard
-   alignment_types/matrices
 
 .. note::
 
@@ -52,7 +47,37 @@ Differential gene expression
 
 For differential gene expression, one can use sleuth or one can import the kallisto results into tximport and then use a program such as DESeq2. 
 
+Here is a sleuth tutorial:
+
 https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html
 
-https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#kallisto
+For `tximport <https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#kallisto>`_, we can do:
+
+.. code-block:: text
+
+   # Install tximport
+   if (!require("BiocManager", quietly = TRUE))
+       install.packages("BiocManager")
+   BiocManager::install("tximport")
+
+   # Include tximport
+   require(tximport)
+
+   # Load transcript-to-gene mapping
+   t2g <- read.delim("human_t2g.txt", header = FALSE, sep = "\t")
+   t2g <- t2g[, 1:2]
+
+   # Prepare file paths and sample info
+   base_dir <- "output_dir/quant_unfiltered/"
+   dirs <- list.dirs(base_dir, full.names = FALSE, recursive = FALSE)
+   abundance_dirs <- dirs[grepl("^abundance_\\d+$", dirs)]
+   files <- file.path(base_dir, abundance_dirs, "abundance.h5")
+   names(files) <- paste0("sample", 1:length(files))
+
+   # Run tximport
+   txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE)
+
+   # Summarize to gene-level
+   txi.kallisto.sum <- summarizeToGene(txi.kallisto, t2g)
+
 
