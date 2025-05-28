@@ -1,3 +1,5 @@
+.. _bulk-tutorials:
+
 Tutorials
 =============================
 
