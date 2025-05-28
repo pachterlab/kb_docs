@@ -17,9 +17,9 @@ Quantification
 --------------
 
 
-To quantify bulk RNA-seq reads, run `kb count` with the `-x BULK` option.
+To quantify bulk RNA-seq reads, run ``kb count`` with the ``-x BULK`` option.
 
-Say, we are mapping paired-end reads to an index stored in the the file `human_index.idx` (and the transcript-to-gene mapping file produced by `kb ref` is `human_t2g.txt`). Let's say our reads came from a knockdown experiment and we have three control samples (C_1, C_2, C_3) and three knockdown samples (KD_1, KD_2, KD_3). We can run the following (note that the order in which the input read files are supplied determines the sample identities after read quantification):
+Say, we are mapping paired-end reads to an index stored in the the file `human_index.idx` (and the transcript-to-gene mapping file produced by ``kb ref`` is `human_t2g.txt`). Let's say our reads came from a knockdown experiment and we have three control samples (C_1, C_2, C_3) and three knockdown samples (KD_1, KD_2, KD_3). We can run the following (note that the order in which the input read files are supplied determines the sample identities after read quantification):
 
 
 .. code-block:: text
@@ -34,7 +34,7 @@ Say, we are mapping paired-end reads to an index stored in the the file `human_i
    KD_3_R1.fastq.gz KD_3_R2.fastq.gz
 
 
-Other options that might be relevant are setting the `--strand` option to either forward or reverse if you have stranded RNA-seq reads, and also setting `--bootstraps` if performing differential expression analysis.
+Other options that might be relevant are setting the ``--strand`` option to either forward or reverse if you have stranded RNA-seq reads, and also setting ``--bootstraps`` if performing differential expression analysis.
 
 The quantification output will be stored in `output_dir/quant_unfiltered/`, which contains the directories abundance_1, abundance_2, abundance_3, abundance_4, abundance_5, abundance_6 corresponding for our six samples (in the order they were provided). For example `output_dir/quant_unfiltered/abundance_1/abundance.tsv` will contain the transcript abundances for the C_1 control sample.
 
