@@ -36,6 +36,7 @@ Say, we are mapping paired-end reads to an index stored in the the file `human_i
 
 Other options that might be relevant are setting the `--strand` option to either forward or reverse if you have stranded RNA-seq reads, and also setting `--bootstraps` if performing differential expression analysis.
 
+The quantification output will be stored in `output_dir/quant_unfiltered/`, which contains the directories abundance_1, abundance_2, abundance_3, abundance_4, abundance_5, abundance_6 corresponding for our six samples (in the order they were provided). For example `output_dir/quant_unfiltered/abundance_1/abundance.tsv` will contain the transcript abundances for the C_1 control sample.
 
 
 
@@ -51,4 +52,7 @@ Differential gene expression
 
 For differential gene expression, one can use sleuth or one can import the kallisto results into tximport and then use a program such as DESeq2. 
 
+https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html
+
+https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#kallisto
 
