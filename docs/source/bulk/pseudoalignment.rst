@@ -2,6 +2,9 @@ Pseudoalignment of bulk RNA seq data
 =======================================
 
 
+Be sure to check out the :ref:`bulk RNA-seq tutorial <bulk-tutorials>` for a comprehensive bulk RNA-seq analysis.
+
+
 .. note::
 
    **To align bulk RNA-seq data against a protein or amino acid reference, see:** 
@@ -39,7 +42,7 @@ Differential transcript expression
 ----------------------------------
 
 
-See the tutorial for a full example of using kallisto with edgeR for differential transcript expression.
+See the :ref:`bulk RNA-seq tutorial <bulk-tutorials>` for a full example of using kallisto with edgeR for differential transcript expression.
 
 
 Differential gene expression
