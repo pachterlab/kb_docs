@@ -91,16 +91,44 @@ Output Files
 The output directory (``-o``) will contain:
 
 - ``counts_unfiltered/`` (raw count matrix)
+
   - ``cells_x_genes.mtx`` → Matrix file
   - ``cells_x_genes.genes.txt`` → Gene IDs
   - ``cells_x_genes.genes.names.txt`` → Gene symbols
   - ``cells_x_genes.barcodes.txt`` → Cell barcodes
 
-If the``-o`` option is omitted, the output directory will be the current working directory.
+If the ``-o`` option is omitted, the output directory will be the current working directory.
 
 If the ``--h5ad`` flag is used in kb count, an additional ``adata.h5ad`` file will be generated.
 
 For more details on additional flags, output files, and other features, see the full documentation.
+
+
+
+Batch file processing
+^^^^^^^^^^^^^^^^^^^^^
+
+
+Below, we show how to run kb count to perform an analysis of multiple samples. A batch file (batch.txt) can be provided, in lieu of FASTQ files, listing all the samples to be analyzed with the paths to their respective FASTQ files. The ``--batch-barcodes`` option is provided to store the sample-specific barcodes that are created in addition to the cell barcodes (without this option, only cell barcodes are stored).
+
+.. code-block:: bash
+
+    kb count ... --batch-barcodes batch.txt
+
+The batch.txt file looks as follows:
+
+.. code-block:: text
+
+    Sample1 sample1_R1.fastq.gz sample1_R2.fastq.gz
+    Sample2 sample2_R1.fastq.gz sample2_R2.fastq.gz
+    Sample3 sample3_R1.fastq.gz sample3_R2.fastq.gz
+    Sample4 sample4_R1.fastq.gz sample4_R2.fastq.gz
+
+
+The sample ID is in the first column. Multiple rows can be provided for the same sample ID (e.g., if the FASTQ files are divided across multiple lanes). The third column can be omitted if only one FASTQ file is specified by the technology.
+
+The output directory will contain two files: matrix.cells, which lists the sample IDs, and matrix.sample.barcodes, which contains the 16 bp sample-specific pseudobarcodes. These pseudobarcodes are not actual read barcodes but are generated to differentiate samples. Each line in matrix.cells corresponds to the same line in matrix.sample.barcodes. The pseudobarcodes appear in the cells_x_genes.barcodes.prefix.txt file within the counts_unfiltered directory, corresponding to the rows of the cell-by-gene matrix.
+
 
 
 .. note::
