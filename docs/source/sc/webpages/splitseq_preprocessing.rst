@@ -30,7 +30,7 @@ Next, we use ``kb count`` to pseudoalign the reads.
 
 .. code-block:: shell
 
-   kb count --h5ad --strand=forward -w onlist.txt -r replace.txt -g t2g.txt -x SPLIT-SEQ -i c57bl6j.idx -t 24 -o out_dir/ R1.fastq.gz R2.fastq.gz
+   kb count --h5ad --strand=forward -w onlist.txt -r replace.txt -g t2g.txt -x SPLIT-SEQ -i c57bl6j.idx -t 24 R1.fastq.gz R2.fastq.gz
 
 
 .. note::
@@ -39,7 +39,7 @@ Next, we use ``kb count`` to pseudoalign the reads.
 
 
 
-The count matrices will be located in ``out_dir/counts_unfiltered_modified`` (note: this directory contains the count matrices generated from the "modified" barcodes wherein the random oligomer barcodes were replaced by polyT barcodes -- this is what we want to use; however, the count matrices produced from the original unmodified barcodes are also outputted in a separate directory).
+The count matrices will be located in ``counts_unfiltered_modified`` (note: this directory contains the count matrices generated from the "modified" barcodes wherein the random oligomer barcodes were replaced by polyT barcodes -- this is what we want to use; however, the count matrices produced from the original unmodified barcodes are also outputted in a separate directory).
 
 Next, we load in the AnnData object that is generated in that directory:
 
