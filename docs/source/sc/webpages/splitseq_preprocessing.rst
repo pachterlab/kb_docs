@@ -16,8 +16,14 @@ Next, we download the two "on lists":
 
 .. code-block:: shell
 
-   wget
-   wget 
+   wget https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv2_barcodes.txt -O onlist.txt
+   wget https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv2_replace.txt -O replace.txt
+
+
+.. note::
+
+   The above is for the "on lists" that correspond to SPLiT-seq version 2. For version 3, see `splitseqv3_barcodes.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_barcodes.txt>`_ and `splitseqv3_replace.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_replace.txt>`_.
+
 
 
 Next, we use ``kb count`` to pseudoalign the reads.
