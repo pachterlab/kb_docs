@@ -6,7 +6,7 @@ References
 If you are using kallisto, bustools, or kb-python in a publication:   
 
 **Please cite:**  
-   Delaney K. Sullivan, Kyung Hoi (Joseph) Min, Kristján Eldjárn Hjörleifsson, Laura Luebbert, Guillaume Holley, Lambda Moses, Johan Gustafsson, Nicolas L. Bray, Harold Pimentel, A. Sina Booeshaghi, Páll Melsted, Lior Pachter. `kallisto, bustools, and kb-python for quantifying bulk, single-cell, and single-nucleus RNA-seq.<https://doi.org/10.1101/2023.11.21.568164>`_ bioRxiv 2023.11.21.568164; doi: https://doi.org/10.1101/2023.11.21.568164
+   Delaney K. Sullivan, Kyung Hoi (Joseph) Min, Kristján Eldjárn Hjörleifsson, Laura Luebbert, Guillaume Holley, Lambda Moses, Johan Gustafsson, Nicolas L. Bray, Harold Pimentel, A. Sina Booeshaghi, Páll Melsted, Lior Pachter. `kallisto, bustools and kb-python for quantifying bulk, single-cell and single-nucleus RNA-seq. <https://doi.org/10.1038/s41596-024-01057-0>`_ Nature Protocols 20, 587-607 (2025). https://doi.org/10.1038/s41596-024-01057-0
 
 - **When performing alignment of single-cell RNA seq data, please also cite:**  
    Melsted P*, Booeshaghi AS*, Liu L, Gao F, Lu Lambda, Min KH, da Veiga Beltrame E, Hjörleifsson KE, Gehring J, Pachter L. `Modular, efficient and constant-memory single-cell RNA-seq preprocessing. <https://doi.org/10.1038/s41587-021-00870-2>`_ Nature Biotechnology 39, 813–818 (2021). https://doi.org/10.1038/s41587-021-00870-2
@@ -18,7 +18,7 @@ If you are using kallisto, bustools, or kb-python in a publication:
    Rebekah Loving, Delaney K. Sullivan, Fairlie Reese, Elisabeth Rebboah, Jasmine Sakr, Narges Rezaie, Heidi Y. Liang, Ghassan Filimban, Shimako Kawauchi, Conrad Oakes, Diane Trout, Brian A. Williams, Grant MacGregor, Barbara J. Wold, Ali Mortazavi, Lior Pachter. `Long-read sequencing transcriptome quantification with lr-kallisto. <https://doi.org/10.1101/2024.07.19.604364>`_ bioRxiv 2024.07.19.604364; doi: https://doi.org/10.1101/2024.07.19.604364
 
 - **When performing translated alignment, please also cite:**  
-   Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L. `Efficient and accurate detection of viral sequences at single-cell resolution reveals putative novel viruses perturbing host gene expression. <https://doi.org/10.1101/2023.12.11.571168>`_ bioRxiv 2023.12.11.571168 https://doi.org/10.1101/2023.12.11.571168
+   Luebbert L, Sullivan DK, Carilli M, Eldjárn Hjörleifsson K, Viloria Winnett A, Chari T, Pachter L. `Detection of viral sequences at single-cell resolution identifies novel viruses associated with host gene expression changes. <https://doi.org/10.1038/s41587-025-02614-y>`_ Nature Biotechnology (2025). https://doi.org/10.1038/s41587-025-02614-y
 
 **Additional relevant paper(s):**  
 
