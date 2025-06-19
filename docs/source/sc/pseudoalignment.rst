@@ -4,8 +4,7 @@ Pseudoalignment of single-cell RNA seq data
 
 To view examples/tutorials of processing single-cell or single-nucleus RNA-seq, see :ref:`Tutorials`
 
-Pseudoalignment
----------------
+
 
 We'll assume that an index (**index.idx** and **t2g.txt**) has already been generated via ``kb ref``. We'll use ``kb count`` for pseudoalignment of single-cell RNA-seq reads.
 
