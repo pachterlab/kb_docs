@@ -27,6 +27,6 @@ The following applications build on **kallisto**, **bustools**, and/or **kb_pyth
 
 - `SkeletalVis: exploration of skeletal biology related expression datasets <http://phenome.manchester.ac.uk/>`_
 
-- `The Lair: interactive (re)analysis of published RNA-Seq data with **kallisto** and **sleuth** <http://pachterlab.github.io/lair>`_
+- `The Lair: interactive (re)analysis of published RNA-Seq data with kallisto and sleuth <http://pachterlab.github.io/lair>`_
 
 
