@@ -70,6 +70,8 @@ Note: The input BUS file need not be sorted.
 
 -r, --replace  Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
 
+--nocorrect  Disable barcode error correction (i.e. filter for only perfect matches to the barcode *on list*).
+
 
 bustools count           
 ^^^^^^^^^^^^^^^^^^^^
