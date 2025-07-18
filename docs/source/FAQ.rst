@@ -64,7 +64,7 @@ Yes! If one wants to skip the ``kb ref`` and simply use one of the pre-built ind
 When should I use the standard index type versus the nac index type?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The standard index type does not contain introns, however is much more lightweight (lower memory usage and runtime). For conventional single-cell RNA-seq quantification, the standard index type is all you need. However, whenever you need to work with nascent transcripts, then you must use the nac index type. This arises when you use biophysical models that jointly model nascent and mature RNA species, quantify single-nucleus RNA-seq data, or want to incorporate intron-containing reads into your single-cell RNA-seq quantification.
+The standard index type does not contain introns, and is much more lightweight (lower memory usage and runtime). For conventional single-cell RNA-seq quantification, the standard index type is all you need. However, whenever you need to work with nascent transcripts, then you must use the nac index type. This arises when you use biophysical models that jointly model nascent and mature RNA species, quantify single-nucleus RNA-seq data, or want to incorporate intron-containing reads into your single-cell RNA-seq quantification.
 
 When using the nac index type, what matrix should I use?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -122,7 +122,7 @@ Runtime questions
 Why do I get "Error: Temporary directory 'tmp' exists!"?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is either because instance of kb-python is running or the temporary directory **tmp** already exists from a previous kb-python run that terminated prematurely. You should use ``--tmp`` to specify a different temporary directory or delete the **tmp** directory before rerunning kb-python.
+This is either because an instance of kb-python is running or the temporary directory **tmp** already exists from a previous kb-python run that terminated prematurely. You should use ``--tmp`` to specify a different temporary directory or delete the **tmp** directory before rerunning kb-python.
 
 Why does the workflow hang at bustools count?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
