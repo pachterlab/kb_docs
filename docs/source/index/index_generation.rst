@@ -86,7 +86,7 @@ The nac index type (single-nucleus RNA-seq or nascent/mature RNA quantification)
 ----------------------------------------------------------------------------------
 
 
-Here, we'll build an index (using the *standard* workflow) for single-nucleus RNA-seq or nascent/mature RNA quantification.
+Here, we'll build an index (using the *nac* workflow) for single-nucleus RNA-seq or nascent/mature RNA quantification.
 
 Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.gtf** here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
 
