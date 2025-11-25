@@ -79,6 +79,12 @@ Using the ``-w`` option:
 
 For single-cell and single-nucleus sequencing assays, barcodes are used to identify each cell or nucleus. The **on list** of barcodes represents the known barcode sequences that are included in the assay. Barcodes extracted from the sequencing reads will be error-tolerantly mapped to this list in a process known as *barcode error correction*. The **on list** filename can be specified with the ``-w`` option in kb count (e.g. ``-w onlist_file.txt``. It can also be obtained by :ref:`seqspec<seqspec intro>`. If an **on list** is not provided or cannot be found for the given technology, then an **on list** is created by bustools via the :ref:`bustools allowlist<bustoolsbarcodes>` command which identifies repeating barcodes in sequencing reads. If the technology does not include cell barcodes (as is the case in bulk RNA-seq), the **on list** option is irrelevant and no barcode processing occurs which should be the case for assays that don’t include cell/nuclei barcodes (skipping barcode error correction can also be done by specifying ``-w None``). If a predefined name is used in the ``-x`` technology string option, then kb-python uses the default **on list** option for that technology.
 
+replacement list
+^^^^^^^^^^^^^^^^^^^^
+Split-seq (or Parse Biosciences Evercode WT) uses a combinatorial barcoding strategy where multiple rounds of barcoding are used to label cells. In some cases, the same barcode may be used in different rounds of barcoding. To disambiguate these barcodes, one can provide a **replacement list** file via the ``-r`` option. This file should contain two columns: the first column contains the original barcode sequence, and the second column contains the replacement barcode sequence that should be used instead. During processing, any barcode that matches an entry in the first column will be replaced with the corresponding entry from the second column. This ensures that each barcode is unique and can be accurately associated with a specific cell or nucleus.
+
+
+
 
 
 

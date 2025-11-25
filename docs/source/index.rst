@@ -75,6 +75,12 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 .. toctree::
    :maxdepth: 1
+   :caption: Debugging:
+
+   outputs/outputs.rst
+
+.. toctree::
+   :maxdepth: 1
    :caption: Manuals:
    
    manuals/kallisto
