@@ -240,7 +240,7 @@ The "old way" of running kallisto (we recommend using *kallisto bus* instead). R
 
 *kallisto quant* produces three output files by default:
 
-* **abundance.h5** is a HDF5 binary file containing run info, abundance esimates, bootstrap estimates, and transcript length information length.
+* **abundance.h5** is a HDF5 binary file containing run info, abundance estimates, bootstrap estimates, and transcript length information.
 * **abundance.tsv** is a plaintext file of the abundance estimates. It does not contains bootstrap estimates. Please use the ``--plaintext`` mode to output plaintext abundance estimates. Alternatively, kallisto h5dump can be used to output an HDF5 file to plaintext. The first line contains a header for each column, including estimated counts, TPM, effective length.
 * **run_info.json** is a json file containing information about the run.
 
