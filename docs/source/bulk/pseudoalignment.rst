@@ -1,14 +1,16 @@
+.. _bulk-rna-seq:
+
 Pseudoalignment of bulk RNA seq data
 =======================================
 
 
-Be sure to check out the :ref:`bulk RNA-seq tutorial <bulk-tutorials>` for a comprehensive bulk RNA-seq analysis.
+To view a comprehensive bulk RNA-seq analysis, be sure to check out the :ref:`bulk RNA-seq tutorial <bulk-tutorials>`. 
 
 
 .. note::
 
    **To align bulk RNA-seq data against a protein or amino acid reference, see:** 
-   `Translated Pseudoalignment </../translated/pseudoalignment>`_
+   `Translated Pseudoalignment </../translated/pseudoalignment>`_.
 
 
 Quantification
@@ -17,7 +19,7 @@ Quantification
 
 To quantify bulk RNA-seq reads, run ``kb count`` with the ``-x BULK`` option.
 
-Say, we are mapping paired-end reads to an index stored in the the file `human_index.idx` (and the transcript-to-gene mapping file produced by ``kb ref`` is `human_t2g.txt`). Let's say our reads came from a knockdown experiment and we have three control samples (C_1, C_2, C_3) and three knockdown samples (KD_1, KD_2, KD_3). We can run the following (note that the order in which the input read files are supplied determines the sample identities after read quantification):
+Let's say our reads came from a knockdown experiment and we have three control samples (C_1, C_2, C_3) and three knockdown samples (KD_1, KD_2, KD_3). Run the following, assuming your index is stored in `human_index.idx` and transcript-to-gene mapping file in `human_t2g.txt`:
 
 
 .. code-block:: text
@@ -31,10 +33,12 @@ Say, we are mapping paired-end reads to an index stored in the the file `human_i
    KD_2_R1.fastq.gz KD_2_R2.fastq.gz \
    KD_3_R1.fastq.gz KD_3_R2.fastq.gz
 
+.. note::
+  The order in which the input read files are supplied determines the sample identities after read quantification.
 
-Other options that might be relevant are setting the ``--strand`` option to either forward or reverse if you have stranded RNA-seq reads, and also setting ``--bootstraps`` if performing differential expression analysis.
+Other options that might be relevant are setting the ``--strand`` option to either forward or reverse if you have stranded RNA-seq reads, and setting ``--bootstraps`` if performing differential expression analysis.
 
-The quantification output will be stored in `output_dir/quant_unfiltered/`, which contains the directories abundance_1, abundance_2, abundance_3, abundance_4, abundance_5, abundance_6 corresponding for our six samples (in the order they were provided). For example `output_dir/quant_unfiltered/abundance_1/abundance.tsv` will contain the transcript abundances for the C_1 control sample.
+The quantification output will be stored in `output_dir/quant_unfiltered/`, which contains the directories `abundance_1`, `abundance_2`, `abundance_3`, `abundance_4`, `abundance_5`, `abundance_6` corresponding to the six samples (in the order they were provided). For example `output_dir/quant_unfiltered/abundance_1/abundance.tsv` will contain the transcript abundances for the C_1 control sample.
 
 
 
@@ -42,16 +46,16 @@ Differential transcript expression
 ----------------------------------
 
 
-See the :ref:`bulk RNA-seq tutorial <bulk-tutorials>` for a full example of using kallisto with edgeR for differential transcript expression.
+See the :ref:`bulk RNA-seq tutorial <bulk-tutorials>` for a full example of using kallisto with **edgeR** for differential transcript expression.
 
 
 Differential gene expression
 ----------------------------
 
-For differential gene expression, one can use sleuth (which can also perform different transcript expression) or one can import the kallisto results into tximport and then use a program such as DESeq2. 
+For differential gene expression, use **sleuth** (which can also perform differential transcript expression) or import the kallisto results into **tximport** and then use a program such as **DESeq2**. 
 
 
-For `tximport <https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#kallisto>`_, we can do:
+For `tximport <https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#kallisto>`_:
 
 .. code-block:: R
 
@@ -81,7 +85,7 @@ For `tximport <https://bioconductor.org/packages/devel/bioc/vignettes/tximport/i
    txi.kallisto.sum <- summarizeToGene(txi.kallisto, t2g)
 
 
-Here is a sleuth tutorial (https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html); the first few steps are to create a sleuth object which we can do as follows:
+Here is a sleuth tutorial (https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html); the first few steps are to create a sleuth object:
 
 .. code-block:: R
 

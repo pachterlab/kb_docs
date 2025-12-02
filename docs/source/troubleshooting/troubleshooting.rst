@@ -1,7 +1,7 @@
 .. _kb-outputs:
 
 =====================================
-Interpreting Quality and Run Information in kb-python
+Interpreting quality and run information
 =====================================
 
 When you run the ``kb`` command, the pipeline generates several metadata
@@ -93,7 +93,7 @@ Signs of potential problems
 ``inspect.json`` is produced by ``bustools inspect`` and provides aggregate
 statistics about the BUS file: how many BUS records and reads are present,
 how many distinct barcodes and UMIs were observed, summaries of reads-per-barcode
-and UMIs-per-barcode, and how many barcodes/reads match the supplied onlist. 
+and UMIs-per-barcode, and how many barcodes/reads match the supplied on-list. 
 Below is an example snippet and a field-by-field explanation.
 
 Example (abridged) contents::
@@ -167,20 +167,20 @@ Field definitions and interpretation
        maps to a transcript/gene in the index) — records that contribute to gene-level signals.
      - Use to estimate how many records will be useful for downstream counting.
    * - ``numBarcodesOnOnlist``
-     - Number of observed barcodes that are present in the provided whitelist
-       (the “on-list” / official barcode list for the technology).
+     - Number of observed barcodes that are present in the provided on-list
+       (the “whitelist” / official barcode list for the technology).
      - This indicates how many barcodes match the expected barcode set.
    * - ``percentageBarcodesOnOnlist``
      - Fraction of observed barcodes that are on-list (percent).
      - For 10x-style experiments a substantial fraction of reads should be on-list,
-       but the fraction of *distinct observed barcodes* on the whitelist can be
+       but the fraction of *distinct observed barcodes* on the on-list can be
        lower because many sequencing errors create unique off-list barcodes.
    * - ``numReadsOnOnlist``
-     - Number of reads whose barcode is on the whitelist.
+     - Number of reads whose barcode is on the on-list.
      - This is often the most informative single metric: high percentage (e.g.
        > 80–90%) indicates that most reads came from legitimate barcodes.
    * - ``percentageReadsOnOnlist``
-     - Fraction of reads whose barcode is on the whitelist (percent).
+     - Fraction of reads whose barcode is on the on-list (percent).
      - High values are expected for correctly-specified chemistry and high-quality data.
 
 Practical checks and recommendations
@@ -190,16 +190,18 @@ Practical checks and recommendations
   ballpark of what you expect from your input FASTQs and from the kallisto run.
   If either is very small, check that kallisto succeeded and that FASTQs are intact.
 
-* **onlist checks**:
-  * Prefer checking ``percentageReadsOnOnlist`` first: if a large majority
-    of reads are onlist (e.g., **>80%**), the barcode whitelist was likely
+* **on-list checks**:
+  
+  * Check ``percentageReadsOnOnlist`` first: if a large majority
+    of reads are on the on-list (e.g., **>80%**), the barcode on-list was likely
     correct and most reads are assignable to expected barcodes.
   * If ``percentageReadsOnOnlist`` is high but ``percentageBarcodesOnOnlist`` is
     low, that usually means many low-frequency erroneous barcodes exist (normal).
   * If both read- and barcode-level on-list percentages are low → verify
-    the ``--technology`` onlist used with kallisto/bustools.
+    the ``--technology`` on-list used with kallisto/bustools.
 
 * **Reads/UMI per barcode**:
+  
   * Compare median vs mean. If mean ≫ median this indicates heavy skew:
     a few barcodes hold many reads/UMIs (possible multiplets, ambient RNA, or
     barcode collisions).
@@ -207,11 +209,13 @@ Practical checks and recommendations
     barcode — that could be expected for some experimental designs.
 
 * **UMI / barcodeUMI counts**:
+  
   * ``numBarcodeUMIs`` >> ``numUMIs`` is expected: the same UMI sequence may
     occur across many barcodes; what matters for per-cell counting is the
     per-barcode UMI distribution (e.g., ``medianUMIsPerBarcode``).
 
 * **gtRecords**:
+  
   * If ``gtRecords`` is much smaller than ``numRecords`` (i.e., most records do
     not map to transcripts/genes), this may indicate an index mismatch or
     incorrect reference (kallisto index). Confirm that the index matches the
@@ -220,17 +224,20 @@ Practical checks and recommendations
 Troubleshooting guidance
 ========================
 
-* **Low ``percentageReadsOnOnlist``**  
-  * Check that you supplied the correct technology/whitelist (``--technology``).
-  * Verify that the whitelist file provided matches the barcodes present in
-    your experiment (custom chemistry needs a custom whitelist).
+* **Low** ``percentageReadsOnOnlist``  
+  
+  * Check that you supplied the correct technology/on-list (``-x``, ``-w``).
+  * Verify that the on-list file provided matches the barcodes present in
+    your experiment (custom chemistry needs a custom on-list).
 
-* **Very low ``numReads`` or ``numRecords``**  
+* **Very low** ``numReads`` **or** ``numRecords`` 
+  
   * Confirm kallisto completed without errors (look at ``run_info.json`` and
     kallisto logs).
   * Inspect input FASTQs for truncation or missing pairs.
 
 * **Extreme skew in mean vs median**  
+  
   * A small set of barcodes dominating reads may be multiplets or barcode
     synthesis artifacts. Consider additional filtering, ambient RNA correction,
     or multiplet detection in downstream analysis.
@@ -264,8 +271,8 @@ Example::
         "commands": [
             "kallisto bus -i index.idx -o ... -x 10XV3 -t 16 ...",
             "bustools sort -o ... -T ... -t 16 -m 4G ...",
-            "bustools inspect -o ... -w 10x_version3_whitelist.txt ...",
-            "bustools correct -o ... -w 10x_version3_whitelist.txt ...",
+            "bustools inspect -o ... -w 10x_version_onlist.txt ...",
+            "bustools correct -o ... -w 10x_version3_onlist.txt ...",
             "bustools sort -o ... -T ... -t 16 -m 4G ...",
             "bustools count -o ... -g t2g.txt -e ... -t ... -s nascent.txt --genecounts --umi-gene ..."
         ],
@@ -279,64 +286,24 @@ Example::
         ]
     }
 
-Field-by-field explanation
-==========================
-
-.. list-table::
-   :widths: 20 40 40
-   :header-rows: 1
-
-   * - Field
-     - What it reports
-     - How to interpret / check
-   * - ``workdir``
-     - The working directory used for the run.
-     - Confirm outputs are located where you expect; relative paths in ``commands``
-       are resolved from here.
-   * - ``version``
-     - The kb-python release version used.
-     - Important for reproducibility; record this with your run artifacts.
-   * - ``kallisto`` / ``bustools`` (objects)
-     - Each contains ``path`` and ``version`` for the binary used.
-     - Verify these versions are appropriate for your index/commands and that the
-       paths point to the intended binaries (conda env, system install, or bundled).
-   * - ``start_time`` / ``end_time``
-     - ISO timestamps for run start and finish.
-     - Useful for human-readable audit logs and correlating with cluster logs.
-   * - ``elapsed``
-     - Total elapsed time for the entire kb run (seconds).
-     - Should be roughly the sum of heavy step runtimes; extremely small values
-       indicate early termination, very large values may indicate resource stalls.
-   * - ``call``
-     - The full ``kb`` command-line invocation that produced the run.
-     - Check this to confirm flags like ``--workflow``, ``-x/--technology``, ``-i``,
-       ``-g``, any custom ``-c`` files, and output paths.
-   * - ``commands``
-     - Array of the exact tool commands executed in order (kallisto, bustools steps, etc.).
-     - Use to check each step invoked the expected arguments (e.g., whitelist,
-       correct -x string, correct -t threads, memory flags).
-   * - ``runtimes``
-     - Per-command runtime (seconds) aligned with the same index positions in ``commands``.
-     - Compare runtimes to expectations (e.g., kallisto bus usually dominates).
-       Unusually short runtimes can indicate command failure; extremely long ones
-       can indicate I/O bottlenecks or insufficient memory causing swapping.
-
-
 -----------------------------
-Checklist for Successful Runs
+Checklist for successful runs
 -----------------------------
 
 Use the following as a quick verification workflow:
 
 #. **Check kallisto alignment quality** using ``run_info.json``:
-   * ``p_pseudoaligned`` in expected range
+   
+   * ``p_pseudoaligned`` is within expected range
    * ``n_processed`` matches FASTQ size
 
 #. **Check barcode/UMI integrity** using ``inspect.json``:
-   * Majority of reads on-list
+   
+   * Majority of readsare on on-list
    * Barcode/UMI lengths match the chemistry
 
 #. **Confirm pipeline parameters** using ``kb_info.json``:
+   
    * Correct workflow (``standard`` / ``lamanno`` / ``nac``)
    * Correct technology (``10xv2`` / ``10xv3`` / custom)
    * Correct references and t2g file
@@ -348,23 +315,25 @@ Use the following as a quick verification workflow:
 Troubleshooting Common Problems
 -------------------------------------
 
-* **Low pseudoalignment rate**  
-  Usually wrong transcriptome index or poor read quality.
+* **Low pseudoalignment rate:**  
+  
+  - Usually wrong transcriptome index or poor read quality. 
+  - An incorrect strandedness setting may cause low mapping rates. By default, many technologies are run in **forward** strand-specific mapping mode. However, some assays may not have the same strand-specificity. In this case, the default option will not apply. You can try all of ``--strand=forward``, ``--strand=unstranded``, and ``--strand=reverse`` to determine the optimal option.
 
-* **Barcode structure mismatches**  
-  Often caused by incorrect ``--technology`` argument.
+* **Barcode structure mismatches:**  
+  Often caused by incorrect ``-x`` or ``-w`` argument.
 
-* **Missing or empty output files**  
+* **Missing or empty output files:**  
   Indicates truncated FASTQs, corrupted BUS file, or interrupted run.
 
-* **Inconsistent reference versions**  
+* **Inconsistent reference versions:**  
   Verify that all reference files were generated together using
   ``kb ref``.
 
 -------------------------------------
 
-These output files provide you with everything needed to ensure that
+These output files provide you with almost everything needed to ensure that
 ``kb-python`` ran correctly and that your data exhibit expected
-structure and quality. Users are strongly encouraged to inspect all
+structure and quality. You are strongly encouraged to inspect all
 three files before proceeding to downstream analysis.
 

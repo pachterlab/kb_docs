@@ -1,3 +1,5 @@
+.. _translated-pseudoalignment:
+
 Pseudoalignment of RNA seq data against a protein reference
 =======================================
 
@@ -7,7 +9,9 @@ Pseudoalignment of RNA seq data against a protein reference
    *bioRxiv* 2023.12.11.571168  
    https://doi.org/10.1101/2023.12.11.571168
 
-kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution. Generally, to perform translated alignment, **simply add the ``--aa`` flag to the ``kb ref`` and ``kb count`` commands**.
+kallisto can perform translated pseudoalignment of nucleotide sequences against an amino acid reference while retaining single-cell (for single-cell RNA sequencing data) or sample (for bulk RNA seq data) resolution. 
+
+To perform translated alignment, simply add the ``--aa`` flag to the ``kb ref`` and ``kb count`` commands.
 
 The workflow can be executed in three lines of code, and computational requirements do not exceed those of a standard laptop. Building on kallisto’s versatility, the workflow is compatible with all state-of-the-art single-cell and bulk RNA sequencing methods, including but not limited to 10x Genomics, Drop-Seq, SMART-Seq, SPLiT-Seq (including Parse Biosciences), and spatial methods such as Visium.
 

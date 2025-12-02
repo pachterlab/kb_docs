@@ -1,14 +1,29 @@
 kallisto | bustools
 ===================
 
-The **kallisto**, **bustools**, and **kb-python** programs are free, open-source software tools that are used together to perform RNA-seq quantification.
+*kallisto*, *bustools*, and *kb-python* are free, open-source tools used
+together to perform fast, lightweight RNA-seq quantification and preprocessing. 
+These tools support the analysis of both **bulk** and **single-cell RNA-seq**
+data.
 
-* `kallisto <https://github.com/pachterlab/kallisto>`_  
-   Maps RNA-seq reads to a reference transcriptome and stores the results in a BUS file.
-* `bustools <https://github.com/BUStools/bustools>`_    
-   Processes the results in the BUS file to correct barcodes, deduplicate UMIs, and generate quantification files (e.g. count matrices).
-* `kb-python <https://github.com/pachterlab/kb_python>`_  
-   A wrapper around kallisto and bustools that facilitates usage of those tools and facilitates the generation of a reference transcriptome. The kallisto and bustools binaries come packaged in kb-python.
+**kallisto** performs *pseudoalignment*, a method that assigns reads to
+transcripts without fully aligning them. This enables extremely fast and
+accurate transcript quantification.
+
+**bustools** processes barcode and UMI information and provides utilities
+for manipulating BUS files, a compact representation of barcodes, UMIs,
+and transcript equivalence classes.
+
+**kb-python** offers high-level workflows that automate common tasks
+using kallisto and bustools, including reference generation and the
+processing of both bulk and single-cell RNA-seq experiments. It
+automatically handles downloading and formatting reference transcriptomes,
+manages file organization, and ensures that kallisto and bustools are
+invoked with consistent parameters.
+
+You may run kallisto and bustools directly, or use kb-python to streamline
+complete workflows. Many users benefit from the convenience and reproducibility
+provided by kb-python, especially for multi-step analyses.
 
 
 .. note::
@@ -56,8 +71,7 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
    :maxdepth: 2
    :caption: Long read RNA seq:
 
-   lr/pseudoalignment_bulk
-   lr/pseudoalignment_sc
+   lr/pseudoalignment
    lr/tutorials
 
 .. toctree::
@@ -69,15 +83,15 @@ The **kallisto**, **bustools**, and **kb-python** programs are free, open-source
 
 .. toctree::
    :maxdepth: 2
-   :caption: Seqspec:
+   :caption: seqspec:
 
    seqspec/introduction
 
 .. toctree::
    :maxdepth: 1
-   :caption: Debugging:
+   :caption: Troubleshooting:
 
-   outputs/outputs.rst
+   troubleshooting/troubleshooting.rst
 
 .. toctree::
    :maxdepth: 1

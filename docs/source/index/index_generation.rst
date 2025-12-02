@@ -1,17 +1,30 @@
+.. _index-generation:
+
 Generate a reference index
 =====================
 
-To process RNA-seq reads, one must first use kallisto to build an **index** from a set of sequences, referred to as targets, representing the set of sequences that the sequencing reads can be mapped to. In a standard analysis, these targets are usually transcript sequences (i.e., each individual target corresponds to one transcript). 
+To pseudoalign RNA-seq reads with kallisto, a reference index must first be built from a set of 
+*target sequences*. In most standard analyses, 
+these target sequences are transcript annotations, where each target corresponds to a single transcript.
 
-**kb-python** enables the construction of kallisto indices through the ``kb ref`` command (Fig. 1). Different types of kallisto indices can be built by specifying the ``--workflow`` argument in kb ref, which selects the type of index to be constructed. The default is ``--workflow=standard``, which creates an index suitable for bulk and single-cell RNA-seq quantification. For quantifying single-nucleus RNA-seq or nascent/mature RNA species, ``--workflow=nac`` should be used.
+kb-python provides an interface for constructing kallisto indices via the ``kb ref`` command. 
+The type of index generated is determined by the ``--workflow`` argument:
 
+- ``--workflow=standard`` *(default)* — builds an index for bulk or single-cell RNA-seq quantification  
+- ``--workflow=nac`` — builds an index suitable for single-nucleus RNA-seq or for analyses distinguishing nascent and mature RNA
+- ``--workflow=kite`` — builds an index for feature barcoding experiments (e.g. CRISPR screens or antibody tags)
+- ``--workflow=custom`` — builds an index directly from a set of target sequences
+
+By selecting the appropriate workflow, users can generate reference indices tailored to their assay and downstream analytical goals.
+
+.. _downloading-a-premade-index:
 
 Downloading a premade index
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Oftentimes, it is easy to simply download an index that has already been made.
 
-To download a mouse index for bulk and single-cell RNA-seq (i.e. the **standard** workflow), one can run the following:
+To download a mouse index for bulk and single-cell RNA-seq (i.e. the **standard** workflow), run the following:
 
 .. code-block:: text
 
@@ -19,7 +32,7 @@ To download a mouse index for bulk and single-cell RNA-seq (i.e. the **standard*
 
 The files **index.idx** and **t2g.txt** will then be created.
 
-To download a mouse index for single-nucleus RNA-seq or for analyses that require quantification of nascent and mature RNA (i.e. the **nac** workflow), one can run the following:
+To download a mouse index for single-nucleus RNA-seq or for analyses that require quantification of nascent and mature RNA (i.e. the **nac** workflow), run the following:
 
 .. code-block:: text
 
@@ -28,10 +41,17 @@ To download a mouse index for single-nucleus RNA-seq or for analyses that requir
 
 The files **index.idx**, **t2g.txt**, **cdna.txt**, and **nascent.txt** will then be created.
 
-One can replace *mouse* with *human* (or another species). A comprehensive list of pre-created indices (and how they were generated) is available `here <https://github.com/pachterlab/kallisto-transcriptome-indices>`_.  
+kb-python supports downloading pre-made indices for the following species:
 
+- human
+- mouse
+- dog 
+- monkey
+- zebrafish
+ 
+The up to date list of pre-created indices (and how they were generated) is available `here <https://github.com/pachterlab/kallisto-transcriptome-indices>`_.  
 
-
+.. _making-an-index:
 
 Making an index
 ^^^^^^^^^^^^^^^
@@ -42,10 +62,10 @@ To create an index via ``kb ref``, a user typically needs to specify a *genome* 
 * https://ftp.ensembl.org/pub/release-108/gtf/homo_sapiens/Homo_sapiens.GRCh38.108.gtf.gz
 
 .. note::
-   One can specify the number of threads to ``kb ref`` via the ``-t`` option (increasing the number of threads improves processing speed, assuming that the number of CPU cores requested is available on the system). For example, to specify 12 threads, one can specify ``-t 12``. By default, 8 threads are used.
+   You can specify the number of threads to ``kb ref`` via the ``-t`` option (increasing the number of threads improves processing speed, assuming that the number of CPU cores requested is available on the system). For example, to specify 12 threads, you can specify ``-t 12``. By default, 8 threads are used.
 
 .. note::
-   One can use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to fetch the download links for the Ensembl reference files for any species (you can also specify a specific Ensembl release):
+   You can use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to fetch the download links for the Ensembl reference files for any species (you can also specify a specific Ensembl release):
 
    .. code-block:: text
 
@@ -54,7 +74,7 @@ To create an index via ``kb ref``, a user typically needs to specify a *genome* 
 
 
 
-The standard index type (bulk and single-cell RNA-seq)
+The standard index type (for bulk and single-cell RNA-seq quantification)
 --------------------------------------------------
 
 Here, we'll build an index (using the *standard* workflow) for bulk and single-cell RNA-seq.
@@ -69,7 +89,7 @@ Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.g
       -f1 cdna.fasta \
       genome.fasta genome.gtf
 
-One can also use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to pass the Ensembl download links to ``kb ref`` directly, in which case the user only needs to supply the species name:
+You can also use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to pass the Ensembl download links to ``kb ref`` directly, in which case the user only needs to supply the species name:
 
 .. code-block:: text
 
@@ -79,10 +99,19 @@ One can also use `gget ref <https://pachterlab.github.io/gget/en/ref.html>`_ to 
       -f1 cdna.fasta \
       $(gget ref --ftp -w dna,gtf homo_sapiens)
 
-The files **index.idx**, **t2g.txt**, **cdna.fasta** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes. The cdna.fasta file is not used in subsequent steps (but is useful for reference); it simply contains the individual transcript sequences that comprise the transcriptome that are extracted from the genome FASTA and GTF and indexed by kallisto.
+Running ``kb ref --workflow=standard`` will generate three files:
 
+- **index.idx:**  
+  Contains the kallisto index used for pseudoalignment and quantification.
 
-The nac index type (single-nucleus RNA-seq or nascent/mature RNA quantification)
+- **t2g.txt:**  
+  A transcript-to-gene mapping file, linking each transcript in the index to its corresponding gene.
+
+- **cdna.fasta:**  
+  A FASTA file containing the transcript sequences extracted from the input genome FASTA and GTF.  
+  This file is *not required* in downstream steps, but is useful to keep as a reference.
+
+The nac index type (for single-nucleus RNA-seq or nascent/mature RNA quantification)
 ----------------------------------------------------------------------------------
 
 
@@ -96,9 +125,30 @@ Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.g
    -f1 cdna.fasta -f2 nascent.fasta genome.fasta genome.gtf
 
 
-The files **index.idx**, **t2g.txt**, **cdna.txt**, **nascent.txt**, **cdna.fasta**, and **nascent.fasta** will then be created. The index.idx file contains the kallisto index while the t2g.txt file is a text file containing a mapping between transcripts and genes. The cdna.txt file contains the identifiers of the "mature" (i.e. cDNA) sequences while the nascent.txt file contains the identifiers of the "nascent" sequences.  The cdna.fasta and nascent.fasta files are not used in subsequent steps (but are useful for reference); they contain the sequences that comprise the "mature" transcriptome and the "nascent" transcriptome that are extracted from the genome FASTA and GTF and indexed by kallisto. The "mature" transcriptome is simply the transcript sequences while the "nascent" transcriptome are the full length gene sequences (i.e. all exons and all introns that make up the gene). 
+Running ``kb ref --workflow=nac`` will generate six files:
 
+- **index.idx:**  
+  The kallisto index used for pseudoalignment and quantification.
 
+- **t2g.txt:**  
+  A transcript–gene mapping file linking each transcript in the index to its corresponding gene.
+
+- **cdna.txt:**  
+  Contains identifiers for *mature* (cDNA) transcript sequences.
+
+- **nascent.txt:**  
+  Contains identifiers for *nascent* transcript sequences.
+
+- **cdna.fasta:**  
+  A FASTA file containing sequences that make up the mature transcriptome  
+  (i.e. spliced transcript sequences).
+
+- **nascent.fasta:**  
+  A FASTA file containing sequences for the nascent transcriptome  
+  (i.e. full gene sequences including all exons and introns).
+
+Both ``cdna.fasta`` and ``nascent.fasta`` are not required for downstream processing,  
+but may be useful to retain for reference.
 
 Advanced
 ^^^^^^^^
@@ -107,12 +157,12 @@ Advanced
 kallisto
 --------
 
-As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the :ref:`kallisto index` of the kallisto manual.
+As ``kb ref`` invokes the ``kallisto index`` command, the kallisto commands associated with each ``kb ref`` call can be viewed by specifying ``--dry-run`` to kb ref or by specifying ``--verbose`` when building an index with kb ref. For more details, see the :ref:`kallisto index` section of the kallisto manual.
 
 Selecting GTF entries
 ---------------------
 
-One can use ``--include-attribute`` or ``--exclude-attribute`` to include or exclude certain entries from the GTF file. For example, to only include protein-coding genes and lncRNAs/lincRNAs when making an index, one can do:
+You can use the ``--include-attribute`` or ``--exclude-attribute`` to include or exclude certain entries from the GTF file. For example, to only include protein-coding genes and lncRNAs/lincRNAs when making an index:
 
 .. code-block:: text
 
@@ -122,14 +172,29 @@ One can use ``--include-attribute`` or ``--exclude-attribute`` to include or exc
    --include-attribute gene_biotype:lincRNA \
    genome.fasta genome.gtf
 
-Note that the --include-attribute and --exclude-attribute options take in a **KEY:VALUE** pair (in the above example, the entries with that have the values "protein_coding", "lncRNA", or "lincRNA" specified as the "gene_biotype" entry in the GTF file are retained).
+Note that the ``--include-attribute`` and ``--exclude-attribute`` options take in a **KEY:VALUE** pair.
+In the above example, the key is **gene_biotype** and the values are **protein_coding**, **lncRNA**, and **lincRNA**.
+The indexes will then only include transcripts whose gene_biotype attribute in the GTF file matches one of the specified values.
 
 The D-list
 ----------
 
-The D-list enables a "background filter" to be established in the index to ensure that reads originating from outside the indexed targets are filtered out (i.e. do not get mapped to a target sequence). **By default**, if unspecified, the ``--d-list`` in ``kb ref`` is set to the genome FASTA (i.e. ``--d-list=genome.fasta``). This helps preventing sequences originating from parts of the genome outside the indexed transcriptome from being mapped to the indexed transcriptome. However, one can specify a different D-list by using the ``--d-list`` option or one can disable the D-list altogether by setting ``--d-list=None``.
+The D-list provides a mechanism for *background filtering* during index construction.  
+It ensures that reads originating from outside the indexed target sequences are removed rather than incorrectly assigned to a target.
 
-Note: Although the D-list algorithm only puts certain *k*-mers (called distinguishing flanking k-mers, or DFKs) into the "filter", one can also specify a custom set of k-mers to be in the D-list, by using an empty sequence header in the file supplied to the --d-list option. In the following example, since the header is absent, all k-mers in the sequence will be D-listed (if a header were present, only DFKs would be D-listed).
+If ``--d-list`` is not specified, ``kb ref`` defaults to the input genome FASTA  
+(equivalent to ``--d-list=genome.fasta``). This prevents reads derived from unindexed
+regions of the genome from being assigned to transcript targets.  
+Users may provide a custom D-list using ``--d-list <file>`` or disable background filtering entirely by setting ``--d-list=None``.
+
+By default, only **distinguishing flanking k-mers** (DFKs) are filtered.  
+DFKs are k-mers that occur immediately upstream or downstream of a transcript boundary.  
+Reads aligning to DFKs are likely to extend beyond the transcript itself, and therefore represent signal originating from outside the intended target space.
+
+To filter *all* k-mers from a sequence rather than only the flanking ones, provide the sequence in the D-list FASTA file **without a header**.  
+In this case, the entire sequence is treated as background and all of its k-mers are excluded.  
+If a header is present, only DFKs will be filtered.
+
 
 .. code-block:: text
 
@@ -140,13 +205,20 @@ Note: Although the D-list algorithm only puts certain *k*-mers (called distingui
 A custom index
 --------------
 
-In addition to the standard and nac workflows, one can also use a custom workflow via ``--workflow=custom`` in ``kb ref``. This can create a kallisto index directly from target sequences (i.e. instead of extracting sequences from a FASTA and GTF). See the following (assuming our target sequences are stored in a file named custom.fasta):
+In addition to the ``standard`` and ``nac`` workflows, kb-python also supports a 
+``custom`` workflow via ``--workflow=custom``. This option allows you to build a 
+kallisto index directly from a set of provided target sequences, rather than 
+extracting them from a reference FASTA and GTF annotation. This is useful when 
+working with non-standard references, custom transcriptomes, or other sequence 
+collections.
+
+Example (with target sequences stored in ``custom.fasta``):
 
 .. code-block:: text
 
    kb ref --workflow=custom -i index.idx custom.fasta
 
-Additionally, one can index the k-mers associated with disjoint sequences (for example, if 50 bases of one sequence and 80 bases of a second sequence both comprise the same "target"). This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by specifying ``--distinguish`` in ``--workflow=custom``. 
+You can also index k-mers associated with sets of disjoint sequences. This is useful for mapping against genetic polymorphisms (where there exist multiple variants for each transcript). This is possible by specifying ``--distinguish`` in ``--workflow=custom``. 
 
 .. code-block:: text
 

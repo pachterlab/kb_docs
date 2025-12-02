@@ -1,18 +1,24 @@
 SPLIT-Seq preprocessing
 =======================
 
-Here, we demonstrate how to preprocess SPLiT-seq single-cell RNA-seq data (Parse Biosciences). The main difference between the preprocessing steps of 10x and SPLiT-seq is that 1) The technology string (-x) needs to be modified to extract the multiple barcodes that are linked together, 2) Two "on lists" need to be provided: one for barcode error correction and the other to "replace" the random oligomer barcodes with the polyT barcodes (since SPLiT-seq uses two sets of barcoded primers, therefore two different barcodes may belong to thesame cell).
+Here, we demonstrate how to preprocess SPLiT-seq (Parse Biosciences) single-cell RNA-seq data using kb-python.  
+The preprocessing steps are similar to those used for 10x data, but with two key differences:
 
-Let's say we have our SPLiT-seq data files: ``R1.fastq.gz`` and ``R2.fastq.gz``, and let's say they are from a human sample.
+1. The technology string ``-x`` must be customized to extract multiple barcode segments rather than a single barcode.
+2. Two **on-lists** are required:  
+   - one for barcode error correction  
+   - one for converting random-oligo barcodes into poly-T barcodes
 
-We first download the human index as before.
+Let's say we have two SPLiT-seq data files: ``R1.fastq.gz`` and ``R2.fastq.gz`` from a human sample.
+
+We first download the human index as before:
 
 
 .. code-block:: shell
 
    kb ref -d human -i index.idx -g t2g.txt
 
-Next, we download the two "on lists":
+Next, we download the two on-lists:
 
 .. code-block:: shell
 
@@ -22,7 +28,7 @@ Next, we download the two "on lists":
 
 .. note::
 
-   The above is for the "on lists" that correspond to SPLiT-seq version 2. For version 3, see `splitseqv3_barcodes.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_barcodes.txt>`_ and `splitseqv3_replace.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_replace.txt>`_.
+   The above on-lists are for SPliT-seq version 2. For version 3, see `splitseqv3_barcodes.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_barcodes.txt>`_ and `splitseqv3_replace.txt <https://raw.githubusercontent.com/pachterlab/kb_docs/refs/heads/main/docs/barcodes/splitseqv3_replace.txt>`_.
 
 
 
@@ -35,13 +41,12 @@ Next, we use ``kb count`` to pseudoalign the reads.
 
 .. note::
 
-   Here we use `-x SPLiT-SEQ` which applies to SPLiT-seq versions 1 and 2. We can design a custom technology string for newer versions of SPLiT-seq; for example, SPLiT-seq version 3 would be ``-x "1,10,18,1,30,38,1,50,58:1,0,10:0,0,0"`` (8-bp barcodes separated by 12-bp linkers). See the technology (-x) string section for more details.
+   Here we use `-x SPLIT-SEQ` which applies to SPLiT-seq versions 1 and 2. We can design a custom technology string for newer versions of SPLiT-seq. For example, SPLiT-seq version 3 would be ``-x "1,10,18,1,30,38,1,50,58:1,0,10:0,0,0"`` (8-bp barcodes separated by 12-bp linkers). See the :ref:`Technologies and the -x string <technologies-section>` section for more details.
 
 
+The count matrices with collapsed random-oligo and polyT barcodes will be stored in ``counts_unfiltered_modified``. The count matrices produced from the original unmodified barcodes are also outputted in a separate directory.
 
-The count matrices will be located in ``counts_unfiltered_modified`` (note: this directory contains the count matrices generated from the "modified" barcodes wherein the random oligomer barcodes were replaced by polyT barcodes -- this is what we want to use; however, the count matrices produced from the original unmodified barcodes are also outputted in a separate directory).
-
-Next, we load in the AnnData object that is generated in that directory:
+Next, we load in the AnnData object that is generated in the `counts_unfiltered_modified` directory for downstream analysis:
 
 .. code-block:: python
 

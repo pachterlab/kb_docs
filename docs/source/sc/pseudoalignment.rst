@@ -1,8 +1,10 @@
+.. _single-cell-rna-seq:
+
 Pseudoalignment of single-cell RNA seq data
 =======================================
 
 
-To view examples/tutorials of processing single-cell or single-nucleus RNA-seq, see :ref:`Tutorials`
+To view examples/tutorials of processing single-cell or single-nucleus RNA-seq, see :ref:`Tutorials`.
 
 
 
@@ -40,7 +42,7 @@ Single-cell RNA-seq quantification
         SAMPLE_L002_R1_001.fastq.gz SAMPLE_L002_R2_001.fastq.gz ...
 
 
-For **paired-end** reads (e.g., much bulk RNA-seq, some SMARTSEQ), use ``--parity paired`` and  
+For **paired-end** reads (e.g., most bulk RNA-seq, some SMARTSEQ), use ``--parity paired`` and  
 list paired reads sequentially.
 
 **Example:**
@@ -53,7 +55,7 @@ list paired reads sequentially.
 Single-nucleus RNA-seq
 ^^^^^^^^^^^^^^^^^^^^^^
 
-When using single-cell RNA-seq, you must use the ``--workflow=nac`` when constructing the index via ``kb ref``. However, you may use the default standard workflow in ``kb count`` for quantifying your single-nucleus RNA-seq reads (i.e. you're using the standard workflow to map against a nac index type). Thus, the ``kb count`` command will be the same as it is for single-cell.
+When a analyzing single-nucleus RNA-seq, you must use ``--workflow=nac`` when constructing the index via ``kb ref``. However, you may use the default standard workflow in ``kb count`` for quantifying your single-nucleus RNA-seq reads (i.e. you're using the standard workflow to map against a nac index type). Thus, the ``kb count`` command will be the same as it is for single-cell.
 
 
 Nascent and mature RNA quantification
@@ -100,21 +102,20 @@ If the ``-o`` option is omitted, the output directory will be the current workin
 
 If the ``--h5ad`` flag is used in kb count, an additional ``adata.h5ad`` file will be generated.
 
-For more details on additional flags, output files, and other features, see the full documentation.
+For more details on additional flags, output files, and other features, see the :ref:`kb-python manual <kb-usage>`.
 
 
 
 Batch file processing
 ^^^^^^^^^^^^^^^^^^^^^
 
-
-Below, we show how to run kb count to perform an analysis of multiple samples. A batch file (batch.txt) can be provided, in lieu of FASTQ files, listing all the samples to be analyzed with the paths to their respective FASTQ files. The ``--batch-barcodes`` option is provided to store the sample-specific barcodes that are created in addition to the cell barcodes (without this option, only cell barcodes are stored).
+Below, we show how to run ``kb count`` to perform an analysis of multiple samples. A batch file (`batch.txt`) can be provided, in lieu of FASTQ files, listing all the samples to be analyzed with the paths to their respective FASTQ files. The ``--batch-barcodes`` option is provided to store the sample-specific barcodes that are created in addition to the cell barcodes (without this option, only cell barcodes are stored).
 
 .. code-block:: bash
 
     kb count ... --batch-barcodes batch.txt
 
-The batch.txt file looks as follows:
+The `batch.txt` file looks as follows:
 
 .. code-block:: text
 
@@ -126,13 +127,13 @@ The batch.txt file looks as follows:
 
 The sample ID is in the first column. Multiple rows can be provided for the same sample ID (e.g., if the FASTQ files are divided across multiple lanes). The third column can be omitted if only one FASTQ file is specified by the technology.
 
-The output directory will contain two files: matrix.cells, which lists the sample IDs, and matrix.sample.barcodes, which contains the 16 bp sample-specific pseudobarcodes. These pseudobarcodes are not actual read barcodes but are generated to differentiate samples. Each line in matrix.cells corresponds to the same line in matrix.sample.barcodes. The pseudobarcodes appear in the cells_x_genes.barcodes.prefix.txt file within the counts_unfiltered directory, corresponding to the rows of the cell-by-gene matrix.
+The output directory will contain two files: *matrix.cells*, which lists the sample IDs, and *matrix.sample.barcodes*, which contains the 16 bp sample-specific pseudobarcodes. These pseudobarcodes are not actual read barcodes but are generated to differentiate samples. Each line in `matrix.cells` corresponds to the same line in `matrix.sample.barcodes`. The pseudobarcodes appear in the `cells_x_genes.barcodes.prefix.txt` file within the `counts_unfiltered` directory, corresponding to the rows of the cell-by-gene matrix.
 
 
 
 .. note::
 
    **To align single-cell RNA-seq data against a protein or amino acid reference, see:** 
-   `Translated Pseudoalignment </../translated/pseudoalignment>`_
+   `Translated Pseudoalignment </../translated/pseudoalignment>`_.
 
 

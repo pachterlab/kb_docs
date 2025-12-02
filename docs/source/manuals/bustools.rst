@@ -23,7 +23,7 @@ The default behavior is to sort by barcode, UMI, equivalence class (ec), then th
 
 -m, --memory=STRING  Maximum memory used (default: 4G).
 
--T, --temp=STRING  Location and prefix for temporary files (required if using -p, otherwise defaults to output path).
+-T, --temp=STRING  Location and prefix for temporary files (required if using ``-p``, otherwise defaults to output path).
 
 -o, --output=STRING  Filename to output sorted BUS file into.
 
@@ -44,13 +44,14 @@ The default behavior is to sort by barcode, UMI, equivalence class (ec), then th
 
 bustools correct    
 ^^^^^^^^^^^^^^^^^^^^    
-Error-corrects the barcodes in a BUS file to an **on list**.
+Error-corrects the barcodes in a BUS file to an on-list.
 
-Error correction is done based on a hamming distance 1 mismatch between each BUS file barcode sequence and each **on list** sequence. For barcode error correction, the **on list** file simply contains a list of sequences in the **on list**.
+Error correction is done based on a hamming distance 1 mismatch between each BUS file barcode sequence and each on-list sequence. For barcode error correction, the on-list file simply contains a list of sequences in the on-list.
 
-Another operation supported is the replacement operation: Each **on list** sequence (in the first column of the **on list** file) has a replacement sequence (in the second column of the **on list** file) designated therefore if a BUS file barcode has an exact match to one of those “on list” sequences, it is replaced with its replacement sequence.
+Another operation supported is the replacement operation: Each on-list sequence (in the first column of the on-list file) has a replacement sequence (in the second column of the on-list file) designated therefore if a BUS file barcode has an exact match to one of those on-list sequences, it is replaced with its replacement sequence.
 
-Note: The input BUS file need not be sorted.
+.. note::
+   The input BUS file need not be sorted.
 
 **Usage:**
 
@@ -64,13 +65,13 @@ Note: The input BUS file need not be sorted.
 
 -o, --output=STRING  Filename to output barcode-corrected BUS file into.
 
--w, --onlist=FILE  File containing the *on list* sequences.
+-w, --onlist=FILE  File containing the on-list sequences.
 
 -p, --pipe  Write to standard output.
 
--r, --replace  Perform the replacement operation rather than the barcode error correction operation for the file supplied in the -w option.
+-r, --replace  Perform the replacement operation rather than the barcode error correction operation for the file supplied in the ``-w`` option.
 
---nocorrect  Disable barcode error correction (i.e. filter for only perfect matches to the barcode *on list*).
+--nocorrect  Disable barcode error correction (i.e. filter for only perfect matches to the barcode on-list).
 
 
 bustools count           
@@ -89,7 +90,7 @@ Generates count matrices from BUS files that have been sorted and barcode-error-
 
 -o, --output=STRING  The prefix of the output files for count matrices.
 
--g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the **t2g.txt** file produced by it).
+-g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the *t2g.txt* file produced by it).
 
 -e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
 
@@ -101,14 +102,14 @@ Generates count matrices from BUS files that have been sorted and barcode-error-
 
 --cm  Counts multiplicities rather than UMIs. In other words, no UMI collapsing is performed and each mapped read is its own unique molecule regardless of the UMI sequence (i.e. the UMI sequence is ignored).
 
--m, --multimapping  Include bus records that map to multiple genes. When --genecounts is enabled, this option causes counts to be distributed uniformly across all the mapped genes (for example, if a read multimaps to two genes, each gene will get a count of 0.5).
+-m, --multimapping  Include bus records that map to multiple genes. When ``--genecounts`` is enabled, this option causes counts to be distributed uniformly across all the mapped genes (for example, if a read multimaps to two genes, each gene will get a count of 0.5).
 
--s, --split=FILE  Split output matrix in two (plus ambiguous) based on the list of transcript names supplied in this file. If a UMI (after collapsing) or a read maps to transcripts found in this file, the count is entered into a matrix file with the extension ``.2.mtx``; if it maps to transcripts not in this file, the count is entered into a separate matrix file with the extension ``.mtx``; if it maps to some transcripts in this file and some transcripts not in this file, the count is entered into a third matrix file with the extension ``.ambiguous.mtx``. When quantifying **nascent**, **ambiguous**, and **mature** RNA species, the nascent transcript names (which will actually simply be the gene IDs themselves) will be listed in the file supplied to --split so that the ``.mtx`` file contains the mature RNA counts, the ``.2.mtx`` file contains the nascent RNA counts, and the ``.ambiguous.mtx`` file contains the ambiguous RNA counts. Note that **kb-python** renames ``.mtx`` to ``.mature.mtx`` and renames ``2.mtx`` to ``.nascent.mtx``.
+-s, --split=FILE  Split output matrix in two (plus ambiguous) based on the list of transcript names supplied in this file. If a UMI (after collapsing) or a read maps to transcripts found in this file, the count is entered into a matrix file with the extension `.2.mtx`; if it maps to transcripts not in this file, the count is entered into a separate matrix file with the extension `.mtx`; if it maps to some transcripts in this file and some transcripts not in this file, the count is entered into a third matrix file with the extension `.ambiguous.mtx`. When quantifying **nascent**, **ambiguous**, and **mature** RNA species, the nascent transcript names (which will actually simply be the gene IDs themselves) will be listed in the file supplied to ``--split`` so that the `.mtx` file contains the mature RNA counts, the `.2.mtx` file contains the nascent RNA counts, and the `.ambiguous.mtx` file contains the ambiguous RNA counts. Note that **kb-python** renames `.mtx` to `.mature.mtx` and renames `2.mtx` to `.nascent.mtx`.
 
 
 **Output:**
 
-Each output file is prefixed with what is supplied to the **--output** option. In **kb count** within **kb-python**, the prefix is **cells_x_genes**. Thus, the files outputted (when generating a gene count matrix via **--genecounts**) will be ``cells_x_genes.mtx`` (the matrix file), ``cells_x_genes.barcodes.txt`` (the barcodes; i.e. the rows of the matrix), and ``cells_x_genes.genes.txt`` (the genes; i.e. the columns of the matrix). When generating a TCC matrix, ``cells_x_genes.ec.txt`` will be generated in lieu of ``cells_x_genes.genes.txt`` as the columns of the matrix will be equivalence classes (ECs) rather than genes. If both sample-specific barcodes and cell barcodes are supplied (as is the case when one uses **--batch-barcodes** in **kallisto bus**), then an additional ``cells_x_genes.barcodes.prefix.txt`` file will be created containing the sample-specific barcodes. The lines of this file correspond to the lines in the ``cells_x_genes.barcodes.txt`` (both files will have the same number of lines). Finally, when **--split** is supplied, additional **.mtx** matrix files will be generated (see the **--split** option described above).
+Each output file is prefixed with what is supplied to the ``--output`` option. In **kb count** within **kb-python**, the prefix is *cells_x_genes*. Thus, the files outputted (when generating a gene count matrix via ``--genecounts``) will be `cells_x_genes.mtx` (the matrix file), `cells_x_genes.barcodes.txt` (the barcodes; i.e. the rows of the matrix), and `cells_x_genes.genes.txt` (the genes; i.e. the columns of the matrix). When generating a TCC matrix, `cells_x_genes.ec.txt` will be generated in lieu of `cells_x_genes.genes.txt` as the columns of the matrix will be equivalence classes (ECs) rather than genes. If both sample-specific barcodes and cell barcodes are supplied (as is the case when one uses ``--batch-barcodes`` in **kallisto bus**), then an additional `cells_x_genes.barcodes.prefix.txt` file will be created containing the sample-specific barcodes. The lines of this file correspond to the lines in the `cells_x_genes.barcodes.txt` (both files will have the same number of lines). Finally, when ``--split`` is supplied, additional *.mtx* matrix files will be generated (see the ``--split`` option described above).
 
 
 
@@ -132,7 +133,7 @@ Produces a report summarizing the contents of a sorted BUS file. The report can 
 
 -e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
 
--w, --onlist=FILE  File containing the barcodes "on list".
+-w, --onlist=FILE  File containing the barcodes on-list.
 
 -p, --pipe  Write to standard output.
 
@@ -205,9 +206,9 @@ Produces a report summarizing the contents of a sorted BUS file. The report can 
 
 bustools allowlist
 ^^^^^^^^^^^^^^^^^^^^
-Generates an **on list** based on the barcodes in a sorted BUS file.
+Generates an on-list based on the barcodes in a sorted BUS file.
 
-This is a way of generating an **on list** that the barcodes in the BUS file will be corrected to, for technologies that don’t provide an **on list**.
+This is a way of generating an on-list that the barcodes in the BUS file will be corrected to, for technologies that don’t provide an on-list.
 
 **Usage:**
 
@@ -219,9 +220,9 @@ This is a way of generating an **on list** that the barcodes in the BUS file wil
 **Arguments:**
 
 
--o, --output=STRING  Filename to output the *on list* into.
+-o, --output=STRING  Filename to output the on-list into.
 
--f, --threshold=INT  A *highly* optional parameter specifying the minimum number of times a barcode must appear to be included in the *on list*. If not provided, a threshold will be determined based on the first 200 to 100200 BUS records.
+-f, --threshold=INT  A *highly* optional parameter specifying the minimum number of times a barcode must appear to be included in the on-list. If not provided, a threshold will be determined based on the first 200 to 100200 BUS records.
 
 
 bustools capture         
@@ -255,23 +256,23 @@ Other arguments:
 
 -c, --capture=FILE  File containing the “capture list” (i.e. list of transcripts, transcripts, flags, UMI sequences, or barcode sequences).
 
--e, --ecmap=FILE  File for mapping equivalence classes to transcripts (required for --transcripts).
+-e, --ecmap=FILE  File for mapping equivalence classes to transcripts (required for ``--transcripts``).
 
--t, --txnames=FILE  File with names of transcripts (required for --transcripts).
+-t, --txnames=FILE  File with names of transcripts (required for ``--transcripts``).
 
 -p, --pipe  Write to standard output.
 
 
 .. note::
 
-  If you use the **-b** (**--barcode**) option and want to capture all records containing a sample-specific barcode from running **--batch-barcodes** in **kallisto bus**, in the "capture list" file, enter the 16-bp sample-specific barcode followed by a * character (e.g. AAAAAAAAAAAAAACT*).
+  If you use the ``-b`` (``--barcode``) option and want to capture all records containing a sample-specific barcode from running ``--batch-barcodes`` in ``kallisto bus``, in the *capture list* file, enter the 16-bp sample-specific barcode followed by a * character (e.g. *AAAAAAAAAAAAAACT**).
 
 
 bustools text            
 ^^^^^^^^^^^^^^^^^^^^
 Converts a binary BUS file into its plaintext representation.
 
-The plaintext will have the columns (in order): barcode, UMI, equivalence class, count, flag, and pad. (Note: The last two columns will only be outputted if the respective option is specified by the user).
+The plaintext will have the columns (in order): *barcode*, *UMI*, *equivalence class*, *count*, *flag*, and *pad*. (Note: The last two columns will only be outputted if the respective option is specified by the user).
 
 **Usage:**
 
@@ -290,7 +291,7 @@ The plaintext will have the columns (in order): barcode, UMI, equivalence class,
 
 -p, --pipe  Write to standard output
 
--a, --showAll  Show all 32 bases in the barcodes field (e.g. if --batch-barcodes is specified in kallisto bus, the cell barcodes are stored in barcodes field and are used for bustools barcode correction to an "on list"; however, the artificial sample-specific barcodes are stored as an additional “hidden” field in the barcodes column, immediately preceding the cell barcodes, and may be truncated or left-padded with A’s to fill the 32 bases. For example, if the cell barcode is 12 bases, there will be 4 A’s followed by the 16-bp sample-specific barcode followed by the 12-base cell barcode. If the cell barcode is 26 bases, the last 6 bases of the sample-specific barcode will be shown followed by the 26-base cell barcode).
+-a, --showAll  Show all 32 bases in the barcodes field (e.g. if ``--batch-barcodes`` is specified in kallisto bus, the cell barcodes are stored in barcodes field and are used for bustools barcode correction to an on-list; however, the artificial sample-specific barcodes are stored as an additional *hidden* field in the barcodes column, immediately preceding the cell barcodes, and may be truncated or left-padded with A’s to fill the 32 bases. For example, if the cell barcode is 12 bases, there will be 4 A’s followed by the 16-bp sample-specific barcode followed by the 12-base cell barcode. If the cell barcode is 26 bases, the last 6 bases of the sample-specific barcode will be shown followed by the 26-base cell barcode).
 
 
 .. code-block:: text
@@ -304,14 +305,14 @@ The plaintext will have the columns (in order): barcode, UMI, equivalence class,
 
 .. note::
 
-  If one runs kallisto bus with the **-n** (**--num**) option, the read number (zero-indexed) of the mapped reads will be stored in the *flags* column (i.e. the *fifth* column). One can view those read numbers using **bustools text** to identify which reads in the input FASTQ files mapped (and which reads were unmapped).
+  If one runs kallisto bus with the ``-n`` (``--num``) option, the read number (zero-indexed) of the mapped reads will be stored in the *flag* column (i.e. the *fifth* column). One can view those read numbers using ``bustools text`` to identify which reads in the input FASTQ files mapped (and which reads were unmapped).
 
 
 bustools fromtext            
 ^^^^^^^^^^^^^^^^^^^^
 Converts a plaintext representation of a BUS file to a binary BUS file.
 
-The plaintext input file should have four columns: barcode, UMI, equivalence class, and count. Optionally, a fifth column (the flags column) can be supplied.
+The plaintext input file should have four columns: *barcode*, *UMI*, *equivalence class*, and *count*. Optionally, a fifth column (the *flag* column) can be supplied.
 
 **Usage:**
 
@@ -332,9 +333,9 @@ bustools extract
 ^^^^^^^^^^^^^^^^^^^^
 Extracts FASTQ reads corresponding to reads in BUS file.
 
-This will extract the successfully mapped sequencing reads from the input FASTQ files that were processed with kallisto bus with the **-n** (**--num**) option, which places the read number (zero-indexed) in the flags column of the BUS file. Although BUS files with read numbers present in the flags column should not be used for downstream quantification, they can be used by **bustools extract** to extract the original sequencing reads (as well as by **bustools text** to view the sequencing read number along with the barcode, UMI, and equivalence class).
+This will extract the successfully mapped sequencing reads from the input FASTQ files that were processed with ``kallisto bus`` with the ``-n`` (``--num``) option, which places the read number (zero-indexed) in the flags column of the BUS file. Although BUS files with read numbers present in the flags column should not be used for downstream quantification, they can be used by ``bustools extract`` to extract the original sequencing reads (as well as by ``bustools text`` to view the sequencing read number along with the barcode, UMI, and equivalence class).
 
-Note: The BUS file must be sorted by flag. The output BUS file directly from kallisto should already be sorted by flag, but, if not, one can use apply **bustools sort --flag** on the BUS file.
+Note: The BUS file must be sorted by flag. The output BUS file directly from kallisto should already be sorted by flag, but, if not, one can use apply ``bustools sort --flag`` on the BUS file.
 
 **Usage:**
 
@@ -350,7 +351,7 @@ Note: The BUS file must be sorted by flag. The output BUS file directly from kal
 
 -f, --fastq=STRING  FASTQ file(s) from which to extract reads (comma-separated list). These should be the same files used as input to ``kallisto bus``.
 
--N, --nFastqs=INT  Number of FASTQ file(s) per run. For example, in *10xv3* where there are two FASTQ files (and R1 and R2 file), **--nFastqs=2** should be set.
+-N, --nFastqs=INT  Number of FASTQ file(s) per run. For example, in the case of *10xv3*, for which there are two FASTQ files (an R1 and R2 file), ``--nFastqs=2`` should be set.
 
 
 .. note::
@@ -360,9 +361,9 @@ Note: The BUS file must be sorted by flag. The output BUS file directly from kal
 
 **Example:**
 
-The extraction feature is especially useful to use in conjunction with bustools capture when one wishes to extract specific reads (e.g. reads that contain a certain barcode or reads whose equivalence class contains a certain transcript). Below, we show an example of how to extract reads from two input files: **R1.fastq.gz** and **R2.fastq.gz** entered into a ``kallisto bus`` run with results outputted into a directory named **output_dir**. We’ll extract reads that are compatible with either the transcript **ENSMUST00000171143.2** or **ENSMUST00000131532.2**.
+The extraction feature is especially useful to use in conjunction with bustools capture when one wishes to extract specific reads (e.g. reads that contain a certain barcode or reads whose equivalence class contains a certain transcript). Below, we show an example of how to extract reads from two input files: *R1.fastq.gz* and *R2.fastq.gz* entered into a ``kallisto bus`` run with results outputted into a directory named *output_dir*. We’ll extract reads that are compatible with either the transcript *ENSMUST00000171143.2* or *ENSMUST00000131532.2*.
 
-Create a file called **capture.txt** containing the following two lines:
+Create a file called *capture.txt* containing the following two lines:
 
 .. code-block:: text
 
@@ -380,7 +381,7 @@ Run the following:
   --fastq=R1.fastq.gz,R2.fastq.gz -o extracted_output -
 
 
-The capture results are directly piped into the extract command, and the extracted FASTQ sequencing reads output are placed into the paths ``extracted_output/1.fastq.gz`` and ``extracted_output/2.fastq.gz`` (for the input files **R1.fastq.gz** and **R2.fastq.gz**, respectively). ``bustools extract`` does not work when you have sample-specific barcodes in your BUS file because each sample’s read number (as recorded in the flags column of the BUS file) starts from 0. To work around this, you should first use bustools capture to isolate a specific sample and then supply that specific sample’s FASTQ file(s).
+The capture results are directly piped into the extract command, and the extracted FASTQ sequencing reads output are placed into the paths `extracted_output/1.fastq.gz` and `extracted_output/2.fastq.gz` (for the input files *R1.fastq.gz* and *R2.fastq.gz*, respectively). ``bustools extract`` does not work when you have sample-specific barcodes in your BUS file because each sample’s read number (as recorded in the flags column of the BUS file) starts from 0. To work around this, you should first use bustools capture to isolate a specific sample and then supply that specific sample’s FASTQ file(s).
 
 
 bustools umicorrect      
@@ -402,7 +403,7 @@ Implements the UMI correction algorithm of `UMI-tools <https://github.com/CGATOx
 
 -p, --pipe  Write to standard output.
 
--g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the **t2g.txt** file produced by it).
+-g, --genemap=FILE  File for mapping transcripts to genes (when using ``kb ref`` in kb-python, this is the *t2g.txt* file produced by it).
 
 -e, --ecmap=FILE  File for mapping equivalence classes to transcripts.
 

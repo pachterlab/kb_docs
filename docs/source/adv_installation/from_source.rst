@@ -1,4 +1,4 @@
-.. _Advanced Installation:
+.. _advanced_installation:
 
 Installing from source
 ======================
@@ -42,7 +42,7 @@ For bustools:
   make
   make install
 
-If you want to install the latest version (not just specific versions), you can omit the --branch version specification from the above commands (e.g. omit "--branch 0.43.2" when running git clone).
+If you want to install the latest version (not just specific versions), you can omit the ``--branch`` version specification from the above commands (e.g. omit ``--branch 0.43.2`` when running ``git clone``).
 
 .. tip::
 
@@ -54,7 +54,7 @@ If you want to install the latest version (not just specific versions), you can 
 
 .. note::
 
-  By default, kallisto will only support *k*-mer lengths up to 31. In order to enable support for *k*-mer lengths up to 63 (which is optimal for long-read data), please modify the cmake command to be ``cmake .. -DMAX_KMER_SIZE=64``. Important: Always use a fresh installation when doing this (i.e. redownload the source code from github) because files that exist from a previous build may cause the binary to be generated incorrectly.
+  By default, kallisto will only support *k*-mer lengths up to 31. In order to enable support for *k*-mer lengths up to 63 (which is optimal for long-read data), please modify the cmake command to ``cmake .. -DMAX_KMER_SIZE=64``. **Important:** Always use a fresh installation (i.e. redownload the source code from github) when rerunning cmake because files that exist from a previous build may cause the binary to be generated incorrectly.
 
 
 Using the binaries

@@ -11,10 +11,10 @@ Installation questions
 
 .. _FAQ illegal instruction:
 
-I run kb ref or kb count and kallisto is giving me an illegal instruction (SIGILL) error. How do I fix this?
+I run ``kb ref`` or ``kb count`` and kallisto is giving me an illegal instruction (SIGILL) error. How do I fix this?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is because the kallisto binary is unfortunately incompatible with your system. This means you must follow the instructions to install kallisto from source. You can then run kb-python as follows:
+This error occurs when the kallisto binary is incompatible with your system. This means you must follow the instructions to install kallisto from source. You can then run kb-python as follows:
 
 ::
 
@@ -23,12 +23,12 @@ This is because the kallisto binary is unfortunately incompatible with your syst
 
 .. tip::
 
-  As of **kb-python version 0.29.0**, you can use the option ``--opt-off`` in ``kb ref`` and ``kb count`` which disables certain optimizations that may be incompatible with certain systems. You can use that option if you experience an illegal instruction or segmentation fault error and there's a good change that it may resolve the problem.
+  As of **kb-python version 0.29.0**, you can use the option ``--opt-off`` in ``kb ref`` and ``kb count`` to disable certain optimizations that may be incompatible with your systems. This may allow you to use the precompiled kallisto binary without having to compile from source.
 
 
 .. _FAQ incompatible index:
 
-When loading in an index using kallisto or kb count, I'm getting either an "incompatible indices" error or a segmentation fault (SIGSEGV). How do I fix this?
+When loading in an index using kallisto or ``kb count``, I'm getting either an "incompatible indices" error or a segmentation fault (SIGSEGV). How do I fix this?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Different versions of kallisto use different index formats. You either need to use a different version of kallisto or create a new index using your current version.
@@ -37,12 +37,17 @@ Different versions of kallisto use different index formats. You either need to u
 What version of kallisto, bustools, and kb-python should I install?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We always recommend installing the newest version unless you have a specific reason not to. The newest version of those tools contains the newest features that may not be present in older versions. The protocols paper published alongside this documentation in 2024 correspond to kb-python version 0.28.2, kallisto 0.50.1, and bustools 0.43.2, and all options and workflows present in that paper will work with those versions. As these tools develop, additional features are added and it would be necessary to use more recent versions in order to utilize those features. The installation instructions show you how to install the latest version of these tools or specific versions of these tools.
+We always recommend installing the newest version unless you have a specific reason not to. The newest version of those tools contains the newest features that may not be present in older versions. The **protocols paper** published alongside this documentation in 2024 correspond to **kb-python version 0.28.2**, **kallisto 0.50.1**, and **bustools 0.43.2**. All options and workflows present in that paper will work with those versions. As these tools develop, additional features are added, and it would be necessary to use more recent versions in order to utilize those features. The installation instructions show you how to install the latest version of these tools or specific versions of these tools.
 
 How do I compile kallisto to support longer *k*-mer lengths?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When compiling from source to support longer *k*-mer lengths, one must use ``cmake .. -DMAX_KMER_SIZE=64``. **Important note**: Always use a fresh installation when doing this (i.e. redownload the source code from github) because files that exist from a previous build may cause the binary to be generated incorrectly.
+When compiling from source to support longer *k*-mer lengths, one must use ``cmake .. -DMAX_KMER_SIZE=64``. 
+
+.. important:: 
+  Always use a fresh installation before running ``cmake`` (i.e. redownload the source code from github) because files that exist from a previous build may cause the binary to be generated incorrectly.
+
+See the section :ref:`Installing from source <advanced_installation>` for more details.
 
 
 Choice of index and output matrices
@@ -55,11 +60,14 @@ When using ``kb ref`` to generate a kallisto index, a genome FASTA file (NOT a t
 
 One can supply a transcriptome FASTA directly to ``kallisto index`` (i.e. not using kb-python). However, our recommendation is to not do this (except for advanced use cases) and to just rely on ``kb ref`` to generate kallisto indices.
 
+For more information on building indices with ``kb ref``, see the section :ref:`Making an index <making-an-index>`.
+
 Are there prebuilt indices available that I can use?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Yes! If one wants to skip the ``kb ref`` and simply use one of the pre-built indices without any customization, one can download the index directly via the ``-d`` option in ``kb ref``, for example ``-d mouse`` (as detailed in the kb-python manual section). The code underlying how these indices were created can be found at: https://github.com/pachterlab/kallisto-transcriptome-indices (and the indices themselves can be directly downloaded from there too). 
+Yes! If one wants to skip the ``kb ref`` and simply use one of the pre-built indices without any customization, one can download the index directly via the ``-d`` option in ``kb ref``. For example, to install the pre-built index for *mus musculus*, use ``-d mouse``.
 
+For more information on using the ``kb ref`` prebuilt indices, see the section :ref:`Dowonloading a premade index <downloading-a-premade-index>`.
 
 When should I use the standard index type versus the nac index type?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,33 +77,43 @@ The standard index type does not contain introns, and is much more lightweight (
 When using the nac index type, what matrix should I use?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+It depends. When using the nac index type, three matrices are produce: nascent (N), mature (M), and ambiguous (A) matrices. The M+A matrix corresponds to the matrix that you get from running the standard index type. When jointly modeling nascent and mature species in biophysical models, we use the M+A matrix for the "mature" species and the N matrix for our nascent matrix. It is straightforward to directly obtain the M+A (and other matrices added up) by using ``--sum=total`` in ``kb count``; the M+A matrix would be the matrix ending in .cell.mtx. 
 
-It depends. When using the nac index type, three matrices are produce: nascent (N), mature (M), and ambiguous (A) matrices. The M+A matrix corresponds to the matrix that you get from running the standard index type. When jointly modeling nascent and mature species in biophysical models, we use the M+A matrix for the "mature" species and the N matrix for our nascent matrix. It is straightforward to directly obtain the M+A (and other matrices added up) by using --sum=total in kb count; the M+A matrix would be the matrix ending in .cell.mtx. Note: You can also use the standard workflow in kb count to map against the nac index type, which will give you a single matrix containing the total counts and corresponds to the matrix produced by default for both single-cell and single-nucleus RNA-seq in Cell Ranger version 7 and above.
+.. note::
+  You can also use the standard workflow in ``kb count`` to map against the nac index type, which will give you a single matrix containing the total counts. This matrix corresponds to the matrix produced by default for both single-cell and single-nucleus RNA-seq in **Cell Ranger version 7 and above**.
 
 Run options
 -----------
 
-I have an assay where the barcode and UMI don't fit the format of -x technology string. What do I do?
+I have an assay for which the barcode and UMI don't fit the format of the ``-x`` technology string. What do I do?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You may need to use additional steps to preprocess the reads to make them "fit". In simple cases, some shell scripts may be sufficient to reformat the reads. In more complex cases, you might want to use a tool such as `splitcode <https://splitcode.readthedocs.io/en/latest/>`_.
+In some cases, additional preprocessing steps are required to make the reads compatible with the expected input format.  
+For simple adjustments, lightweight shell scripts may be sufficient to restructure or clean the reads.  
+For more complex preprocessing a dedicated tool like `splitcode <https://splitcode.readthedocs.io/en/latest/>`_ may be more appropriate.
 
-What barcode *on list* should I use?
+What barcode on-list should I use?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* **Technologies that contain barcodes in sequencing reads which need to be error-corrected:** For many technologies, a default *on list* (sometimes referred to as a whitelist) is provided (for example, ``-x 10xv3`` automatically uses a prepackaged *on list* that works). However, when specifying a custom technology string or using a technology without a default *on list*, you will have to manually obtain the list of barcodes used in that technology and supply it to ``-w``. Some technologies, such as Drop-Seq, have barcodes in the reads but do not have barcode *on lists*. Therefore, the default procedure (i.e. not specifying ``-w`` at all) will invoke the ``bustools allowlist`` command to determine an *on list* of barcodes from the sequencing reads.
-* **Technologies that contain barcodes in sequencing reads which do NOT need to be error-corrected:** Sometimes, the barcodes in the FASTQ files should simply be used as-is. In this case, there is no *on list* to correct to and one should specify ``-w None`` to disable the barcode error correction process completely.
-* **Technologies that do NOT contain barcodes in sequencing reads**: For technologies such as Smart-seq2 (where data is deposited such that each cell gets its own FASTQ file) or bulk RNA-seq, the reads do not have barcodes in them. This can be made explicit in the technology string. The ``-x BULK`` and ``-x SMARTSEQ2`` technologies already do not utilize barcodes, but, for custom technology strings, one can write something like ``-x " -1,0,0:0,0,5:0,5,0"`` which specifies that the R1 read has no barcode (the ``-1,0,0`` in the barcode portion of the technology string indicates this) but has a 5-bp UMI at the start of the read and the sequence to be mapped to occurs after those 5 bp's. **Important note**: For that technology string, you must enclose it in quotation marks and have a space between the first quotation mark and the ``-1`` to avoid the string being misinterpreted as a command-line flag.
-
-
+* **Technologies for which cell barcodes need to be error-corrected:** For many technologies, a default on-list (aka whitelist) is already provided (for example, ``-x 10xv3`` automatically uses a prepackaged on-list that works). If you instead need to specify a custom technology string or using a technology without a default on-list, you will have to manually obtain the list of barcodes used in that technology and supply it to ``-w``. Some technologies, such as Drop-Seq, have cell barcodes but not an on-list. In this case, the default procedure (i.e. not specifying ``-w`` at all) will invoke the ``bustools allowlist`` command to determine an on-list of barcodes from the sequencing reads.
+* **Technologies for which cell barcodes do NOT need to be error-corrected:** Sometimes, the barcodes in the FASTQ files should simply be used as-is. In this case, there is no on-list to correct to and one should specify ``-w None`` to disable the barcode error correction process completely.
+* **Technologies that do NOT append cell barcodes to sequencing reads**: For technologies such as Smart-seq2 (where data is deposited such that each cell gets its own FASTQ file) or bulk RNA-seq, reads do not have barcodes. This can be made explicit in the technology string. The ``-x BULK`` and ``-x SMARTSEQ2`` technologies already do not utilize barcodes. For a custom technology strings, you can write something like ``-x " -1,0,0:0,0,5:0,5,0"``. This `-x` string specifies that the R1 read has no barcode (indicated by ``-1,0,0``) and has a 5-bp UMI at the start of the read with the sequence to be mapped coming directly after. Make sure that you enclose the technology string in quotation marks with a space between the first quotation mark and ``-1`` to avoid the string being misinterpreted as a command-line flag.
+ 
+For more information on on-lists see the section :ref:`Barcodes on-list format<advanced-barcodes-onlist>`. For more information on technology strings, see the section :ref:`Technologies and the -x string <technologies-section>`.
 
 What are some tips for troubleshooting kb-python errors?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Use ``--verbose`` to examine the kallisto and bustools commands that are being run.
 * Use ``--overwrite`` to regenerate output files and directories that were produced from a previous kb-python run.
-* The output directory of a ``kb count`` run contains the **JSON** files **kb_info.json**, which contains information about the commands that were executed, and **run_info.json** which contains quality control values such as the percentage of reads pseudoaligned. It is worth examining those.
+* ``kb count`` will produce the **JSON** files:
+  
+  - **kb_info.json**: contains information about the commands that were executed
+  - **run_info.json**: contains quality control values such as the percentage of reads pseudoaligned
+  
+You should examine both each time you run ``kb count`` to ensure that the commands were executed as you intended.
 
+For more help with troubleshooting, see :ref:`Interpreting run and quality information <kb-outputs>`.
 
 Quality check
 -------------
@@ -105,16 +123,19 @@ Why am I getting a low mapping (pseudoalignment) rate?
 
 You can get the mapping rate by looking at ``p_pseudoaligned`` in **run_info.json** in the output folder. If this value is low, there might be a few things to investigate:
 
-* You may want to specifically specify the "unstranded" mode (i.e. specifying ``--strand=unstranded`` in kb count). By default, many technologies (i.e. specifying ``-x 10xv3`` as the technology string) are run in forward strand-specific mapping mode. However, some assays may not have the same strand-specificity in which case the default option will not apply. You can try all of ``--strand=forward``, ``--strand=unstranded``, and ``--strand=reverse`` to determine the optimal option (i.e. what results in the best mapping rate) for strand-specificity.
-* You may want to ensure that you're using the correct index type. First, make sure you're using the correct species (e.g. not using a mouse index to map human reads). Second, make sure your index is appropriate for the assay type; if you're using the standard index type for single-nucleus RNA-seq, you'll get a low mapping rate (for single-nucleus RNA-seq or any RNA-seq assay with high intronic content, you must use the nac index type).
+* You may want to specify the "unstranded" mode (i.e. ``--strand=unstranded``) in ``kb count``. By default, many technologies are run in forward strand-specific mapping mode. However, some assays may not have the same strand-specificity. In this case, the default option will not apply. You can try all of ``--strand=forward``, ``--strand=unstranded``, and ``--strand=reverse`` to determine the optimal option.
+* You may want to ensure that you're using the correct index type. First, make sure you're using the correct species. Second, make sure your index is appropriate for the assay type; if you're using the standard index type for single-nucleus RNA-seq, you'll get a low mapping rate. For single-nucleus RNA-seq or any RNA-seq assay with high intronic content, you must use the nac index type.
 * Make sure the technology specified in the ``-x`` option is correct (e.g. you are not using ``-x 10xv3`` to map SPLiT-seq data).
+
+For more help with quality checking, see :ref:`Interpreting run and quality information <kb-outputs>`.
 
 Why am I getting a matrix with so few or no barcodes?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Make sure the technology specified in the ``-x`` option is correct; different technologies have different barcode structures and different barcode *on lists*.
-* If not using a default *on list*, make sure the *on list* supplied to the ``-w`` option is correct.
+* Make sure the technology specified in the ``-x`` option is correct; different technologies have different barcode structures and different barcode on-lists.
+* If not using a default on-list, make sure the on-list supplied to the ``-w`` option is correct.
 
+For more help with quality checking, see :ref:`Interpreting run and quality information <kb-outputs>`.
 
 Runtime questions
 -----------------
@@ -122,12 +143,12 @@ Runtime questions
 Why do I get "Error: Temporary directory 'tmp' exists!"?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is either because an instance of kb-python is running or the temporary directory **tmp** already exists from a previous kb-python run that terminated prematurely. You should use ``--tmp`` to specify a different temporary directory or delete the **tmp** directory before rerunning kb-python.
+This is likely because an instance of kb-python is running or the temporary directory **tmp** already exists from a previous kb-python run that terminated prematurely. You should use ``--tmp`` to specify a different temporary directory or delete the **tmp** directory before rerunning kb-python.
 
-Why does the workflow hang at bustools count?
+Why does the workflow hang at ``bustools count``?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-While bustools count can take some time to complete, especially when using the nac index type, if it never seems to complete, then it is likely due to a mismatch between your transcripts-to-gene (t2g) mapping file and your kallisto index (run ``kb count`` with ``--verbose`` to see if a warning is outputted about a potential mismatch). Please ensure that the t2g file contains the exact same transcript names in the exact same order as the transcripts.txt file produced in the output folder. If you use the prebuilt index and associated files that we distribute or use the files created by kb ref from the official Ensembl or Gencode genome FASTA and GTF files, then bustools count should run successfully.
+bustools count can take some time to complete, especially when using the nac index type. However, if it never seems to complete, then it is likely due to a mismatch between your transcripts-to-gene (t2g) mapping file and your kallisto index. To resolve this error, rerun ``kb count`` with ``--verbose`` to see if a warning is outputted about a potential mismatch. If not, please ensure that the t2g file contains the exact same transcript names in the exact same order as the `transcripts.txt`` file produced in the output folder. If you use a prebuilt index or create an index using ``kb ref`` from the official Ensembl or Gencode genome FASTA and GTF files, then ``bustools count`` should run successfully.
 
 
 Other questions
@@ -136,5 +157,5 @@ Other questions
 Where do I go for additional help?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please visit the `kallisto issues page <https://github.com/pachterlab/kallisto/issues>`_ on GitHub and post a GitHub issue asking your question.
+Please visit the `kallisto issues page <https://github.com/pachterlab/kallisto/issues>`_ on GitHub and post a GitHub issue with any questions you might have.
 
