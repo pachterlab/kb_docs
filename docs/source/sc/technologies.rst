@@ -9,7 +9,7 @@ This section describes how to configure ``kb count`` to process sequencing reads
 ``-x`` string
 ^^^^^^^^^
 
-A **technology string** for a particular type of assay can be supplied via the ``-x`` option. The technology string can be specified in one of two ways:
+A **technology string** for a particular type of assay can be supplied via the ``-x`` option. The technology string can be specified in one of three ways:
 
 * Specify the technology directly using ``-x NAME`` if it is included in kb-python's list of predefined technologies (viewable with ``kb --list``).
 
@@ -83,7 +83,7 @@ The on-list filename can be specified with the ``-w`` option in kb count (e.g. `
 
 If the technology does not include cell barcodes (as is the case in bulk RNA-seq), the on-list option is irrelevant and no barcode processing occurs. This should be the case for assays that don’t include cell/nuclei barcodes. Skipping barcode error correction can also be done by specifying ``-w None``. If a predefined name is used in the ``-x`` technology string option, then kb-python uses the default on-list option for that technology.
 
-For more information on the on-list format, see the :ref:`Barcodes on-list format<advanced-barcodes-onlist>` section.
+For more information on the on-list format, see the :ref:`barcodes on-list format<advanced-barcodes-onlist>` section.
 
 replacement list
 ^^^^^^^^^^^^^^^^^^^^
@@ -96,7 +96,7 @@ The replacement list should contain two columns:
 
 During processing, any barcode that matches an entry in the first column will be replaced with the corresponding entry from the second column. This ensures that each barcode is unique and can be accurately associated with a specific cell or nucleus.
 
-For more information on the replacement list format, see **replacement list** in the :ref:`Barcodes on-list format<advanced-barcodes-replacement>` section.
+For more information on the replacement list format, see **replacement list** in the :ref:`barcodes on-list format<advanced-barcodes-replacement>` section.
 
 
 

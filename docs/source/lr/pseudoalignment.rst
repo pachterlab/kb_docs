@@ -1,5 +1,3 @@
-.. _lr-bulk-rna-seq:
-
 Long read pseudoaligment
 =======================================
 .. note:: **Reference:**
@@ -13,6 +11,8 @@ kallisto can perform long-read pseudoalignment of nucleotide sequences against a
 Long-read pseudoalignment, which performs alignment using an extended k-mer length (> 31 bases), improves transcript-to-gene mapping quality. As k-mer length increases, the number of transcripts in a compatibility class decreases on average, raising the probability that reads map to the correct compatibility class. Additionally, longer k-mers increase the likelihood that equivalence class intersections will be nonempty, which improves the overall mapping rate.
 
 The workflow can be executed in three lines of code, and computational requirements do not exceed those of a standard laptop. Building on kallisto’s versatility, the workflow is compatible with all state-of-the-art single-cell and bulk RNA sequencing methods, including but not limited to SMART-Seq and SPLiT-Seq (including Parse Biosciences) and performance is state-of-the-art on both PacBio and Oxford Nanopore Technologies long-read data.
+
+.. _lr-bulk-rna-seq:
 
 Long read pseudoalignment of bulk RNA-seq data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -52,6 +52,7 @@ The long-read pseudoalignment workflows can be used to align RNA sequencing data
        -x bulk \
        $USER_DATA.fastq.gz
 
+.. _lr-sc-rna-seq:
 
 Long read pseudoalignment of single-cell RNA-seq data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

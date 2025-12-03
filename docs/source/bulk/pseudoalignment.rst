@@ -85,35 +85,4 @@ For `tximport <https://bioconductor.org/packages/devel/bioc/vignettes/tximport/i
    txi.kallisto.sum <- summarizeToGene(txi.kallisto, t2g)
 
 
-Here is a sleuth tutorial (https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html); the first few steps are to create a sleuth object:
-
-.. code-block:: R
-
-    # Install sleuth and rdhf5
-   if (!require("BiocManager", quietly = TRUE))
-       install.packages("BiocManager")
-   BiocManager::install("rhdf5")
-   install.packages("devtools")
-   devtools::install_github('pachterlab/sleuth')
-
-   # Include sleuth
-   require(sleuth)
-
-   # Load transcript-to-gene mapping
-   t2g <- read.delim("human_t2g.txt", header = FALSE, sep = "\t")
-   t2g <- t2g[, 1:2]
-   colnames(t2g) <- c("target_id", "gene_id")
-
-   # Prepare file paths and sample info
-   base_dir <- "output_dir/quant_unfiltered"
-   dirs <- list.dirs(base_dir, full.names = FALSE, recursive = FALSE)
-   abundance_dirs <- dirs[grepl("^abundance_\\d+$", dirs)]
-   files <- file.path(base_dir, abundance_dirs)
-   samples <- paste0("sample", 1:length(files))
-   conditions <- c("control", "control", "control", "knockdown", "knockdown", "knockdown")
-   s2c <- data.frame(sample=samples, condition=conditions, path=files, stringsAsFactors=FALSE)
-
-   # Prepare a sleuth orject
-   so <- sleuth_prep(s2c, target_mapping = t2g)
-
-
+To see a full differential gene expression analysis workflow with sleuth, go to: https://pachterlab.github.io/sleuth_walkthroughs/trapnell/analysis.html.

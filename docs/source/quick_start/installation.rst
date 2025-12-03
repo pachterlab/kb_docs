@@ -19,7 +19,7 @@ pip also allows you to install a specific version of kb-python. For example, for
 Conda Installation
 ------------------
 
-If you are instead using **conda**, you can install kb-python from the **bioconda channel**:
+If you are using **conda environment**, you can install kb-python from the **bioconda channel**:
 
 .. code-block:: shell
 
@@ -33,4 +33,4 @@ and to install a specific version, for example 0.28.2:
 
 .. seealso::
 
-  If you want to install kallisto and bustools from source, please visit the section :ref:`Advanced Installation` of this documentation.
+  If you want to install kallisto and bustools from source, please visit the :ref:`advanced instillation <advanced_installation>` section.

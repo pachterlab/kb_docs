@@ -41,7 +41,7 @@ Next, we use ``kb count`` to pseudoalign the reads.
 
 .. note::
 
-   Here we use `-x SPLIT-SEQ` which applies to SPLiT-seq versions 1 and 2. We can design a custom technology string for newer versions of SPLiT-seq. For example, SPLiT-seq version 3 would be ``-x "1,10,18,1,30,38,1,50,58:1,0,10:0,0,0"`` (8-bp barcodes separated by 12-bp linkers). See the :ref:`Technologies and the -x string <technologies-section>` section for more details.
+   Here we use `-x SPLIT-SEQ` which applies to SPLiT-seq versions 1 and 2. We can design a custom technology string for newer versions of SPLiT-seq. For example, SPLiT-seq version 3 would be ``-x "1,10,18,1,30,38,1,50,58:1,0,10:0,0,0"`` (8-bp barcodes separated by 12-bp linkers). See the :ref:`technologies and the -x string <technologies-section>` section for more details.
 
 
 The count matrices with collapsed random-oligo and polyT barcodes will be stored in ``counts_unfiltered_modified``. The count matrices produced from the original unmodified barcodes are also outputted in a separate directory.

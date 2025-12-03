@@ -30,7 +30,7 @@ To download a mouse index for bulk and single-cell RNA-seq (i.e. the **standard*
 
    kb ref -d mouse -i index.idx -g t2g.txt
 
-The files **index.idx** and **t2g.txt** will then be created.
+The files *index.idx* and *t2g.txt* will then be created.
 
 To download a mouse index for single-nucleus RNA-seq or for analyses that require quantification of nascent and mature RNA (i.e. the **nac** workflow), run the following:
 
@@ -39,7 +39,7 @@ To download a mouse index for single-nucleus RNA-seq or for analyses that requir
    kb ref -d mouse -i index.idx -g t2g.txt -c1 cdna.txt -c2 nascent.txt --workflow=nac
 
 
-The files **index.idx**, **t2g.txt**, **cdna.txt**, and **nascent.txt** will then be created.
+The files *index.idx*, *t2g.txt*, *cdna.txt*, and *nascent.txt* will then be created.
 
 kb-python supports downloading pre-made indices for the following species:
 
@@ -79,7 +79,7 @@ The standard index type (for bulk and single-cell RNA-seq quantification)
 
 Here, we'll build an index (using the *standard* workflow) for bulk and single-cell RNA-seq.
 
-Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.gtf** here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
+Only the FASTA file and GTF file (which we named *genome.fasta* and *genome.gtf* here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
 
 .. code-block:: text
 
@@ -117,7 +117,7 @@ The nac index type (for single-nucleus RNA-seq or nascent/mature RNA quantificat
 
 Here, we'll build an index (using the *nac* workflow) for single-nucleus RNA-seq or nascent/mature RNA quantification.
 
-Only the FASTA file and GTF file (which we named **genome.fasta** and **genome.gtf** here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
+Only the FASTA file and GTF file (which we named *genome.fasta* and *genome.gtf* here) need to be supplied by the user; the other files are output files generated as part of the indexing process and may be necessary for the subsequent mapping and quantification step.
 
 .. code-block:: text
 
@@ -146,8 +146,7 @@ Running ``kb ref --workflow=nac`` will generate six files:
 - **nascent.fasta:**  
   A FASTA file containing sequences for the nascent transcriptome  
   (i.e. full gene sequences including all exons and introns).
-
-Both ``cdna.fasta`` and ``nascent.fasta`` are not required for downstream processing,  
+Neither `cdna.fasta` nor `nascent.fasta` are required for downstream processing,  
 but may be useful to retain for reference.
 
 Advanced
@@ -212,7 +211,7 @@ extracting them from a reference FASTA and GTF annotation. This is useful when
 working with non-standard references, custom transcriptomes, or other sequence 
 collections.
 
-Example (with target sequences stored in ``custom.fasta``):
+Example (with target sequences stored in `custom.fasta`):
 
 .. code-block:: text
 

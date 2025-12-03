@@ -59,7 +59,7 @@ These two commands wrap a sequence of kallisto and bustools operations:
 Output files
 ------------
 
-For single cell, ``kb count`` produces one or more count matrix files suitable for downstream
+For single cell RNA-seq, ``kb count`` produces one or more count matrix files suitable for downstream
 analysis:
 
 - **.mtx** — sparse matrix format compatible with most analysis frameworks

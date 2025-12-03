@@ -13,7 +13,7 @@ The toolkit comprises three main components:
   retains all information needed for accurate quantification while dramatically
   reducing compute time and resource requirements.  
 
-  For complex or custom assays, kallisto also supports :ref:`seqspec <seqspec intro>`, a small machine-readable
+  For complex or custom assays, kallisto also supports :ref:`seqspec <seqspec intro>`, a compact, machine-readable
   format that describes barcode and UMI positions so kallisto can parse nonstandardread layouts.
   
   *Input*: sequencing reads, an index built from your reference targets, and (for

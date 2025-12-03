@@ -11,7 +11,7 @@ transcripts without fully aligning them. This enables extremely fast and
 accurate transcript quantification.
 
 **bustools** processes barcode and UMI information and provides utilities
-for manipulating BUS files, a compact representation of barcodes, UMIs,
+for manipulating BUS—a compact representation of barcodes, UMIs,
 and transcript equivalence classes.
 
 **kb-python** offers high-level workflows that automate common tasks

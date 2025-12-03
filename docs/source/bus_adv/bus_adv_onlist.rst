@@ -31,7 +31,7 @@ An example (first ten barcodes from the 10x Genomics 5′ v2 chemistry) is shown
 
 
 For technologies like SPLiT-seq, barcodes may be split into multiple segments separated by linker sequences.  
-When running ``kb count``, the linker regions are typically discarded so that only the barcode segments are extracted (see the :ref:`Technologies and the -x string <technologies-section>` section for more details).
+When running ``kb count``, the linker regions are typically discarded so that only the barcode segments are extracted (see the :ref:`technologies and the -x string <technologies-section>` section for more details).
 
 In this case, barcode correction can be applied to each segment independently using a multi-column on-list.  
 For example, if three 8-bp barcodes are extracted (forming a combined 24-bp barcode), the on-list may contain three columns—one for each segment—with columns separated by one or more spaces.  

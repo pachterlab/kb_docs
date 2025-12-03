@@ -42,7 +42,7 @@ Single-cell RNA-seq quantification
         SAMPLE_L002_R1_001.fastq.gz SAMPLE_L002_R2_001.fastq.gz ...
 
 
-For **paired-end** reads (e.g., most bulk RNA-seq, some SMARTSEQ), use ``--parity paired`` and  
+In the case that both **paired-end reads** contain the biological sequence (e.g., most bulk RNA-seq, some SMARTSEQ), use ``--parity paired`` and  
 list paired reads sequentially.
 
 **Example:**
