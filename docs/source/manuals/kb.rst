@@ -125,7 +125,7 @@ Generate count matrices from a set of single-cell FASTQ files
 
     For technology `SMARTSEQ`, sort all input FASTQs alphabetically by path and paired in order, and assign cell IDs as incrementing integers starting from zero. A single batch TSV with cell ID, read 1, and read 2 as columns can be provided to override this behavior.
 
-    In place of listing FASTQ files, a batch TSV files with three columns (*cell ID*, *read 1*, *read 2*) can be provided to specify multiple samples (for single-end reads the batch file is formatted as (*cell ID*, *read1*)).
+    In place of listing FASTQ files, a batch TSV file with three columns (*cell ID*, *read 1*, *read 2*) can be provided to specify multiple samples (for single-end reads the batch file is formatted as (*cell ID*, *read1*)).
 
 **required arguments for `nac` workflow:**
 
