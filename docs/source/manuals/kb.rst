@@ -220,6 +220,18 @@ Generate count matrices from a set of single-cell FASTQ files
 
 --opt-off             Disable performance optimizations
 
+**optional arguments for BULK and SMARTSEQ2 technologies:**
+--fragment-l L        Mean length of fragments. (single-end only)
+  
+--fragment-s S        Standard deviation of fragment lengths. (single-end only)
+
+--bootstraps B        Number of bootstraps to perform
+
+--matrix-to-files     Reorganize matrix output into abundance tsv files
+
+--matrix-to-directories
+                        Reorganize matrix output into abundance tsv files across multiple directories
+
 **Output:**
 
 In the output directory specified by ``-o``, the following files are made:
@@ -242,7 +254,8 @@ In the output directory specified by ``-o``, the following files are made:
     - **`matrix.sample.barcodes`**: A file listing the 16 bp pseudobarcodes for each sample
 * If ``-r`` is specified, the corrected count matrix, barcodes, and genes files are placed in the `counts_unfiltered_modified` folder.
 * If ``--report`` is specified, an HTML report (`report.html`) and Jupyter notebook (`report.ipynb`) are created containing run statistics and basic plots.
-* If ``x=BULK``, transcript- and gene-level abundance files in TSV and H5 format, similar to kallisto's standard output, are created in the `quant_unfiltered` folder. The directories inside `quant_unfiltered` have the form `abundance_1`, `abundance_2`, etc. corresponding to the samples in the order they were provided.
+* If ``--matrix-to-files``, transcript- and gene-level abundance files in TSV and H5 format are created in the `quant_unfiltered` folder.
+* If ``--matrix-to-directories``, transcript- and gene-level abundance files in TSV and H5 format are created in the `quant_unfiltered` folder. The directories inside `quant_unfiltered` have the form `abundance_1`, `abundance_2`, etc. corresponding to the samples in the order they were provided.
 
 .. _kb extract:
 
